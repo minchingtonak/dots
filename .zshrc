@@ -9,13 +9,6 @@ export ZSH=$HOME"/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-# OS-specific config
-if grep -q Microsoft /proc/version; then
-  # we're on wsl
-else
-  # bind capslock to ctrl
-  setxkbmap -option ctrl:nocaps
-fi
 ZSH_THEME="robbyrussell"
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=false
@@ -104,8 +97,11 @@ export EDITOR='vim'
 source $HOME/.bash_aliases
 
 # cd to Documents folder if we're on Windows
-grep -q Microsoft /proc/version
-if [ $? -eq 0 ]; then
-	user
+# OS-specific config
+if grep -q Microsoft /proc/version; then
+  # we're on wsl
+  user # cd to Documents
+else
+  # bind capslock to ctrl
+  setxkbmap -option ctrl:nocaps
 fi
-export BROWSER='/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe'
