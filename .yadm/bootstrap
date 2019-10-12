@@ -1,0 +1,66 @@
+#!/bin/bash
+
+pprint() {
+  echo -e "\e[92m======"$1"======\e[0m"
+}
+
+install_package() {
+case `uname` in
+  Linux )
+     LINUX=1
+     which apt > /dev/null && sudo apt update && sudo apt install $* && return 0
+     which pacman > /dev/null && sudo pacman -Sy $* && return 0
+     which yum > /dev/null && sudo yum update && sudo yum -y install $* && return 0
+     which zypper > /dev/null && zypper install $* && return 0
+     which xbps-install > /dev/null && xbps-install $* && return 0
+     which dnf > /dev/null && dnf install $* && return 0
+     which pkg_add > /dev/null && pkg_add $* && return 0
+     which eopkg > /dev/null && eopkg it $* && return 0
+     which apk > /dev/null && apk add $* && return 0
+     ;;
+  Darwin )
+     DARWIN=1
+     which brew > /dev/null && brew install $* && return 0
+     which port > /dev/null && sudo port install $* && return 0
+     ;;
+  * )
+    return 1
+     ;;
+esac
+return 1
+}
+
+# Install ZSH
+pprint "Installing ZSH..."
+TO_INSTALL=(zsh)
+if uname | grep -iq "darwin" -; then
+    TO_INSTALL=(zsh zsh-completions)
+fi
+if ! install_package ${TO_INSTALL[@]} ; then
+  pprint "Unable to install ZSH! Quitting..."
+  exit 1
+fi
+
+chsh -s $(which zsh)
+
+# replace dotfile remote with ssh url
+yadm remote set-url origin git@gitlab.eecs.umich.edu:akminch/dots.git
+pprint "Remote URL switched to SSH"
+yadm remote -v
+
+# Install ohmyzsh
+pprint "Installing OhMyZsh..."
+RUNZSH=no CHSH=no sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+if [ -f ~/.zshrc.pre-oh-my-zsh ]; then
+    pprint "Cleaning up OMZ install..."
+    rm -f .zshrc
+    mv .zshrc.pre-oh-my-zsh .zshrc
+fi
+
+# Install OhMyZsh plugins
+pprint "Installing OhMyZsh plugins"
+zsh -c $HOME/.utils/zsh-plugins.sh
+
+pprint "Dotfiles setup finished successfully!"
+pprint "Please log out and log back in to start using ZSH"
