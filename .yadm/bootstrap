@@ -44,7 +44,7 @@ fi
 chsh -s $(which zsh)
 
 # replace dotfile remote with ssh url
-yadm remote set-url origin git@gitlab.eecs.umich.edu:akminch/dots.git
+yadm remote set-url origin git@github.com:minchingtonak/dots.git
 pprint "Remote URL switched to SSH"
 yadm remote -v
 
