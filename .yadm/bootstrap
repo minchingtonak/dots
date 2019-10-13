@@ -5,26 +5,32 @@ pprint() {
 }
 
 install_package() {
+if grep -iq "arch" /etc/*release && ! which yay 2>&1 /dev/null; then
+  pprint "Arch detected. Installing yay..."
+  sudo pacman -Sy yay
+fi
 case `uname` in
   Linux )
      LINUX=1
-     which apt > /dev/null && sudo apt update && sudo apt install $* && return 0
-     which pacman > /dev/null && sudo pacman -Sy $* && return 0
-     which yum > /dev/null && sudo yum update && sudo yum -y install $* && return 0
-     which zypper > /dev/null && zypper install $* && return 0
-     which xbps-install > /dev/null && xbps-install $* && return 0
-     which dnf > /dev/null && dnf install $* && return 0
-     which pkg_add > /dev/null && pkg_add $* && return 0
-     which eopkg > /dev/null && eopkg it $* && return 0
-     which apk > /dev/null && apk add $* && return 0
+     which apt 2>&1 /dev/null && sudo apt update && sudo apt install $* && return 0
+     which yay 2>&1 /dev/null && yay $* && return 0
+     which pacman 2>&1 /dev/null && sudo pacman -Sy $* && return 0
+     which yum 2>&1 /dev/null && sudo yum update && sudo yum -y install $* && return 0
+     which zypper 2>&1 /dev/null && zypper install $* && return 0
+     which xbps-install 2>&1 /dev/null && xbps-install $* && return 0
+     which dnf 2>&1 /dev/null && dnf install $* && return 0
+     which pkg_add 2>&1 /dev/null && pkg_add $* && return 0
+     which eopkg 2>&1 /dev/null && eopkg it $* && return 0
+     which apk 2>&1 /dev/null && apk add $* && return 0
      ;;
   Darwin )
      DARWIN=1
-     which brew > /dev/null && brew install $* && return 0
-     which port > /dev/null && sudo port install $* && return 0
+     which brew 2>&1 /dev/null && brew install $* && return 0
+     which port 2>&1 /dev/null && sudo port install $* && return 0
      ;;
   * )
-    return 1
+     pprint "Unknown OS!"
+     return 1
      ;;
 esac
 return 1
