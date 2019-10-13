@@ -4,6 +4,6 @@ A (hopefully) ever-growing collection of dotfiles I use.
 
 ### Install
 
-`sh -c "$(wget https://git.io/Jeldy -O -)"`
+`sh -c "$(wget https://git.io/JelxM -O -)"`
 
 Be sure to configure ssh keys after install.
