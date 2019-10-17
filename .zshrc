@@ -100,7 +100,6 @@ source $HOME/.bash_aliases
 # OS-specific config
 if grep -q Microsoft /proc/version; then
   # we're on wsl
-  user # cd to Documents
 else
   # bind capslock to ctrl
   setxkbmap -option ctrl:nocaps
