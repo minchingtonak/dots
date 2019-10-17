@@ -1,5 +1,5 @@
 alias caen='ssh akminch@login.engin.umich.edu'
-alias user='cd /mnt/c/Users/akmin/Documents/'
+alias doc='cd /mnt/c/Users/akmin/Documents/'
 alias weather='curl http://wttr.in/ann_arbor'
 alias l="ls -a --color=tty"
 alias ll='ls -alhF --color=tty'
