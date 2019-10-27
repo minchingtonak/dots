@@ -71,8 +71,6 @@ zsh-syntax-highlighting
 fzf-zsh
 zsh-autosuggestions
 vscode
-command-not-found
-common-aliases
 copyfile
 dirhistory
 docker
