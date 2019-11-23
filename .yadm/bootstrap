@@ -49,7 +49,7 @@ fi
 
 # Record shell being used before ZSH for easy switching back later
 echo $SHELL > .yadm/prev_shell
-ehco $SHELL > .yadm/orig_shell
+echo $SHELL > .yadm/orig_shell
 chsh -s $(which zsh)
 
 # replace dotfile remote with ssh url
