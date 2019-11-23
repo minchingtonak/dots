@@ -69,7 +69,7 @@ fi
 
 # Configure git credentials
 pprint "Configuring git credentials"
-echo "user.name: "
+printf "user.name: "
 read name
 git config --global user.name $name
 printf "user.email: "
