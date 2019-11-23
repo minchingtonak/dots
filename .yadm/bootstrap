@@ -76,7 +76,6 @@ printf "user.email: "
 read email
 git config --global user.email $email
 
-
 # Create branch for easy reverting to pre-install dotfiles
 pprint "Creating revert branch"
 yadm stash branch old
@@ -86,7 +85,7 @@ yadm checkout master
 
 # Install OhMyZsh plugins
 pprint "Installing OhMyZsh plugins"
-zsh -c $HOME/.utils/zsh-plugins.sh
+zsh -c $HOME/.yadm/scripts/zsh-plugins.sh
 
 pprint "Dotfiles setup finished successfully!"
 pprint "Please log out and log back in to start using ZSH"
