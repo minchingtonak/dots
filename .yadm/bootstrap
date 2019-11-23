@@ -47,6 +47,9 @@ if ! install_package ${TO_INSTALL[@]} ; then
   exit 1
 fi
 
+# Record shell being used before ZSH for easy switching back later
+echo $SHELL > .yadm/prev_shell
+ehco $SHELL > .yadm/orig_shell
 chsh -s $(which zsh)
 
 # replace dotfile remote with ssh url
@@ -67,6 +70,24 @@ fi
 # Install OhMyZsh plugins
 pprint "Installing OhMyZsh plugins"
 zsh -c $HOME/.utils/zsh-plugins.sh
+
+# Configure git credentials
+pprint "Configuring git credentials"
+echo "user.name: "
+read name
+git config --global user.name $name
+printf "user.email: "
+read email
+git config --global user.email $email
+
+
+# Create branch for easy reverting to pre-install dotfiles
+pprint "Creating revert branch"
+yadm stash branch old
+yadm add -u
+yadm commit -m "Checkout this branch to restore previous dotfiles"
+yadm checkout master
+
 
 pprint "Dotfiles setup finished successfully!"
 pprint "Please log out and log back in to start using ZSH"
