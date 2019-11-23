@@ -67,10 +67,6 @@ if [ -f ~/.zshrc.pre-oh-my-zsh ]; then
     mv .zshrc.pre-oh-my-zsh .zshrc
 fi
 
-# Install OhMyZsh plugins
-pprint "Installing OhMyZsh plugins"
-zsh -c $HOME/.utils/zsh-plugins.sh
-
 # Configure git credentials
 pprint "Configuring git credentials"
 echo "user.name: "
@@ -88,6 +84,9 @@ yadm add -u
 yadm commit -m "Checkout this branch to restore previous dotfiles"
 yadm checkout master
 
+# Install OhMyZsh plugins
+pprint "Installing OhMyZsh plugins"
+zsh -c $HOME/.utils/zsh-plugins.sh
 
 pprint "Dotfiles setup finished successfully!"
 pprint "Please log out and log back in to start using ZSH"
