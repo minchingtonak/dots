@@ -1,0 +1,66 @@
+{
+    "git.ignoreMissingGitWarning": true,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100, SortIncludes: true}",
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
+    "window.zoomLevel": 0,
+    "C_Cpp.default.cppStandard": "c++11",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "editor.formatOnType": false,
+    "files.autoSave": "onFocusChange",
+    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\bash.exe",
+    "liveshare.featureSet": "insiders",
+    "workbench.colorTheme": "Noctis Obscuro",
+    "python.formatting.provider": "black",
+    // Below config for windows
+    // "python.formatting.autopep8Path": "C:\\Users\\akmin\\AppData\\Roaming\\Python\\Python37\\Scripts\\autopep8.exe",
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "79",
+        "-a",
+        "-a",
+        "-a",
+        "-a"
+    ],
+    "editor.renderWhitespace": "selection",
+    "files.eol": "\n",
+    "editor.renderLineHighlight": "all",
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/"
+        }
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+    "liveshare.nameTagVisibility": "Never",
+    "terminal.integrated.fontSize": 11,
+    "terminal.integrated.fontFamily": "'Cascadia Code', monospace",
+    "terminal.integrated.env.linux":{
+        "VSC" : "true"
+    },
+    "terminal.integrated.env.windows":{
+        "VSC" : "true"
+    },
+    "gitlens.codeLens.enabled": false,
+    "python.formatting.blackArgs": [
+        "-l",
+        "79"
+    ],
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "terminal.integrated.rendererType": "dom",
+    "zenMode.hideStatusBar": false,
+    "zenMode.hideTabs": false,
+    "zenMode.hideActivityBar": false,
+    "zenMode.centerLayout": false
+}

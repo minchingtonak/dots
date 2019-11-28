@@ -1,0 +1,13 @@
+code --install-extension ms-vscode-remote.remote-wsl
+code --install-extension hookyqr.beautify
+code --install-extension ms-vscode.cpptools
+code --install-extension fabiospampinato.vscode-diff
+code --install-extension eamodio.gitlens
+code --install-extension ritwickdey.live-sass
+code --install-extension ritwickdey.liveserver
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension ms-python.python
+code --install-extension tomoki1207.pdf
+code --install-extension alphabotsec.vscode-eclipse-keybindings
+code --install-extension liviuschera.noctis
+code --install-extension vscode-icons-team.vscode-icons
