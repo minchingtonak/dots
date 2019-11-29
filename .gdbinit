@@ -1,1 +1,1 @@
-gdb-dashboard/.gdbinit
+/home/akmin/.yadm/gdb-dashboard/.gdbinit

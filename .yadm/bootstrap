@@ -57,6 +57,10 @@ yadm remote set-url origin git@github.com:minchingtonak/dots.git
 pprint "Remote URL switched to SSH"
 yadm remote -v
 
+# Symlink necessary files
+pprint "Symlinking files"
+ln -s $HOME/.yadm/gdb-dashboard/.gdbinit $HOME/.gdbinit
+
 # Install ohmyzsh
 pprint "Installing OhMyZsh..."
 RUNZSH=no CHSH=no sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
