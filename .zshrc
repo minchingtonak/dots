@@ -104,7 +104,7 @@ source $HOME/.bash_aliases
 
 # cd to Documents folder if we're on Windows
 # OS-specific config
-if grep -q Microsoft /proc/version; then # We're on WSL
+if grep -iq Microsoft /proc/version; then # We're on WSL
   if [ -z "$VSC" ]; then # Custom variable set when terminal opened in VSCode
     doc
   fi
