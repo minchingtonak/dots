@@ -9,5 +9,5 @@ fi
 
 chsh -s "$(cat ~/.yadm/orig_shell)"
 yadm checkout old
-rm -rf ~/.yadm ~/.oh-my-zsh ~/gdb-dashboard ~/.utils
+rm -rf ~/.yadm ~/.oh-my-zsh ~/.fzf*
 echo "Logout and log back in to see changes"
