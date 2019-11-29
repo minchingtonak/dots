@@ -11,8 +11,6 @@
     "liveshare.featureSet": "insiders",
     "workbench.colorTheme": "Noctis Obscuro",
     "python.formatting.provider": "black",
-    // Below config for windows
-    // "python.formatting.autopep8Path": "C:\\Users\\akmin\\AppData\\Roaming\\Python\\Python37\\Scripts\\autopep8.exe",
     "python.formatting.autopep8Args": [
         "--max-line-length",
         "79",
