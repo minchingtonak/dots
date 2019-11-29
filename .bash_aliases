@@ -12,6 +12,8 @@ y() { yadm $@; }
 ya() { y add $@; }
 yc() { y commit $@; }
 ycm() { y commit -m $@; }
+yco() { y checkout $@; }
+yb() { y branch $@; }
 yp() { y push $@; }
 yrh() { y reset HEAD $@; }
 yd() { y diff $@; }
