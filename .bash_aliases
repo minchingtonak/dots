@@ -8,6 +8,16 @@ alias gl='git log --graph --full-history --all --color \
   --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias exp="explorer.exe ."
 alias aliases="$EDITOR ~/.bash_aliases"
+snewl() {
+  if grep -q 'SPACESHIP_PROMPT_SEPARATE_LINE=true' ~/.zshrc; then
+    sed -i -e 's/SPACESHIP_PROMPT_SEPARATE_LINE=true/SPACESHIP_PROMPT_SEPARATE_LINE=false/' ~/.zshrc
+  else
+    sed -i -e 's/SPACESHIP_PROMPT_SEPARATE_LINE=false/SPACESHIP_PROMPT_SEPARATE_LINE=true/' ~/.zshrc
+  fi
+  tmp="$(pwd)"
+  source ~/.zshrc
+  cd $tmp
+}
 y() { yadm $@; }
 ya() { y add $@; }
 yc() { y commit $@; }
