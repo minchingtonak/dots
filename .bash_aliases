@@ -1,7 +1,8 @@
 alias caen='ssh akminch@login.engin.umich.edu'
 alias ws='cd $HOME/workspace'
+alias windows='cd /mnt/c/Users/akmin'
 alias weather='curl http://wttr.in/ann_arbor'
-alias l="ls -a --color=tty"
+alias l='ls -a --color=tty'
 alias ll='ls -alhF --color=tty'
 alias la='ls -A --color=tty'
 alias gl='glog'
