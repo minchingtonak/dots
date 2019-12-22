@@ -53,7 +53,6 @@ plugins=(
 git
 zsh-syntax-highlighting
 fzf-zsh
-zsh-autosuggestions
 vscode
 copyfile
 dirhistory
