@@ -26,7 +26,7 @@ SPACESHIP_DIR_TRUNC_REPO=false
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -52,6 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
 git
 zsh-syntax-highlighting
+zsh-autosuggestions
 fzf-zsh
 vscode
 copyfile
