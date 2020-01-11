@@ -8,6 +8,8 @@ alias la='ls -A --color=tty'
 alias gl='glog'
 alias exp="explorer.exe ."
 alias aliases="$EDITOR ~/.bash_aliases"
+alias act='source env/bin/activate'
+alias deact='deactivate'
 snewl() {
   if grep -q 'SPACESHIP_PROMPT_SEPARATE_LINE=true' ~/.zshrc; then
     sed -i -e 's/SPACESHIP_PROMPT_SEPARATE_LINE=true/SPACESHIP_PROMPT_SEPARATE_LINE=false/' ~/.zshrc
