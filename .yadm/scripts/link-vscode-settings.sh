@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euxo pipefail
+
 if grep -iq microsoft /proc/version; then
   cp $HOME/.vscode-settings.json /mnt/c/Users/akmin/AppData/Roaming/Code/User/settings.json
   cp $HOME/.vscode-keybindings.json /mnt/c/Users/akmin/AppData/Roaming/Code/User/keybindings.json
