@@ -1,3 +1,6 @@
+#!/bin/bash
+set -Eeuxo pipefail
+
 DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 
 # zsh-syntax-highlighting

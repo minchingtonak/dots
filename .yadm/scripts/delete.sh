@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -Eeuxo pipefail
 
 printf "Are you sure you want to remove the dotfiles repo? [Y/n] "
 read response

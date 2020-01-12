@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -Eeuxo pipefail
 
 if grep -iq microsoft /proc/version; then
   cp $HOME/.vscode-settings.json /mnt/c/Users/akmin/AppData/Roaming/Code/User/settings.json

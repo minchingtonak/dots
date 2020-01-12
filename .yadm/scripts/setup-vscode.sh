@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -Eeuxo pipefail
 
 while IFS="" read -r p || [ -n "$p" ]
 do
