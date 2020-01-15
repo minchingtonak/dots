@@ -4,6 +4,7 @@ alias windows='cd /mnt/c/Users/akmin'
 alias weather='curl http://wttr.in/ann_arbor'
 alias l='ls -a --color=tty'
 alias ll='ls -alhF --color=tty'
+alias lll='du -h --max-depth=1 | sort -hr'
 alias la='ls -A --color=tty'
 alias gl='glog'
 alias exp="explorer.exe ."
