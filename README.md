@@ -1,6 +1,6 @@
 # dotfiles
 
-A (hopefully) ever-growing collection of dotfiles I use.
+A (hopefully ever-growing) collection of dotfiles I use.
 
 ### Install
 
