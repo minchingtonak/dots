@@ -8,6 +8,7 @@ alias ll='ls -alhF --color=tty'
 alias lll='du -h --max-depth=1 | sort -hr'
 alias la='ls -A --color=tty'
 alias gl='glog'
+alias gpom='gp origin master'
 alias exp="explorer.exe ."
 alias aliases="$EDITOR ~/.bash_aliases"
 alias act='source env/bin/activate'
