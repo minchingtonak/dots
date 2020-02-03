@@ -56,7 +56,7 @@ chsh -s $(which zsh)
 # replace dotfile remote with ssh url
 printf "Switch remotes to ssh? [Y/n] "
 read response
-if [ "$response" ~= [Yy] ]; then
+if [[ "$response" =~ [Yy] ]]; then
     yadm remote set-url origin git@github.com:minchingtonak/dots.git
     pprint "Remote URL switched to SSH"
 fi
