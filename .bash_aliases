@@ -1,7 +1,7 @@
 alias caen='ssh akminch@login.engin.umich.edu'
 alias ws='cd $HOME/workspace'
 alias tmp='cd /tmp'
-alias windows='cd /mnt/c/Users/akmin'
+alias windows='cd /mnt/c/Users/'
 alias weather='curl http://wttr.in/ann_arbor'
 alias l='ls -a --color=tty'
 alias ll='ls -alhF --color=tty'
@@ -11,6 +11,8 @@ alias gl='glog'
 alias gpom='gp origin master'
 alias exp="explorer.exe ."
 alias aliases="$EDITOR ~/.bash_aliases"
+alias bashrc="$EDITOR ~/.bashrc"
+alias zshrc="$EDITOR ~/.zshrc"
 alias act='source env/bin/activate'
 alias deact='deactivate'
 snewl() {
@@ -34,4 +36,5 @@ yrh() { y reset HEAD $@; }
 yd() { y diff $@; }
 ydt() { y difftool $@; }
 yl() { y log --oneline --decorate --graph; }
+alias ypom="yp origin master"
 alias yst="y status"
