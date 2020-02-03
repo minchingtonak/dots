@@ -4,6 +4,8 @@
 # Disable omz wanrnings when starting the autocompletion engine
 ZSH_DISABLE_COMPFIX=true
 
+source "$HOME/.yadm/global_vars"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME"/.oh-my-zsh"
 
@@ -69,7 +71,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export EDITOR='vim'
+export EDITOR='code'
 
 source $HOME/.bash_aliases
 
@@ -80,7 +82,7 @@ if grep -iq Microsoft /proc/version; then # We're on WSL
     ws
   fi
 else
-  # bind capslock to ctrl
+  # bind ctrl to capslock key
   setxkbmap -option ctrl:nocaps
 fi
 
