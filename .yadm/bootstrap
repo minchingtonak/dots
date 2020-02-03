@@ -97,11 +97,11 @@ if [ -z "$response" ]; then
 else
     WORKSPACE="$response"
 fi
-echo "$WORKSPACE" >> "$VAR_FILE"
+echo "export WORKSPACE=\"$WORKSPACE\"" >> "$VAR_FILE"
 
 printf "Uniqname: "
 read response
-echo "$response" >> "$VAR_FILE"
+echo "export UNIQNAME=\"$response\"" >> "$VAR_FILE"
 
 
 
