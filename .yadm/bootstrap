@@ -1,4 +1,5 @@
 #!/bin/bash
+set -Euo pipefail
 
 pprint() {
   echo -e "\e[92m======"$1"======\e[0m"
@@ -78,7 +79,7 @@ fi
 pprint "Configuring git credentials"
 printf "user.name: "
 read name
-git config --global user.name $name
+git config --global user.name "$name"
 printf "user.email: "
 read email
 git config --global user.email $email
