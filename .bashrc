@@ -3,7 +3,7 @@
 # for examples
 if grep -q Microsoft /proc/version ; then
   # We're on WSL and manually need to start zsh
-  if [ -t 1 &&  ] && [ -e "$HOME/.yadm" ]; then
+  if [ -t 1 &&  ] && [ -e "$HOME/.yadm" ] && which zsh; then
       exec zsh
   fi
 fi
