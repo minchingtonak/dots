@@ -1,5 +1,5 @@
-alias caen='ssh akminch@login.engin.umich.edu'
-alias ws='cd $HOME/workspace'
+alias caen='ssh $UNIQNAME@login.engin.umich.edu'
+alias ws='cd $WORKSPACE'
 alias tmp='cd /tmp'
 alias windows='cd /mnt/c/Users/'
 alias weather='curl http://wttr.in/ann_arbor'

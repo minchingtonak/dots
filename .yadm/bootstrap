@@ -54,8 +54,12 @@ echo $SHELL > .yadm/orig_shell
 chsh -s $(which zsh)
 
 # replace dotfile remote with ssh url
-yadm remote set-url origin git@github.com:minchingtonak/dots.git
-pprint "Remote URL switched to SSH"
+printf "Switch remotes to ssh? [Y/n] "
+read response
+if [ "$response" ~= [Yy] ]; then
+    yadm remote set-url origin git@github.com:minchingtonak/dots.git
+    pprint "Remote URL switched to SSH"
+fi
 yadm remote -v
 
 # Clone into submodules
@@ -82,7 +86,24 @@ read name
 git config --global user.name "$name"
 printf "user.email: "
 read email
-git config --global user.email $email
+git config --global user.email "$email"
+
+VAR_FILE="$HOME/.yadm/global_vars"
+
+printf "Working directory ($HOME/workspace if left blank): "
+read response
+if [ -z "$response" ]; then
+    WORKSPACE="$HOME/workspace"
+else
+    WORKSPACE="$response"
+fi
+echo "$WORKSPACE" >> "$VAR_FILE"
+
+printf "Uniqname: "
+read response
+echo "$response" >> "$VAR_FILE"
+
+
 
 # Create branch for easy reverting to pre-install dotfiles
 pprint "Creating revert branch"
