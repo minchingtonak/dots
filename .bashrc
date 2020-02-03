@@ -45,7 +45,7 @@ function create_prompt
   # Command exit status
   if [ "$?" -eq 0 ]; then
     STATUS="${BGREEN}>"
-  else 
+  else
     STATUS="${BRED}>"
   fi
   # Root or user
@@ -154,8 +154,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-PATH=$PATH:~/bashscripting/
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export EDITOR='vim'
