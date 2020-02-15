@@ -83,7 +83,8 @@ if grep -iq Microsoft /proc/version; then # We're on WSL
   fi
 else
   # bind ctrl to capslock key
-  setxkbmap -option ctrl:nocaps
+    setxkbmap -option ctrl:nocaps
+    ws
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
