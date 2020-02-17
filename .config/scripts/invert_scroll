@@ -1,0 +1,16 @@
+#!/bin/bash
+set -Eeuxo pipefail
+
+dev_id=`xinput list | grep -i 'TouchPad' | awk '{ print $6 }' | sed 's/id=//' | tr '\n' ' '`
+current_scroll_prop=`xinput list-props 13 | grep -i "synaptics scrolling distance"`
+
+# current_scroll_dist=`echo $current_scroll_prop | awk '{ print $5; print $6 }' | tr '\n' ' ' | tr ',' ' '`
+prop_num=`echo $current_scroll_prop | awk '{ print $4 }' | sed -e 'y/():/   /'`
+
+# reversed_dist=`echo $current_scroll_dist | sed -e 's/\([0-9]\+\)/-\1/g'`
+
+for id in $dev_id; do
+    # reversed_map=`xinput get-button-map $id | sed -e 'y/45/54/'`
+    # xinput set-button-map $id $reversed_map
+    xinput set-prop $id $prop_num -40 -40
+done
