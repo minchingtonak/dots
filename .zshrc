@@ -15,7 +15,7 @@ export ZSH=$HOME"/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="spaceship"
 SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=true
+SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_EXIT_CODE_SHOW=true
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_DIR_TRUNC=1
@@ -77,14 +77,10 @@ source $HOME/.bash_aliases
 
 # cd to Documents folder if we're on Windows
 # OS-specific config
-if grep -iq Microsoft /proc/version; then # We're on WSL
-  if [ -z "$VSC" ]; then # Custom variable set when terminal opened in VSCode
-    ws
-  fi
-else
-  # bind ctrl to capslock key
-    setxkbmap -option ctrl:nocaps
-    ws
-fi
+# if grep -iq Microsoft /proc/version; then # We're on WSL
+# else
+# fi
+
+[ -z "$VSC" ] && ws
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
