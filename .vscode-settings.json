@@ -1,27 +1,12 @@
 {
-    "git.ignoreMissingGitWarning": true,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100, SortIncludes: true}",
-    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
-    "window.zoomLevel": 0,
-    "C_Cpp.default.cppStandard": "c++11",
-    "C_Cpp.default.intelliSenseMode": "clang-x64",
-    "editor.formatOnType": false,
-    "files.autoSave": "onFocusChange",
-    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\bash.exe",
-    "liveshare.featureSet": "insiders",
-    "workbench.colorTheme": "Noctis Obscuro",
-    "python.formatting.provider": "black",
-    "python.formatting.autopep8Args": [
-        "--max-line-length",
-        "79",
-        "-a",
-        "-a",
-        "-a",
-        "-a"
-    ],
-    "editor.renderWhitespace": "selection",
-    "files.eol": "\n",
+    // Editor settings
     "editor.renderLineHighlight": "all",
+    "editor.renderWhitespace": "selection",
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Operator Mono Lig', 'monospace'",
+    "editor.fontSize": 15,
+    "editor.formatOnType": false,
+    // Extension settings
     "liveSassCompile.settings.formats": [
         {
             "format": "compressed",
@@ -30,35 +15,65 @@
         }
     ],
     "liveSassCompile.settings.generateMap": false,
-    "[html]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
-    },
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveshare.featureSet": "insiders",
     "liveshare.nameTagVisibility": "Never",
-    "terminal.integrated.fontSize": 11,
-    "terminal.integrated.fontFamily": "'Cascadia Code', monospace",
-    "terminal.integrated.env.linux":{
-        "VSC" : "true"
-    },
-    "terminal.integrated.env.windows":{
-        "VSC" : "true"
-    },
-    "gitlens.codeLens.enabled": false,
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.arrowParens": "always",
+    "prettier.trailingComma": "all",
+    "prettier.jsxBracketSameLine": false,
     "python.formatting.blackArgs": [
         "-l",
         "79"
     ],
-    "[json]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+    "remote.SSH.showLoginTerminal": true,
+    // File settings
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    // git settings
+    "git.ignoreLegacyWarning": true,
+    "git.ignoreMissingGitWarning": true,
+    // gui settings
+    "workbench.colorTheme": "One Dark Pro",
+    "window.menuBarVisibility": "toggle",
+    // Language-specific settings
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100, SortIncludes: true}",
+    "C_Cpp.default.cppStandard": "c++11",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "python.formatting.provider": "black",
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "liveServer.settings.donotShowInfoMsg": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    // Terminal settings
+    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\bash.exe",
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
+    "terminal.integrated.env.linux": {
+        "VSC": "true"
+    },
+    "terminal.integrated.env.windows": {
+        "VSC": "true"
+    },
+    "terminal.integrated.fontSize": 11,
+    "terminal.integrated.fontFamily": "'Fira Code', monospace",
     "terminal.integrated.rendererType": "dom",
+    // Zen mode settings
     "zenMode.hideStatusBar": false,
     "zenMode.hideTabs": false,
     "zenMode.hideActivityBar": false,
-    "zenMode.centerLayout": false
+    "zenMode.centerLayout": false,
+    "zenMode.hideLineNumbers": false,
+    "workbench.iconTheme": "vscode-icons",
 }
