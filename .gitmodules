@@ -3,4 +3,4 @@
 	url = https://github.com/cyrus-and/gdb-dashboard.git
 [submodule ".fonts"]
 	path = .fonts
-	url = git@github.com:minchingtonak/fonts.git
+	url = https://github.com/minchingtonak/fonts.git
