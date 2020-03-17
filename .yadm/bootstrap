@@ -98,6 +98,9 @@ else
     WORKSPACE="$response"
 fi
 echo "export WORKSPACE=\"$WORKSPACE\"" >> "$VAR_FILE"
+if [ ! -d "$WORKSPACE" ]; then
+    mkdir -p "$WORKSPACE"
+fi
 
 printf "Uniqname: "
 read response
