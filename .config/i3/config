@@ -18,6 +18,7 @@ font pango:System San Fransisco Display 10
 for_window [class=".*^"] border pixel 0
 gaps inner 10
 gaps outer 5
+gaps top -5
 
 smart_borders on
 
@@ -49,10 +50,10 @@ bindsym $mod+d exec rofi -show run -lines 6 -theme slate
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+shift+j focus left
+bindsym $mod+shift+k focus down
+bindsym $mod+shift+l focus up
+bindsym $mod+shift+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -61,10 +62,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# bindsym $mod+Shift+j move left
+# bindsym $mod+Shift+k move down
+# bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -101,14 +102,16 @@ bindsym $mod+a focus parent
 set $ws1 "1: "
 set $ws2 "2: "
 set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -119,16 +122,20 @@ bindsym $mod+0 workspace $ws10
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# Use xprop to find window classes
 assign [class="Firefox"] $ws1
+assign [class="X-terminal-emulator"] $ws2
 assign [class="Code"] $ws3
+assign [class="Slack"] $ws4
+assign [class="discord"] $ws5
 #assign [class="Spotify"] $ws10
 for_window [class="Spotify"] move to workspace $ws10
 
@@ -183,9 +190,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+  	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
         position top
-        font pango:Operator Mono Lig 11
+        font pango:Fira Code 11
 	colors {
 		background $bg-color
 	    	separator #757575
@@ -196,8 +203,13 @@ bar {
 	}
 }
 
+# exec_always --no-startup-id $HOME/`.config/polybar/launch
+
+exec_always killall -q dunst
+exec_always --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
+
 # Lockscreen shortcut
-bindsym $mod+shift+x exec ~/.config/scripts/lockscreen
+bindsym $mod+l exec $HOME/.config/scripts/lockscreen
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -217,11 +229,14 @@ bindsym XF86MonBrightnessDown exec brightnessctl --device=intel_backlight s 10%-
 exec setxkbmap -option caps:super
 
 # Invert scrolling
-exec bash -c "~/.config/scripts/invert_scroll"
+exec bash -c "$HOME/.config/scripts/invert_scroll"
 
 # Touchpad controls
-bindsym $mod+shift+t exec ~/.config/scripts/toggle_touchpad
+bindsym $mod+shift+t exec $HOME/.config/scripts/toggle_touchpad
 
-exec_always feh --bg-scale ~/papes/forest.jpg
+exec_always feh --bg-scale $HOME/papes/forest.jpg
 
-exec compton -f -D 3
+exec_always killall compton
+exec_always compton -f -D 5
+
+bindsym Control+Print exec gnome-screenshot -i

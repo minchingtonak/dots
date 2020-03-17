@@ -1,5 +1,5 @@
 #!/bin/bash
-set -Eeuxo pipefail
+# set -Eeuxo pipefail
 
 dev_id=`xinput list | grep -i 'TouchPad' | awk '{ print $6 }' | sed 's/id=//' | tr '\n' ' '`
 current_scroll_prop=`xinput list-props 13 | grep -i "synaptics scrolling distance"`
@@ -8,6 +8,9 @@ current_scroll_prop=`xinput list-props 13 | grep -i "synaptics scrolling distanc
 prop_num=`echo $current_scroll_prop | awk '{ print $4 }' | sed -e 'y/():/   /'`
 
 # reversed_dist=`echo $current_scroll_dist | sed -e 's/\([0-9]\+\)/-\1/g'`
+
+mouse_id=`xinput list | grep -i 'Logitech' | head -1 |  awk '{ print $5 }' | sed 's/id=//'`
+xinput set-prop $mouse_id 629 0
 
 for id in $dev_id; do
     # reversed_map=`xinput get-button-map $id | sed -e 'y/45/54/'`
