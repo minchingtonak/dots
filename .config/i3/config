@@ -18,7 +18,7 @@ font pango:System San Fransisco Display 10
 for_window [class=".*^"] border pixel 0
 gaps inner 10
 gaps outer 5
-gaps top -5
+#gaps top -5
 
 smart_borders on
 
@@ -42,12 +42,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 6 -theme slate
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start rofi
+bindsym $mod+d exec rofi -show run
+bindsym $mod+shift+d exec rofi -show drun
 
 # change focus
 bindsym $mod+shift+j focus left
@@ -99,12 +96,22 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws10 "10: "
+# set $ws1 "1: "
+# set $ws2 "2: "
+# set $ws3 "3: "
+# set $ws4 "4: "
+# set $ws5 "5: "
+# set $ws10 "10: "
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -112,10 +119,10 @@ bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
@@ -124,10 +131,10 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Use xprop to find window classes
@@ -136,14 +143,13 @@ assign [class="X-terminal-emulator"] $ws2
 assign [class="Code"] $ws3
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws5
-#assign [class="Spotify"] $ws10
 for_window [class="Spotify"] move to workspace $ws10
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set_from_resource $bg-color i3wm.color0            #2f343f
+set_from_resource $inactive-bg-color i3wm.color0   #2f343f
+set_from_resource $text-color i3wm.color6          #f3f4f5
+set_from_resource $inactive-text-color i3wm.color8 #676E7D
+set_from_resource $urgent-bg-color i3wm.color3     #E53935
 
 # window colors
 #                       border              background         text                 indicator
@@ -189,54 +195,55 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-  	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-        position top
-        font pango:Fira Code 11
-	colors {
-		background $bg-color
-	    	separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-}
-
-# exec_always --no-startup-id $HOME/`.config/polybar/launch
-
-exec_always killall -q dunst
-exec_always --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
+# bar {
+#   	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+#         position top
+#         font pango:Fira Code 11
+# 	colors {
+# 		background $bg-color
+# 	    	separator #757575
+# 		#                  border             background         text
+# 		focused_workspace  $bg-color          $bg-color          $text-color
+# 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+# 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+# 	}
+# }
 
 # Lockscreen shortcut
-bindsym $mod+l exec $HOME/.config/scripts/lockscreen
+bindsym $mod+l exec --no-startup-id lockscreen
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+
+# Toggle mute key led
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && light -s sysfs/leds/platform::mute | grep -q 100.0 && light -s sysfs/leds/platform::mute -U 100 || light -s sysfs/leds/platform::mute -A 100
 
 # Sreen brightness controls
-# brightnessctl doesn't work without sudo, so need to edit sudoers to let this user run this command as root
-# sudo su
-# EDITOR=nano visudo
-# Add "user host = (root) NOPASSWD: /usr/bin/brightnessctl"
-# may need to change user to your username
-bindsym XF86MonBrightnessUp exec brightnessctl --device=intel_backlight s 10%+ # increase screen brightness
-bindsym XF86MonBrightnessDown exec brightnessctl --device=intel_backlight s 10%- # decrease screen brightness
+## light
+# Need to add your user to the 'video' group
+# sudo usermod -a -G video $USER
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
+# Toggle wifi
+bindsym XF86WLAN exec nmcli radio wifi | grep -iq 'disabled' && nmcli radio wifi on || nmcli radio wifi off
 
 # Bind windows key to capslock
 exec setxkbmap -option caps:super
 
 # Invert scrolling
-exec bash -c "$HOME/.config/scripts/invert_scroll"
+exec --no-startup-id invert_scroll
 
-# Touchpad controls
-bindsym $mod+shift+t exec $HOME/.config/scripts/toggle_touchpad
+# Disable touchpad on external mouse plug in
+exec --no-startup-id autodisable_touchpad
 
-exec_always feh --bg-scale $HOME/papes/forest.jpg
+exec_always --no-startup-id wallpaper ~/papes
 
-exec_always killall compton
-exec_always compton -f -D 5
+exec_always --no-startup-id launch_polybar >> /tmp/polystartup.log 2>&1
+
+exec --no-startup-id compton -f -D 5 -c -l -3 -t -3 -r 4
+
+exec_always --no-startup-id launch_dunst >> /tmp/dunst.log 2>&1
 
 bindsym Control+Print exec gnome-screenshot -i

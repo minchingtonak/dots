@@ -1,5 +1,6 @@
 alias caen='ssh $UNIQNAME@login.engin.umich.edu'
 alias ws='cd $WORKSPACE'
+alias dl='cd $HOME/Downloads'
 alias tmp='cd /tmp'
 alias windows='cd /mnt/c/Users/'
 alias weather='curl http://wttr.in/ann_arbor'
@@ -15,6 +16,7 @@ alias bashrc="$EDITOR ~/.bashrc"
 alias zshrc="$EDITOR ~/.zshrc"
 alias act='source env/bin/activate'
 alias deact='deactivate'
+mk() { mkdir -p $1 && cd $1 }
 snewl() {
   if grep -q 'SPACESHIP_PROMPT_SEPARATE_LINE=true' ~/.zshrc; then
     sed -i -e 's/SPACESHIP_PROMPT_SEPARATE_LINE=true/SPACESHIP_PROMPT_SEPARATE_LINE=false/' ~/.zshrc

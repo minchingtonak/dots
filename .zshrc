@@ -69,6 +69,11 @@ sudo
 
 source $ZSH/oh-my-zsh.sh
 
+# Suggest packages to install
+if [[ -s '/etc/zsh_command_not_found' ]]; then
+  source '/etc/zsh_command_not_found'
+fi
+
 # User configuration
 
 export EDITOR='code'
@@ -84,3 +89,10 @@ source $HOME/.bash_aliases
 [ -z "$VSC" ] && ws
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+PATH=~/.local/bin:$PATH

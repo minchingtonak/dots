@@ -3,7 +3,7 @@
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "selection",
     "editor.fontLigatures": true,
-    "editor.fontFamily": "'Operator Mono Lig', 'monospace'",
+    "editor.fontFamily": "'Operator Mono Lig', 'Font Awesome 5 Brands', 'Font Awesome 5 Free', 'Font Awesome 5 Free Solid'",
     "editor.fontSize": 15,
     "editor.formatOnType": false,
     "editor.minimap.enabled": false,
@@ -35,10 +35,10 @@
     // git settings
     "git.ignoreLegacyWarning": true,
     "git.ignoreMissingGitWarning": true,
-    // gui settings
-    "workbench.colorTheme": "One Dark Pro",
+    // Window settings
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 1,
+    "workbench.colorTheme": "Wal",
     // Language-specific settings
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100, SortIncludes: true}",
     "C_Cpp.default.cppStandard": "c++11",
@@ -77,5 +77,4 @@
     "zenMode.hideActivityBar": false,
     "zenMode.centerLayout": false,
     "zenMode.hideLineNumbers": false,
-    "workbench.iconTheme": "vscode-icons",
 }
