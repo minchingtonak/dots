@@ -6,5 +6,5 @@ TID=$(xinput list | grep -iPo 'synaptics.*id=\K\d+')
 while :
 do
     xinput list | grep -iq logitech && xinput disable "$TID" || xinput enable "$TID"
-    sleep 3
+    sleep 5
 done

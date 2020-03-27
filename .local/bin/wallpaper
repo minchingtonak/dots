@@ -1,23 +1,10 @@
 #!/usr/bin/env bash
 
-# Credit to FilipLitwora
-
-# Find random wallpaper from given directory and set it as wallpaper using pywal
-if [ -z "$1" ]; then
-    echo "usage: $0 [path/to/images] [image_name (if none choose random)]"
-    exit 1
-else
-    if [ -z "$2" ]; then
-        ls $1 | sort -R | tail -1 | while read file; do
-            wal -i $1/$file
-        done
-    else
-        wal -i $1/$2
-    fi
-fi
-cp $HOME/.cache/wal/colors.Xresources $HOME/.Xresources
+wal --saturate 0.5 -i $1
 
 # https://github.com/FilipLitwora/pywal-discord
 pywal-discord
+
+launch_dunst
 
 pgrep spotify && spicetify apply || spicetify update
