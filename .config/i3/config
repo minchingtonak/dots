@@ -137,6 +137,28 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+set $mon1 eDP-1 # Builtin display
+set $mon2 DP-1 # Acer 144hz
+set $mon3 HDMI-2 # Asus
+
+bindsym $mod+Control+Shift+1 move workspace to output $mon1
+bindsym $mod+Control+Shift+2 move workspace to output $mon2
+bindsym $mod+Control+Shift+3 move workspace to output $mon3
+
+workspace $ws1 output $mon2 $mon1
+workspace $ws2 output $mon2 $mon1
+workspace $ws3 output $mon3 $mon1
+workspace $ws4 output $mon3 $mon1
+workspace $ws5 output $mon3 $mon1
+workspace $ws6 output $mon3 $mon1
+workspace $ws7 output $mon3 $mon1
+workspace $ws8 output $mon3 $mon1
+workspace $ws9 output $mon3 $mon1
+workspace $ws10 output $mon3 $mon1
+
+bindsym $mod+m exec manage_displays
+exec --no-startup-id manage_displays
+
 # Use xprop to find window classes
 assign [class="Firefox"] $ws1
 assign [class="X-terminal-emulator"] $ws2
@@ -145,18 +167,26 @@ assign [class="Slack"] $ws4
 assign [class="discord"] $ws5
 for_window [class="Spotify"] move to workspace $ws10
 
-set_from_resource $bg-color i3wm.color0            #2f343f
-set_from_resource $inactive-bg-color i3wm.color0   #2f343f
-set_from_resource $text-color i3wm.color6          #f3f4f5
-set_from_resource $inactive-text-color i3wm.color8 #676E7D
-set_from_resource $urgent-bg-color i3wm.color3     #E53935
+set_from_resource $bg-color i3wm.color0                    #2f343f
+set_from_resource $focused-bg-color i3wm.color1            #2f343f
+set_from_resource $inactive-bg-color i3wm.color0           #2f343f
+set_from_resource $urgent-bg-color i3wm.color3             #E53935
+
+set_from_resource $unfocused-border-color i3wm.color0      #2f343f
+
+set_from_resource $focused-text-color i3wm.color1          #f3f4f5
+set_from_resource $inactive-text-color i3wm.color8         #676E7D
+set_from_resource $focused_inactive-text-color i3wm.color6 #676E7D
 
 # window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $iancative-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $iancative-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+#                       border                background           text                         indicator        child_border
+client.focused          $bg-color             $bg-color            $focused-text-color          #00ff00          #f00000
+client.unfocused        $unfocused-border-color $inactive-bg-color $inactive-text-color         #00ff00          #f00000
+client.focused_inactive $inactive-bg-color    $inactive-bg-color   $focused_inactive-text-color #00ff00          #f00000
+client.urgent           $urgent-bg-color      $urgent-bg-color     $focused-text-color          #00ff00          #f00000
+client.placeholder      $bg-color             $bg-color            $focused-text-color          #00ff00          #0c0c0c
+
+client.background $bg-color
 
 hide_edge_borders both
 
@@ -165,7 +195,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -230,7 +260,7 @@ bindsym XF86MonBrightnessDown exec light -U 10
 bindsym XF86WLAN exec nmcli radio wifi | grep -iq 'disabled' && nmcli radio wifi on || nmcli radio wifi off
 
 # Bind windows key to capslock
-exec setxkbmap -option caps:super
+exec_always --no-startup-id setxkbmap -option caps:super
 
 # Invert scrolling
 exec --no-startup-id invert_scroll
@@ -238,12 +268,15 @@ exec --no-startup-id invert_scroll
 # Disable touchpad on external mouse plug in
 exec --no-startup-id autodisable_touchpad
 
-exec_always --no-startup-id wallpaper ~/papes
+exec --no-startup-id wallpaper ~/papes
+bindsym $mod+n exec wallpaper ~/papes
 
 exec_always --no-startup-id launch_polybar >> /tmp/polystartup.log 2>&1
 
-exec --no-startup-id compton -f -D 5 -c -l -3 -t -3 -r 4
+exec_always --no-startup-id compton --config ~/.config/compton/compton.conf
 
 exec_always --no-startup-id launch_dunst >> /tmp/dunst.log 2>&1
 
 bindsym Control+Print exec gnome-screenshot -i
+
+bindsym $mod+b exec blueman-manager
