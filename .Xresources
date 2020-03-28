@@ -1,15 +1,9 @@
-URxvt.font: xft:Fira Mono:size=14
+URxvt.font: xft:Fira Code:size=14
 URxvt.scrollBar: false
-URxvt.letterSpace: -1
+URxvt.letterSpace: 0
 
 ! Disable printing the terminal contents when pressing PrintScreen.
 URxvt.print-pipe: "cat > /dev/null"
-
-! Copy into CLIPBOARD in addition to PRIMARY buffer
-! URxvt.perl-ext-common:  ...,clipboard,...
-! URxvt.clipboard.autocopy: true
-! URxvt.keysym.M-c: perl:clipboard:copy
-! URxvt.keysym.M-v: perl:clipboard:paste
 
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
@@ -22,6 +16,16 @@ URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.keysym.Control-Meta-c: builtin-string:
 URxvt.keysym.Control-Meta-v: builtin-string:
-URxvt.perl-ext-common: default
+! URxvt.perl-ext-common: default
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+
+URxvt.perl-ext-common: default,matcher,clipboard,resize-font
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! Copy into CLIPBOARD in addition to PRIMARY buffer
+! URxvt.perl-ext-common:  ...,clipboard,...
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
