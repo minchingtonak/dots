@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-wal --saturate 0.5 -i $1
+wal --saturate 1 -i $1
 
 # https://github.com/FilipLitwora/pywal-discord
 pywal-discord

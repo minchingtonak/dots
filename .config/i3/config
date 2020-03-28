@@ -161,7 +161,7 @@ exec --no-startup-id manage_displays
 
 # Use xprop to find window classes
 assign [class="Firefox"] $ws1
-assign [class="X-terminal-emulator"] $ws2
+assign [class="URxvt"] $ws2
 assign [class="Code"] $ws3
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws5
@@ -271,9 +271,9 @@ exec --no-startup-id autodisable_touchpad
 exec --no-startup-id wallpaper ~/papes
 bindsym $mod+n exec wallpaper ~/papes
 
-exec_always --no-startup-id launch_polybar >> /tmp/polystartup.log 2>&1
+exec_always --no-startup-id launch_polybar >> /tmp/polybar.log 2>&1
 
-exec_always --no-startup-id compton --config ~/.config/compton/compton.conf
+exec_always --no-startup-id launch_compton >> /tmp/compton.log 2>&1
 
 exec_always --no-startup-id launch_dunst >> /tmp/dunst.log 2>&1
 

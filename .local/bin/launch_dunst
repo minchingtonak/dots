@@ -13,9 +13,7 @@ sleep 3
 
 [ -f "$HOME/.cache/wal/colors.sh" ] && . "$HOME/.cache/wal/colors.sh"
 
-killall dunst
-
-while pgrep -u $UID -x dunst >/dev/null; do sleep 1; done
+kill_and_wait dunst
 
 dunst -lf  "${color7:-#ffffff}" \
       -lb  "${color0:-#eeeeee}" \
