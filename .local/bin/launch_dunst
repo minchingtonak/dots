@@ -23,5 +23,5 @@ dunst -lf  "${color7:-#ffffff}" \
       -nfr "${color0:-#aaaaaa}" \
       -cf  "${color7:-#999999}" \
       -cb  "${color0:-#888888}" \
-      -cfr "${color3:-#777777}" \
+      -cfr '#900000' \ # Used to be color3
       -config ~/.config/dunst/dunstrc > /dev/null 2>&1 &
