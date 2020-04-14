@@ -77,6 +77,8 @@ fi
 # User configuration
 
 export EDITOR='code'
+export TERMINAL='urxvt'
+export BROWSER='firefox'
 
 source $HOME/.bash_aliases
 

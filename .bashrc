@@ -157,3 +157,5 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export EDITOR='vim'
+export TERMINAL='urxvt'
+export BROWSER='firefox'
