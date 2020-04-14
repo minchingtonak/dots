@@ -1,6 +1,6 @@
 URxvt.font: xft:Fira Code:size=14
 URxvt.scrollBar: false
-URxvt.letterSpace: 0
+URxvt.letterSpace: 1
 
 ! Disable printing the terminal contents when pressing PrintScreen.
 URxvt.print-pipe: "cat > /dev/null"
