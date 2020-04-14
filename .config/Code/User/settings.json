@@ -28,6 +28,7 @@
         "79"
     ],
     "remote.SSH.showLoginTerminal": true,
+    "vsicons.dontShowNewVersionMessage": true,
     "walTheme.autoUpdate": true,
     // File settings
     "files.autoSave": "onFocusChange",
@@ -37,7 +38,7 @@
     "git.ignoreMissingGitWarning": true,
     // Window settings
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": -0.4,
+    "window.zoomLevel": -1.2,
     "workbench.colorTheme": "Wal",
     // Language-specific settings
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100, SortIncludes: true}",
@@ -49,7 +50,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -69,7 +70,7 @@
     "terminal.integrated.env.windows": {
         "VSC": "true"
     },
-    "terminal.integrated.fontSize": 11,
+    "terminal.integrated.fontSize": 12,
     "terminal.integrated.fontFamily": "'Fira Code', monospace",
     "terminal.integrated.rendererType": "dom",
     // Zen mode settings
