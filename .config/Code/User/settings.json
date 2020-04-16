@@ -3,8 +3,8 @@
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "selection",
     "editor.fontLigatures": true,
-    "editor.fontFamily": "'Operator Mono Lig', 'Font Awesome 5 Brands', 'Font Awesome 5 Free', 'Font Awesome 5 Free Solid'",
-    "editor.fontSize": 17,
+    "editor.fontFamily": "'Victor Mono SemiBold', 'Operator Mono Lig', 'Font Awesome 5 Brands', 'Font Awesome 5 Free', 'Font Awesome 5 Free Solid'",
+    "editor.fontSize": 20,
     "editor.formatOnType": false,
     // Extension settings
     "liveSassCompile.settings.formats": [
@@ -39,7 +39,7 @@
     // Window settings
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": -1.2,
-    "workbench.colorTheme": "Wal",
+    "workbench.colorTheme": "Wal Bordered",
     // Language-specific settings
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100, SortIncludes: true}",
     "C_Cpp.clang_format_path": "/usr/bin/clang-format",
