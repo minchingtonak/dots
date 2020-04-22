@@ -82,6 +82,10 @@ export BROWSER='firefox'
 
 source $HOME/.bash_aliases
 
+bindkey '^H' backward-delete-word
+# ctrl+delete
+# bindkey '^[[3;5~' forward-delete-word
+
 # cd to Documents folder if we're on Windows
 # OS-specific config
 # if grep -iq Microsoft /proc/version; then # We're on WSL
