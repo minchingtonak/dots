@@ -7,6 +7,7 @@ alias weather='curl http://wttr.in/ann_arbor'
 alias l='ls -a --color=tty'
 alias ll='ls -alhF --color=tty'
 alias lll='du -h --max-depth=1 | sort -hr'
+llf() { ll | awk 'NR > 1 && !/^d/ { printf "%s\t%s\n",$5,$9 }' | sort -hr }
 alias la='ls -A --color=tty'
 alias gl='glog'
 alias gpom='gp origin master'
@@ -27,16 +28,16 @@ snewl() {
   source ~/.zshrc
   cd $tmp
 }
-y() { yadm $@; }
-ya() { y add $@; }
-yc() { y commit $@; }
-ycm() { y commit -m $@; }
-yco() { y checkout $@; }
-yb() { y branch $@; }
-yp() { y push $@; }
-yrh() { y reset HEAD $@; }
-yd() { y diff $@; }
-ydt() { y difftool $@; }
-yl() { y log --oneline --decorate --graph; }
+y() { yadm $@ }
+ya() { y add $@ }
+yc() { y commit $@ }
+ycm() { y commit -m $@ }
+yco() { y checkout $@ }
+yb() { y branch $@ }
+yp() { y push $@ }
+yrh() { y reset HEAD $@ }
+yd() { y diff $@ }
+ydt() { y difftool $@ }
+yl() { y log --oneline --decorate --graph }
 alias ypom="yp origin master"
 alias yst="y status"
