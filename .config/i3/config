@@ -5,7 +5,7 @@ set $mod Mod4
 set $term --no-startup-id i3-sensible-terminal
 set $browser --no-startup-id firefox
 set $inner-gaps 10
-set $outer-gaps 5
+set $outer-gaps 0
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -59,8 +59,8 @@ bindsym $mod+e layout toggle split
 bindsym $mod+r exec $browser
 bindsym $mod+Shift+r restart
 
-bindsym $mod+t split toggle
-bindsym $mod+Shift+t gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
+bindsym $mod+t gaps inner current plus 5
+bindsym $mod+Shift+t gaps inner current minus 5
 
 # bindsym $mod+y
 bindsym $mod+Shift+y exec --no-startup-id i3resize left
@@ -117,11 +117,11 @@ bindsym $mod+x exec --no-startup-id lockscreen
 # bindsym $mod+c
 bindsym $mod+Shift+c reload
 
-bindsym $mod+v gaps inner current plus 5
-bindsym $mod+Shift+v gaps inner current minus 5
+bindsym $mod+v split toggle
+bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set $outer-gaps
 
-bindsym $mod+b exec blueman-manager
-# bindsym $mod+Shift+b
+# bindsym $mod+b
+bindsym $mod+Shift+b exec blueman-manager
 
 bindsym $mod+n exec wallpaper ~/papes
 # bindsym $mod+Shift+n
