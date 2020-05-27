@@ -21,6 +21,9 @@ smart_borders on
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
+exec --no-startup-id focus_last_window
+bindsym $mod+Tab [con_mark=_last] focus
+
 # ===== Basic bindings ===== #
 
 bindsym $mod+Return exec $term
