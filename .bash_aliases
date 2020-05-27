@@ -18,6 +18,7 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias act='source env/bin/activate'
 alias deact='deactivate'
 mk() { mkdir -p $1 && cd $1 }
+locate() { sudo find . -name "$1" 2> /dev/null }
 snewl() {
   if grep -q 'SPACESHIP_PROMPT_SEPARATE_LINE=true' ~/.zshrc; then
     sed -i -e 's/SPACESHIP_PROMPT_SEPARATE_LINE=true/SPACESHIP_PROMPT_SEPARATE_LINE=false/' ~/.zshrc
