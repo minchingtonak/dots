@@ -2,4 +2,4 @@
 
 kill_and_wait picom
 
-picom &> /tmp/picom.log
+picom
