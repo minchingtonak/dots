@@ -282,13 +282,9 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # Builtin display
 set $mon1 eDP-1
 # Acer 144hz
-set $mon2 DP-1
+set $mon2 DP-2-1
 # Asus
-set $mon3 HDMI-2
-
-# bindsym $mod+Control+Shift+1 move workspace to output $mon1
-# bindsym $mod+Control+Shift+2 move workspace to output $mon2
-# bindsym $mod+Control+Shift+3 move workspace to output $mon3
+set $mon3 DP-2-2
 
 workspace $ws1 output $mon2 $mon1
 workspace $ws2 output $mon2 $mon1
@@ -339,7 +335,7 @@ exec_always --no-startup-id setxkbmap -option caps:super
 exec --no-startup-id invert_scroll
 exec --no-startup-id autodisable_touchpad
 exec --no-startup-id wallpaper ~/papes
-exec --no-startup-id manage_displays
+exec --no-startup-id manage_displays >> /tmp/displays.log 2>&1
 
 exec_always --no-startup-id launch_polybar >> /tmp/polybar.log 2>&1
 exec_always --no-startup-id launch_picom >> /tmp/picom.log 2>&1

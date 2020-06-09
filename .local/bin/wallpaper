@@ -7,4 +7,5 @@ pywal-discord
 
 launch_dunst
 
+sleep 10
 pgrep spotify && spicetify apply || spicetify update
