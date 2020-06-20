@@ -5,39 +5,43 @@ xrandr --newmode '1920x1080_60.00'  173.00  1920 2048 2248 2576  1080 1083 1088 
 count=$(xrandr --query | grep " connected" | wc -l)
 # If there are more than one displays
 if [ "$(( $count > 1 ))" -eq 1 ]; then
-    # xrandr --output eDP-1 --off
-
-    # Disable laptop display if lid is closed
-    # if cat /proc/acpi/button/lid/LID/state | grep -q 'closed'; then
-    #     if xrandr --listmonitors | grep -q 'eDP-1'; then
-    #         xrandr --output eDP-1 --off
-    #     fi
-    # else
-    #     xrandr --output eDP-1 --auto
-    # fi
-
     # Get monitors excluding builtin display
     monitors=$(xrandr --query | grep " connected" | cut -d" " -f1 | grep -v "eDP-1" | tr ' ' '\n')
-    first=$(echo $monitors | head -1)
+    first=$(echo "$monitors" | head -1)
 
     # Top monitor becomes primary
     echo "first $first"
-    xrandr --addmode $first '1920x1080_60.00'
-    xrandr --output $first --primary --mode '1920x1080_60.00'
+    xrandr --addmode "$first" '1920x1080_60.00'
+    xrandr --output "$first" --primary --mode '1920x1080_60.00'
     echo 'changed first output'
-    # xrandr --output $(echo $monitors | head -1) --primary
 
     # Turn on output on all others
     for m in $(echo $monitors | tail -"$(( $count - 2 ))" | perl -e 'print reverse <>' ); do
         echo "m: $m"
-        xrandr --addmode $m '1920x1080_60.00'
-        xrandr --output $m --mode '1920x1080_60.00' --right-of $first
+        xrandr --addmode "$m" '1920x1080_60.00'
+        xrandr --output "$m" --mode '1920x1080_60.00' --right-of "$first"
         echo 'changed m output'
     done
-    xrandr --output eDP-1 --off
+
+    # Disable laptop display if lid is closed
+    if cat /proc/acpi/button/lid/LID/state | grep -q 'closed'; then
+        if xrandr --listmonitors | grep -q 'eDP-1'; then
+            xrandr --output eDP-1 --off
+        fi
+    else
+        xrandr --output eDP-1 --auto
+    fi
 else
+    # Shut off all monitors, then enable builtin
+    monitors=`xrandr --query | grep "connected" | awk '{ print $1; }' | tr '\n' ' '`
+    for m in ${(z)monitors}; do
+        xrandr --output "$m" --off
+    done
+    sleep 3
     xrandr --output eDP-1 --auto
 fi
 
-sleep 5
+i3-msg 'restart'
+
+sleep 6
 i3-msg 'workspace 1'
