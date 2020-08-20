@@ -6,7 +6,7 @@ scrot "$tmpbg"
 
 # Original ratio: 10% 1000%
 # Numbers scale inversely, e.g double one, half the other
-convert "$tmpbg" -scale 20% -scale %500 "$tmpbg"
+convert "$tmpbg" -scale 10% -scale %1000 "$tmpbg"
 # convert "$tmpbg" -gravity center -composite -matte "$tmpbg"
 
 # Pause music on lock
