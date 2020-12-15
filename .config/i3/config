@@ -4,14 +4,14 @@
 set $mod Mod4
 set $term --no-startup-id i3-sensible-terminal
 set $browser --no-startup-id firefox
-set $inner-gaps 10
+set $inner-gaps 5
 set $outer-gaps 0
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:fixed 11
+font pango:monospace 12
 
-for_window [class=".*^"] border pixel 2
+for_window [class=".*^"] border pixel 1
 gaps inner $inner-gaps
 gaps outer $outer-gaps
 
@@ -130,7 +130,7 @@ bindsym $mod+n exec wallpaper ~/papes
 # bindsym $mod+Shift+n
 
 bindsym $mod+m exec manage_displays
-# bindsym $mod+Shift+m
+bindsym $mod+Shift+m exec manage_displays -r
 
 # ===== Arrow keys ===== #
 bindsym $mod+Left focus left
@@ -333,7 +333,6 @@ client.background $bg-color
 exec_always --no-startup-id setxkbmap -option caps:super
 
 exec --no-startup-id invert_scroll
-exec --no-startup-id autodisable_touchpad
 exec --no-startup-id wallpaper ~/papes
 exec --no-startup-id manage_displays >> /tmp/displays.log 2>&1
 

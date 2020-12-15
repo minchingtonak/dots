@@ -4,8 +4,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'itchyny/lightline.vim'
-
 Plug 'tpope/vim-surround'
 
 Plug 'scrooloose/nerdtree'
@@ -14,8 +12,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 
 Plug 'drewtempelmeyer/palenight.vim'
-
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 Plug 'jiangmiao/auto-pairs'
 

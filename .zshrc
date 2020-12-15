@@ -4,7 +4,7 @@
 # Disable omz wanrnings when starting the autocompletion engine
 ZSH_DISABLE_COMPFIX=true
 
-source "$HOME/.yadm/global_vars"
+source "$HOME/.config/yadm/global_vars"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME"/.oh-my-zsh"
@@ -55,16 +55,14 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
-zsh-syntax-highlighting
-zsh-autosuggestions
-fzf-zsh
-vscode
-copyfile
-dirhistory
-docker
-extract
-sudo
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  fzf-zsh
+  vscode
+  copyfile
+  extract
+  sudo
 )
 
 source $ZSH/oh-my-zsh.sh

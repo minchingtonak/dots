@@ -7,6 +7,10 @@ count=$(xrandr --query | grep " connected" | wc -l)
 if [ "$(( $count > 1 ))" -eq 1 ]; then
     # Get monitors excluding builtin display
     monitors=$(xrandr --query | grep " connected" | cut -d" " -f1 | grep -v "eDP-1" | tr ' ' '\n')
+    if [[ "$1" == "-r" ]]; then
+        echo "reversing monitor order"
+        monitors=$(echo "$monitors" | perl -e 'print reverse <>')
+    fi
     first=$(echo "$monitors" | head -1)
 
     # Top monitor becomes primary
@@ -43,5 +47,7 @@ fi
 
 i3-msg 'restart'
 
-sleep 6
+sleep 4
 i3-msg 'workspace 1'
+sleep 0.5
+i3-msg 'workspace 3'

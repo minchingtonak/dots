@@ -1,10 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-if grep -q Microsoft /proc/version ; then
+if grep -q Microsoft /proc/version; then
   # We're on WSL and manually need to start zsh
-  if [ -t 1 &&  ] && [ -e "$HOME/.yadm" ] && which zsh; then
-      exec zsh
+  if [ -t 1 && ] && [ -e "$HOME/.yadm" ] && which zsh; then
+    exec zsh
   fi
 fi
 
@@ -40,8 +40,7 @@ BGWHITE='\[\e[1;37m\]'
 
 PROMPT_COMMAND=create_prompt
 
-function create_prompt
-{
+function create_prompt() {
   # Command exit status
   if [ "$?" -eq 0 ]; then
     STATUS="${BGREEN}>"
@@ -66,8 +65,8 @@ export PS2="$>>"
 
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-  *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -99,7 +98,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-  xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned

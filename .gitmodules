@@ -1,6 +1,0 @@
-[submodule ".yadm/gdb-dashboard"]
-	path = .yadm/gdb-dashboard
-	url = https://github.com/cyrus-and/gdb-dashboard.git
-[submodule ".fonts"]
-	path = .fonts
-	url = https://github.com/minchingtonak/fonts.git
