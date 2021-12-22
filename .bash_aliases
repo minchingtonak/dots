@@ -17,7 +17,15 @@ alias bashrc="$EDITOR ~/.bashrc"
 alias zshrc="$EDITOR ~/.zshrc"
 alias act='source env/bin/activate'
 alias deact='deactivate'
+alias batthresh='sudo vim /etc/tlp.conf'
 mk() { mkdir -p $1 && cd $1 }
+mknodeenv() {
+  python3 -m venv env &&
+  act &&
+  pip install nodeenv &&
+  nodeenv --python-virtualenv env &&
+  deact && act
+}
 locate() { sudo find . -name "$1" 2> /dev/null }
 snewl() {
   if grep -q 'SPACESHIP_PROMPT_SEPARATE_LINE=true' ~/.zshrc; then
@@ -42,3 +50,4 @@ ydt() { y difftool $@ }
 yl() { y log --oneline --decorate --graph }
 alias ypom="yp origin master"
 alias yst="y status"
+alias scheme="plt-r5rs"
