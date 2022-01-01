@@ -65,8 +65,8 @@ modules-left = i3
 modules-right = pulseaudio memory cpu temperature date powermenu
 
 tray-position = right
-tray-padding = 2
-; tray-background = #0063ff
+tray-padding = 5
+# tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
