@@ -1,98 +1,61 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Disable omz wanrnings when starting the autocompletion engine
-ZSH_DISABLE_COMPFIX=true
+# Use powerline
+USE_POWERLINE="true"
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+fi
 
 source "$HOME/.config/yadm/global_vars"
-
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME"/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_EXIT_CODE_SHOW=true
-SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_DIR_TRUNC=1
-SPACESHIP_DIR_TRUNC_REPO=false
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  fzf-zsh
-  vscode
-  copyfile
-  extract
-  sudo
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# Suggest packages to install
-if [[ -s '/etc/zsh_command_not_found' ]]; then
-  source '/etc/zsh_command_not_found'
-fi
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
 
 # User configuration
 
 export EDITOR='code'
-export TERMINAL='urxvt'
+export TERMINAL='alacritty'
 export BROWSER='firefox'
 
 source $HOME/.bash_aliases
 
 bindkey '^H' backward-delete-word
-# ctrl+delete
-# bindkey '^[[3;5~' forward-delete-word
+# bindkey -l will give you a list of existing keymap names
+# bindkey -M <keymap> will list all the bindings in a given keymap
+# ctrl + delete
+bindkey '^[[3;5~' kill-word
 
-# cd to Documents folder if we're on Windows
-# OS-specific config
-# if grep -iq Microsoft /proc/version; then # We're on WSL
-# else
-# fi
-
+# start in workspace unless this in an integrated vscode terminal
 [ -z "$VSC" ] && ws
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.

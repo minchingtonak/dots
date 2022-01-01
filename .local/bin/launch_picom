@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
-
 kill_and_wait picom
-
 picom

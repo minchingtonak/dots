@@ -1,24 +1,3 @@
-set nocompatible
-call plug#begin('~/.vim/plugged')
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-Plug 'tpope/vim-surround'
-
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'drewtempelmeyer/palenight.vim'
-
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'rhysd/vim-clang-format'
-
-call plug#end()
-
 "============General Config=============
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
@@ -131,25 +110,6 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
-" =============== NERDTree config ===================
-map <C-O> :NERDTreeToggle<CR>
-"Open NERDTree, NERDTreeFind on current file
-nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-
-"Open NERDTree when starting vim w/ no clargs
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-"Close NERDTree if last window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-let NERDTreeQuitOnOpen = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeShowHidden = 1
-
 " =============== Autoformatter config ==============
 let g:clang_format#code_style = 'llvm'
 "let g:clang_format#style_options = {
@@ -169,20 +129,6 @@ let g:clang_format#style_options = {
 let g:clang_format#detect_style_file = 0
 
 " =============== Misc ==============================
-" vimplug auto install
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-let g:ycm_global_ycm_extra_conf = '~/.ycmconf.py' " YouCompleteMe default C/C++ compile flags
-
 if &diff
   highlight! link DiffText MatchParen
-endif
-
-" Left here for later use
-if (match(system("cat /proc/version"), "Microsoft") != -1)
-  " If we're in WSL
 endif

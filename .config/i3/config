@@ -2,7 +2,8 @@
 # Some bindings taken from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/i3/config, credit Luke Smith
 
 set $mod Mod4
-set $term --no-startup-id i3-sensible-terminal
+# set $term --no-startup-id i3-sensible-terminal
+set $term --no-startup-id alacritty
 set $browser --no-startup-id firefox
 set $inner-gaps 5
 set $outer-gaps 0
@@ -32,8 +33,9 @@ bindsym $mod+Shift+Return exec --no-startup-id samedir
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Escape workspace prev
-bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3 exit"
+# bindsym $mod+Escape workspace prev
+# bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3 exit"
+bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # bindsym $mod+BackSpace
 # bindsym $mod+Shift+BackSpace
@@ -129,8 +131,8 @@ bindsym $mod+Shift+b exec blueman-manager
 bindsym $mod+n exec wallpaper ~/papes
 # bindsym $mod+Shift+n
 
-bindsym $mod+m exec manage_displays
-bindsym $mod+Shift+m exec manage_displays -r
+# bindsym $mod+m exec manage_displays
+# bindsym $mod+Shift+m exec manage_displays -r
 
 # ===== Arrow keys ===== #
 bindsym $mod+Left focus left
@@ -279,30 +281,27 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Builtin display
-set $mon1 eDP-1
-# Acer 144hz
-set $mon2 DP-2-1
-# Asus
-set $mon3 DP-2-2
+set $mon1 DP-2
+set $mon2 HSMI-0
 
-workspace $ws1 output $mon2 $mon1
-workspace $ws2 output $mon2 $mon1
-workspace $ws3 output $mon3 $mon1
-workspace $ws4 output $mon3 $mon1
-workspace $ws5 output $mon3 $mon1
-workspace $ws6 output $mon3 $mon1
-workspace $ws7 output $mon3 $mon1
-workspace $ws8 output $mon3 $mon1
-workspace $ws9 output $mon3 $mon1
-workspace $ws10 output $mon3 $mon1
+workspace $ws1 output $mon1 $mon2
+workspace $ws2 output $mon1 $mon2
+workspace $ws3 output $mon2 $mon1
+workspace $ws4 output $mon2 $mon1
+workspace $ws5 output $mon2 $mon1
+workspace $ws6 output $mon2 $mon1
+workspace $ws7 output $mon2 $mon1
+workspace $ws8 output $mon2 $mon1
+workspace $ws9 output $mon2 $mon1
+workspace $ws10 output $mon2 $mon1
 
 # Use xprop to find window classes
-assign [class="Firefox"] $ws1
-assign [class="URxvt"] $ws2
+assign [class="firefox"] $ws1
+assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws5
+assign [class="Steam"] $ws6
 for_window [class="Spotify"] move to workspace $ws10
 
 set_from_resource $bg-color i3wm.color0                    #2f343f
@@ -332,10 +331,9 @@ client.background $bg-color
 # Bind capslock as mod key
 exec_always --no-startup-id setxkbmap -option caps:super
 
-exec --no-startup-id invert_scroll
 exec --no-startup-id wallpaper ~/papes
-exec --no-startup-id manage_displays >> /tmp/displays.log 2>&1
+# yay -S i3-autodisplay
+exec_always --no-startup-id i3-autodisplay
 
 exec_always --no-startup-id launch_polybar >> /tmp/polybar.log 2>&1
 exec_always --no-startup-id launch_picom >> /tmp/picom.log 2>&1
-exec_always --no-startup-id launch_dunst >> /tmp/dunst.log 2>&1

@@ -13,7 +13,7 @@ alias bashrc="$EDITOR ~/.bashrc"
 alias zshrc="$EDITOR ~/.zshrc"
 alias act='source env/bin/activate'
 alias deact='deactivate'
-alias batthresh='sudo vim /etc/tlp.conf'
+alias batthresh='sudo $EDITOR /etc/tlp.conf'
 mk() { mkdir -p $1 && cd $1 }
 mknodeenv() {
   python3 -m venv env &&
@@ -23,26 +23,30 @@ mknodeenv() {
   deact && act
 }
 locate() { find . -name "$1" 2> /dev/null }
-y() { yadm $@ }
-ya() { y add $@ }
-yc() { y commit $@ }
-ycm() { y commit -m $@ }
-yco() { y checkout $@ }
-yb() { y branch $@ }
-yp() { y push $@ }
-yrh() { y reset HEAD $@ }
-yd() { y diff $@ }
-ydt() { y difftool $@ }
-yl() { y log --oneline --decorate --graph }
+alias scheme="plt-r5rs"
+
+# yadm
+alias y='yadm'
+alias ya='y add'
+alias yaa='y add -A'
+alias yc='y commit'
+alias ycm='y commit -m'
+alias yco='y checkout'
+alias yb='y branch'
+alias yp='y push'
+alias yrh='y reset HEAD'
+alias yd='y diff'
+alias ydt='y difftool'
+alias yl='y log --oneline --decorate --graph'
 alias ypom="yp origin master"
 alias yst="y status"
-alias scheme="plt-r5rs"
 
 # git
 alias gst='git status'
 alias gl='git log --oneline --decorate --graph'
 alias glog='git log'
 alias ga='git add'
+alias gaa='git add -A'
 alias gr='git remote'
 alias gp='git push'
 alias gpl='git pull'

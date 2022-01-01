@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# make sure to install scrot
+
 # icon=$HOME/.xlock/icon.png
 tmpbg=/tmp/screen.png
 scrot "$tmpbg"
