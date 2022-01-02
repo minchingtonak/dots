@@ -282,7 +282,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 set $mon1 DP-2
-set $mon2 HSMI-0
+set $mon2 HDMI-0
 
 workspace $ws1 output $mon1 $mon2
 workspace $ws2 output $mon1 $mon2
@@ -333,7 +333,7 @@ exec_always --no-startup-id setxkbmap -option caps:super
 
 exec --no-startup-id wallpaper ~/papes
 # yay -S i3-autodisplay
-exec_always --no-startup-id i3-autodisplay
+exec_always --no-startup-id restart i3-autodisplay >> /tmp/i3-autodisplay.log 2>&1
 
 exec_always --no-startup-id launch_polybar >> /tmp/polybar.log 2>&1
-exec_always --no-startup-id launch_picom >> /tmp/picom.log 2>&1
+exec_always --no-startup-id restart picom >> /tmp/picom.log 2>&1
