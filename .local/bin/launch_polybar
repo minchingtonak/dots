@@ -2,6 +2,8 @@
 
 kill_and_wait polybar
 
+sleep 1
+
 # Launch polybar on all connected monitors
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     MONITOR=$m polybar wal &
