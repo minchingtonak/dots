@@ -24,6 +24,7 @@ mknodeenv() {
 }
 locate() { find . -name "$1" 2> /dev/null; }
 alias scheme='plt-r5rs'
+alias vsc='code .'
 
 # yadm
 alias y='yadm'
