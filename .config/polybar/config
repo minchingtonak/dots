@@ -64,7 +64,7 @@ enable-ipc = true
 
 modules-left = i3
 modules-center = spotify spotify-prev spotify-play-pause spotify-next
-modules-right = pulseaudio memory cpu temperature date powermenu
+modules-right = pulseaudio memory cpu temperature nvidia_info date powermenu
 
 tray-position = right
 tray-padding = 5
@@ -323,6 +323,13 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/nvidia_info]
+type = custom/script
+tail = true
+exec-if = nvidia-smi
+exec = nvidia-smi --loop=2 --query-gpu=temperature.gpu,utilization.gpu,utilization.memory --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|GPU \2% \3% \1°|g'
+
 
 [module/powermenu]
 type = custom/menu
