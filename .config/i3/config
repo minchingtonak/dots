@@ -287,7 +287,7 @@ set $mon2 HDMI-0
 workspace $ws1 output $mon1 $mon2
 workspace $ws2 output $mon1 $mon2
 workspace $ws3 output $mon2 $mon1
-workspace $ws4 output $mon2 $mon1
+workspace $ws4 output $mon1 $mon2
 workspace $ws5 output $mon2 $mon1
 workspace $ws6 output $mon2 $mon1
 workspace $ws7 output $mon2 $mon1
@@ -299,10 +299,11 @@ workspace $ws10 output $mon2 $mon1
 assign [class="firefox"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
-assign [class="Slack"] $ws4
+assign [class="Steam"] $ws4
 assign [class="discord"] $ws5
-assign [class="Steam"] $ws6
+assign [class="Slack"] $ws6
 for_window [class="Spotify"] move to workspace $ws10
+for_window [title="^zoom$" class="[zoom]*"] floating enable
 
 set_from_resource $bg-color i3wm.color0                    #2f343f
 set_from_resource $focused-bg-color i3wm.color1            #2f343f
@@ -331,9 +332,10 @@ client.background $bg-color
 # Bind capslock as mod key
 exec_always --no-startup-id setxkbmap -option caps:super
 
+exec --no-startup-id i3-autodisplay > /tmp/i3-autodisplay.log 2>&1
 exec --no-startup-id wallpaper ~/papes
-# yay -S i3-autodisplay
-exec_always --no-startup-id restart i3-autodisplay >> /tmp/i3-autodisplay.log 2>&1
+exec_always --no-startup-id launch_polybar > /tmp/polybar.log 2>&1
+exec_always --no-startup-id restart picom > /tmp/picom.log 2>&1
 
-exec_always --no-startup-id launch_polybar >> /tmp/polybar.log 2>&1
-exec_always --no-startup-id restart picom >> /tmp/picom.log 2>&1
+# disable screen sleeping
+exec --no-startup-id xset s off && xset -dpms
