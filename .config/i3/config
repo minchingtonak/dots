@@ -128,7 +128,7 @@ bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set 
 # bindsym $mod+b
 bindsym $mod+Shift+b exec blueman-manager
 
-bindsym $mod+n exec wallpaper ~/papes
+bindsym $mod+n exec --no-startup-id wallpaper ~/papes
 # bindsym $mod+Shift+n
 
 # bindsym $mod+m exec manage_displays
@@ -193,9 +193,9 @@ bindsym XF86ScreenSaver exec --no-startup-id lockscreen
 # bindsym XF86Back
 # bindsym XF86Forward
 # bindsym XF86Eject
-# bindsym XF86AudioNext
-# bindsym XF86AudioPlay
-# bindsym XF86AudioPrev
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86AudioStop
 # bindsym XF86AudioRecord
 # bindsym XF86AudioRewind
@@ -339,3 +339,8 @@ exec_always --no-startup-id restart picom > /tmp/picom.log 2>&1
 
 # disable screen sleeping
 exec --no-startup-id xset s off && xset -dpms
+
+exec --no-startup-id firefox
+exec --no-startup-id discord
+exec --no-startup-id slack
+exec --no-startup-id spotify
