@@ -193,9 +193,9 @@ bindsym XF86ScreenSaver exec --no-startup-id lockscreen
 # bindsym XF86Back
 # bindsym XF86Forward
 # bindsym XF86Eject
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl -p spotify next
+bindsym XF86AudioPlay exec playerctl -p spotify play-pause
+bindsym XF86AudioPrev exec playerctl -p spotify previous
 # bindsym XF86AudioStop
 # bindsym XF86AudioRecord
 # bindsym XF86AudioRewind
