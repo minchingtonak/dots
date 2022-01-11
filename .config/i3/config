@@ -340,6 +340,9 @@ exec_always --no-startup-id restart picom > /tmp/picom.log 2>&1
 # disable screen sleeping
 exec --no-startup-id xset s off && xset -dpms
 
+# blue light filter
+exec redshift
+
 exec --no-startup-id firefox
 exec --no-startup-id discord
 exec --no-startup-id slack
