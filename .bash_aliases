@@ -23,7 +23,7 @@ mknodeenv() {
   deact && act
 }
 locate() { find . -name "$1" 2> /dev/null; }
-alias scheme='plt-r5rs'
+alias scheme='rlwrap plt-r5rs'
 alias vsc='code .'
 
 # yadm

@@ -269,6 +269,20 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+# Numpad keys
+# NumLock ON, then a numpad key.
+bindsym $mod+Mod2+KP_7 workspace $ws7
+bindsym $mod+Mod2+KP_8 workspace $ws8
+bindsym $mod+Mod2+KP_9 workspace $ws9
+bindsym $mod+Mod2+KP_4 workspace $ws4
+bindsym $mod+Mod2+KP_5 workspace $ws5
+bindsym $mod+Mod2+KP_6 workspace $ws6
+bindsym $mod+Mod2+KP_1 workspace $ws1
+bindsym $mod+Mod2+KP_2 workspace $ws2
+bindsym $mod+Mod2+KP_3 workspace $ws3
+bindsym $mod+Mod2+KP_0 workspace $ws10
+bindsym $mod+Mod2+KP_Decimal exec numlockx off
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
