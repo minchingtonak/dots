@@ -377,3 +377,7 @@ exec --no-startup-id firefox
 exec --no-startup-id discord
 exec --no-startup-id slack
 exec --no-startup-id sleep 5 && spotify
+
+{% if yadm.hostname == "ENIAC" %}
+exec --no-startup-id invert_scroll
+{% endif %}
