@@ -34,6 +34,18 @@ floating_modifier $mod
 exec --no-startup-id focus_last_window
 bindsym $mod+Tab [con_mark=_last] focus
 
+# ===== Scratchpad terminals ===== #
+
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 1024 768
+for_window [instance="dropdown"] move scratchpad
+exec_always --no-startup-id $term --class=dropdown
+
+for_window [instance="math"] floating enable
+for_window [instance="math"] resize set 1024 768
+for_window [instance="math"] move scratchpad
+exec_always --no-startup-id $term --class=math -e python
+
 # ===== Basic bindings ===== #
 
 bindsym $mod+Return exec --no-startup-id $term
@@ -91,7 +103,7 @@ bindsym $mod+Shift+o exec --no-startup-id i3resize right
 # bindsym $mod+p
 # bindsym $mod+Shift+p
 
-bindsym $mod+a gaps inner current set 0; gaps outer current set 0
+bindsym $mod+a [instance="math"] scratchpad show; [instance="math"] move position center
 bindsym $mod+Shift+a exec pavucontrol
 
 bindsym $mod+s layout stacked
@@ -122,8 +134,8 @@ bindsym $mod+l focus right
 bindsym $mod+Shift+l move right 30
 bindsym $mod+Ctrl+l move workspace to output right
 
-bindsym $mod+z gaps outer current plus 5
-bindsym $mod+Shift+z gaps outer current minus 5
+bindsym $mod+z [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+# bindsym $mod+Shift+z gaps outer current minus 5
 
 bindsym $mod+x exec --no-startup-id lockscreen
 # bindsym $mod+Shift+x
@@ -357,8 +369,6 @@ client.urgent           $urgent-bg-color      $urgent-bg-color     $focused-text
 client.placeholder      $bg-color             $bg-color            $focused-text-color          #00ff00          #0c0c0c
 
 client.background $bg-color
-
-# hide_edge_borders both
 
 # Bind capslock as mod key
 exec_always --no-startup-id setxkbmap -option caps:super
