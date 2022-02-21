@@ -326,6 +326,7 @@ ramp-capacity-foreground = ${colors.foreground-alt}
 [module/battery2]
 inherit = module/battery
 battery = BAT1
+
 [module/temperature]
 type = internal/temperature
 interval = 1
