@@ -268,7 +268,7 @@ label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 
-; label-muted-foreground = #666
+click-right = pavucontrol
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.primary}
