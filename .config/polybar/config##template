@@ -81,11 +81,11 @@ font-5 = Font Awesome 6 Free Solid:fontformat=opentype:size=10;1
 modules-left = i3
 modules-center = spotify
 {% if yadm.hostname == "WITCH" %}
-modules-right = pulseaudio memory cpu wlan eth temperature nvidia_info date powermenu
+modules-right = pulseaudio memory cpu temperature wlan eth nvidia_info date powermenu
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
-modules-right = pulseaudio backlight-acpi memory cpu wlan eth battery battery2 temperature date powermenu
+modules-right = pulseaudio backlight-acpi memory cpu temperature wlan eth battery battery2 date powermenu
 {% endif %}
 
 tray-position = right
@@ -269,6 +269,7 @@ label-volume-foreground = ${root.foreground}
 
 label-muted = 
 click-right = pavucontrol
+click-middle = blueman-manager
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.primary}
