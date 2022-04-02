@@ -1,5 +1,5 @@
 /* https://github.com/davatorium/rofi/blob/next/doc/rofi-theme.5.markdown */
-@theme "slate"
+@import "~/.cache/wal/colors-rofi-dark"
 configuration {
 /*	modi: "window,run,ssh";*/
 /*	font: "mono 12";*/
