@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+[ -z "$1" ] && echo "Usage: $0 MEDIANAME" && exit 1
+
+pactl list sink-inputs | grep -E 'Sink Input #|media\.name' |  paste -d ' ' - - | grep -i "$1" | awk '{ print $3 }' | tr -d '#\n'
