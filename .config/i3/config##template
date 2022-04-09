@@ -186,8 +186,10 @@ bindsym $mod+Ctrl+Right move workspace to output right
 
 # ===== XF86 keys ===== #
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && light -s sysfs/leds/platform::mute | grep -q '100.0' && light -s sysfs/leds/platform::mute -U 100 || light -s sysfs/leds/platform::mute -A 100
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioLowerVolume exec pactl set-sink-input-volume "$(input-sink-num spotify)" +5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-input-volume "$(input-sink-num spotify)" -5%
 # bindsym XF86PowerOff
 # bindsym XF86Copy
 # bindsym XF86Open
