@@ -10,12 +10,12 @@
 
 {% if yadm.hostname == "WITCH" %}
 displays:
-  - name: DP-2
+  - name: DP-0
     workspaces: [1,2,4]
     randr_extra_options: "--primary"
   - name: HDMI-0
     workspaces: [3,5,6,7,8,9,10]
-    randr_extra_options: "--right-of DP-2"
+    randr_extra_options: "--right-of DP-0"
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}

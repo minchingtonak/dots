@@ -189,7 +189,7 @@ label = %percentage_used:1%%
 [module/wlan]
 type = internal/network
 {% if yadm.hostname == "WITCH" %}
-interface = wlo1
+interface = wlp5s0
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
@@ -332,11 +332,11 @@ battery = BAT1
 type = internal/temperature
 interval = 1
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 75
 
 {% if yadm.hostname == "WITCH" %}
 ; AMD cpu source
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input
 {% endif %}
 
 format = <ramp> <label>
@@ -357,7 +357,7 @@ ramp-foreground = ${colors.foreground-alt}
 type = custom/script
 tail = true
 exec-if = nvidia-smi
-exec = nvidia-smi --loop=2 --query-gpu=temperature.gpu,utilization.gpu,utilization.memory --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|GPU  \2%  \3% \1°|g'
+exec = nvidia-smi --loop=2 --query-gpu=temperature.gpu,utilization.gpu,utilization.memory --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|GPU  \2%  \3% \1°|g'
 
 
 [module/powermenu]
