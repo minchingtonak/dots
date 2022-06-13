@@ -69,7 +69,7 @@ bindsym $mod+Shift+Escape exec --no-startup-id "i3-nagbar -t warning -m 'You pre
 # bindsym $mod+Insert
 # bindsym $mod+Pause
 
-bindsym $mod+Print exec gnome-screenshot -i
+bindsym $mod+Print exec --no-startup-id gnome-screenshot -i
 
 # ===== Letter bindings ===== #
 
@@ -82,7 +82,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 # bindsym $mod+Shift+e
 
-bindsym $mod+r exec $browser
+bindsym $mod+r exec --no-startup-id $browser
 bindsym $mod+Shift+r restart
 
 bindsym $mod+t gaps inner current plus 5
@@ -94,7 +94,7 @@ bindsym $mod+Shift+y exec --no-startup-id i3resize left
 # bindsym $mod+u
 bindsym $mod+Shift+u exec --no-startup-id i3resize down
 
-bindsym $mod+i exec $term -e htop
+bindsym $mod+i exec --no-startup-id $term -e htop
 bindsym $mod+Shift+i exec --no-startup-id i3resize up
 
 bindsym $mod+o sticky toggle
@@ -104,13 +104,13 @@ bindsym $mod+Shift+o exec --no-startup-id i3resize right
 # bindsym $mod+Shift+p
 
 bindsym $mod+a [instance="math"] scratchpad show; [instance="math"] move position center
-bindsym $mod+Shift+a exec pavucontrol
+bindsym $mod+Shift+a exec --no-startup-id pavucontrol
 
 bindsym $mod+s layout stacked
 # bindsym $mod+Shift+s
 
-bindsym $mod+d exec rofi -show run
-bindsym $mod+shift+d exec rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+shift+d exec --no-startup-id rofi -show drun
 
 bindsym $mod+f fullscreen toggle
 # bindsym $mod+Shift+f
@@ -147,13 +147,13 @@ bindsym $mod+v split toggle
 bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set $outer-gaps
 
 # bindsym $mod+b
-bindsym $mod+Shift+b exec blueman-manager
+bindsym $mod+Shift+b exec --no-startup-id blueman-manager
 
 bindsym $mod+n exec --no-startup-id wallpaper ~/papes
 bindsym $mod+Shift+n exec --no-startup-id "rofi -show themes:~/.config/rofi/scripts/themeswitch.sh"
 
-# bindsym $mod+m exec manage_displays
-# bindsym $mod+Shift+m exec manage_displays -r
+# bindsym $mod+m exec --no-startup-id manage_displays
+# bindsym $mod+Shift+m exec --no-startup-id manage_displays -r
 
 # ===== Arrow keys ===== #
 bindsym $mod+Left focus left
@@ -185,11 +185,11 @@ bindsym $mod+Ctrl+Right move workspace to output right
 # bindsym $mod+Shift+F1
 
 # ===== XF86 keys ===== #
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && light -s sysfs/leds/platform::mute | grep -q '100.0' && light -s sysfs/leds/platform::mute -U 100 || light -s sysfs/leds/platform::mute -A 100
-# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
-# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
-bindsym XF86AudioLowerVolume exec pactl set-sink-input-volume "$(input-sink-num spotify)" +5%
-bindsym XF86AudioRaiseVolume exec pactl set-sink-input-volume "$(input-sink-num spotify)" -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && light -s sysfs/leds/platform::mute | grep -q '100.0' && light -s sysfs/leds/platform::mute -U 100 || light -s sysfs/leds/platform::mute -A 100
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-input-volume "$(input-sink-num spotify)" +5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-input-volume "$(input-sink-num spotify)" -5%
 # bindsym XF86PowerOff
 # bindsym XF86Copy
 # bindsym XF86Open
@@ -202,7 +202,7 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-input-volume "$(input-sink-num 
 # bindsym XF86Explorer
 # bindsym XF86Send
 # bindsym XF86Xfer
-bindsym XF86WWW exec $browser
+bindsym XF86WWW exec --no-startup-id $browser
 # bindsym XF86DOS
 bindsym XF86ScreenSaver exec --no-startup-id lockscreen
 # bindsym XF86RotateWindows
@@ -212,9 +212,9 @@ bindsym XF86ScreenSaver exec --no-startup-id lockscreen
 # bindsym XF86Back
 # bindsym XF86Forward
 # bindsym XF86Eject
-bindsym XF86AudioNext exec playerctl -p spotify next
-bindsym XF86AudioPlay exec playerctl -p spotify play-pause
-bindsym XF86AudioPrev exec playerctl -p spotify previous
+bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
+bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86AudioStop
 # bindsym XF86AudioRecord
 # bindsym XF86AudioRewind
@@ -250,8 +250,8 @@ bindsym XF86AudioPrev exec playerctl -p spotify previous
 # bindsym XF86Finance
 # bindsym XF86Game
 # bindsym XF86Shop
-bindsym XF86MonBrightnessUp exec sudo light -A 10
-bindsym XF86MonBrightnessDown exec sudo light -U 10
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10
 # bindsym XF86AudioMedia
 # bindsym XF86Display
 # bindsym XF86KbdLightOnOff
@@ -263,7 +263,7 @@ bindsym XF86MonBrightnessDown exec sudo light -U 10
 # bindsym XF86Documents
 # bindsym XF86Battery
 # bindsym XF86Bluetooth
-bindsym XF86WLAN exec nmcli radio wifi | grep -iq 'disabled' && nmcli radio wifi on || nmcli radio wifi off
+# bindsym XF86WLAN exec --no-startup-id nmcli radio wifi | grep -iq 'disabled' && nmcli radio wifi on || nmcli radio wifi off
 
 set $ws1 "1"
 set $ws2 "2"
@@ -300,7 +300,7 @@ bindsym $mod+Mod2+KP_1 workspace $ws1
 bindsym $mod+Mod2+KP_2 workspace $ws2
 bindsym $mod+Mod2+KP_3 workspace $ws3
 bindsym $mod+Mod2+KP_0 workspace $ws10
-bindsym $mod+Mod2+KP_Decimal exec numlockx off
+bindsym $mod+Mod2+KP_Decimal exec --no-startup-id numlockx off
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -353,7 +353,7 @@ assign [class="Code"] $ws3
 assign [class="Steam"] $ws4
 assign [class="discord"] $ws5
 assign [class="Slack"] $ws6
-assign [class="google-chrome"] $ws6
+assign [class="Chromium"] $ws6
 for_window [class="Spotify"] move to workspace $ws10
 for_window [title="^zoom$" class="[zoom]*"] floating enable
 
