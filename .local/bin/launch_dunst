@@ -1,27 +1,9 @@
 #!/usr/bin/env bash
 
-#        -lf/nf/cf color
-#            Defines the foreground color for low, normal and critical notifications respectively.
-#
-#        -lb/nb/cb color
-#            Defines the background color for low, normal and critical notifications respectively.
-#
-#        -lfr/nfr/cfr color
-#            Defines the frame color for low, normal and critical notifications respectively.
-
-sleep 3
+sleep 2
 
 [ -f "$HOME/.cache/wal/colors.sh" ] && . "$HOME/.cache/wal/colors.sh"
 
 kill_and_wait dunst
 
-dunst -lf  "${color7:-#ffffff}" \
-      -lb  "${color0:-#eeeeee}" \
-      -lfr "${color0:-#dddddd}" \
-      -nf  "${color7:-#cccccc}" \
-      -nb  "${color0:-#bbbbbb}" \
-      -nfr "${color0:-#aaaaaa}" \
-      -cf  "${color7:-#999999}" \
-      -cb  "${color0:-#888888}" \
-      -cfr '#900000' \ # Used to be color3
-      -config ~/.config/dunst/dunstrc > /dev/null 2>&1 &
+dunst -config ~/.config/dunst/dunstrc &

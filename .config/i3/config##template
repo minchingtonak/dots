@@ -385,6 +385,7 @@ exec_always --no-startup-id setxkbmap -option caps:super
 exec --no-startup-id i3-autodisplay > /tmp/i3-autodisplay.log 2>&1
 exec --no-startup-id wallpaper ~/papes
 exec_always --no-startup-id launch_polybar > /tmp/polybar.log 2>&1
+exec_always --no-startup-id launch_dunst > /tmp/dunst.log 2>&1
 exec_always --no-startup-id restart picom > /tmp/picom.log 2>&1
 
 # disable screen sleeping
@@ -400,6 +401,8 @@ exec --no-startup-id slack
 exec --no-startup-id sleep 5 && spotify
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
+
+exec_always --no-startup-id numlockx on
 
 {% if yadm.hostname == "ENIAC" %}
 exec --no-startup-id invert_scroll
