@@ -81,7 +81,7 @@ bottom = false
 fixed-center = true
 padding = 0
 width = 100%
-height = 31
+height = 27
 offset-x = 0%
 offset-y = 0%
 radius-top = 0
@@ -91,7 +91,7 @@ background = #002d333f
 foreground = ${color.foreground}
 dim-value = 1.0
 
-line-size = 2
+line-size = 1
 line-color = ${color.background}
 
 border-top-size = 3
@@ -101,19 +101,18 @@ border-left-color = #002d333f
 border-right-size = 0
 border-right-color = #002d333f
 
-font-0 = "Iosevka Nerd Font:size=12;4"
-font-1 = "Iosevka Nerd Font:style=Medium:size=18;4"
-font-2 = "feather:size=13;5"
-font-3 = "Font Awesome 6 Brands:fontformat=opentype:size=10;1"
-font-4 = "Font Awesome 6 Free:fontformat=opentype:size=10;1"
-font-5 = "Font Awesome 6 Free Solid:fontformat=opentype:size=10;1"
+font-0 = "Iosevka Nerd Font:size=11;3"
+font-1 = "Iosevka Nerd Font:style=Medium:size=16;4"
+font-2 = "feather:size=13;3"
+font-3 = "Font Awesome 6 Brands:fontformat=opentype:size=10;4"
+font-4 = "Font Awesome 6 Free:fontformat=opentype:size=11;2"
+font-5 = "Font Awesome 6 Free Solid:fontformat=opentype:size=11;2"
 font-6 = "Unifont:fontformat=truetype;1"
 font-7 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
 
 tray-position = right
 tray-detached = false
 tray-maxsize = 16
-; tray-background = #002d333f
 tray-background = ${color.background}
 tray-offset-x = 0
 tray-offset-y = 0
@@ -153,7 +152,8 @@ content-font = 2
 
 [module/sep]
 type = custom/text
-content = " "
+content = "​" ; Hack: unicode zero-width space as content to allow custom width via margin
+content-margin = 2px
 
 [module/sep2]
 type = custom/text
@@ -354,9 +354,9 @@ format-disconnected-prefix-foreground = ${color.red}
 format-disconnected-background = ${color.background}
 format-disconnected-padding = 0
 
-label-connected = "%{A1:networkmanager_dmenu &:} %essid% %netspeed%%{A}"
+label-connected = "%{A1:nm-applet &:} %essid% %netspeed%%{A}"
 
-label-disconnected = "%{A1:networkmanager_dmenu &:} Offline%{A}"
+label-disconnected = "%{A1:nm-applet &:} Offline%{A}"
 
 [module/eth]
 type = internal/network
@@ -383,9 +383,9 @@ format-disconnected-prefix-foreground = ${color.red}
 format-disconnected-background = ${color.background}
 format-disconnected-padding = 0
 
-label-connected = "%{A1:networkmanager_dmenu &:} %local_ip% %netspeed%%{A}"
+label-connected = "%{A1:nm-applet &:} %local_ip% %netspeed%%{A}"
 
-label-disconnected = "%{A1:networkmanager_dmenu &:} Offline%{A}"
+label-disconnected = "%{A1:nm-applet &:} Offline%{A}"
 
 ; [module/eth-thunderbolt]
 ; inherit = module/eth
@@ -478,13 +478,11 @@ format-spacing = 0
 format-background = ${color.background}
 
 label-open = 
-; label-open-foreground = ${colors.secondary}
+label-open-font = 2
 label-open-background = ${color.background}
 label-close =  cancel
-; label-close-foreground = ${colors.secondary}
 label-close-background = ${color.background}
 label-separator = |
-; label-separator-foreground = ${colors.foreground-alt}
 label-separator-background = ${color.background}
 
 menu-0-0 = reboot
@@ -501,6 +499,7 @@ exec = python ~/.config/polybar/scripts/spotify.py -t 100 -f '{play_pause} {arti
 
 format = <label>
 format-prefix = " "
+label = "%{A4:i3-msg 'workspace 10' &:}%{A5:i3-msg 'workspace 10' &:}%output%%{A}%{A}"
 format-prefix-foreground = ${color.green}
 format-underline = ${color.green}
 format-background = ${color.background}
