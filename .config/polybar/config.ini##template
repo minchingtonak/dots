@@ -152,7 +152,8 @@ content-font = 2
 
 [module/sep]
 type = custom/text
-content = "​" ; Hack: unicode zero-width space as content to allow custom width via margin
+; Hack: unicode zero-width space as content to allow custom width via margin
+content = "​"
 content-margin = 2px
 
 [module/sep2]
