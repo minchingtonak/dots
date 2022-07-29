@@ -26,15 +26,15 @@
 ;
 ;==========================================================
 
-; [colors]
-; background = ${xrdb:color0:#222}
-; background-alt = ${xrdb:color0:#222}
-; foreground = ${xrdb:color7:#222}
-; foreground-alt = ${xrdb:color7:#222}
-; primary = ${xrdb:color1:#222}
-; secondary = ${xrdb:color2:#222}
-; alert = ${xrdb:color3:#222}
-; color6 = ${xrdb:color6:#222}
+[xresources]
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+color6 = ${xrdb:color6:#222}
 
 [color]
 background = #1b1b25
@@ -103,7 +103,7 @@ border-right-color = #002d333f
 
 font-0 = "Iosevka Nerd Font:size=11;3"
 font-1 = "Iosevka Nerd Font:style=Medium:size=16;4"
-font-2 = "Font Awesome 6 Brands:fontformat=opentype:size=10;4"
+font-2 = "Font Awesome 6 Brands:fontformat=opentype:size=10;2"
 font-3 = "Font Awesome 6 Free:fontformat=opentype:size=11;2"
 font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=11;2"
 font-5 = "Unifont:fontformat=truetype;1"
@@ -154,7 +154,7 @@ content-font = 7
 type = custom/text
 ; Hack: unicode zero-width space as content to allow custom width via margin
 content = "​"
-content-margin = 2px
+content-margin = 1px
 
 [module/sep2]
 type = custom/text
@@ -194,9 +194,9 @@ label-mode-background = ${color.background}
 label-mode-foreground = ${color.foreground}
 
 label-focused = %icon%
-label-focused-foreground = ${color.yellow}
+label-focused-foreground = ${xresources.primary}
 label-focused-background = ${color.background}
-label-focused-underline =  ${color.yellow}
+label-focused-underline =  ${xresources.primary}
 label-focused-padding = 1
 
 label-unfocused = %icon%
@@ -210,7 +210,7 @@ label-visible-foreground = ${color.purple}
 label-visible-background = ${color.background}
 
 label-urgent = %icon%
-label-urgent-foreground = ${color.red}
+label-urgent-foreground = ${xresources.alert}
 label-urgent-background = ${color.background}
 label-urgent-padding = 1
 
@@ -227,6 +227,8 @@ label = "%percentage:02%%"
 
 ramp-0 =
 ramp-1 =
+ramp-2 =
+ramp-3 =
 ramp-foreground = ${color.yellow}
 
 [module/backlight-acpi]
@@ -492,21 +494,24 @@ label-close-background = ${color.background}
 label-separator = |
 label-separator-background = ${color.background}
 
-menu-0-0 = reboot
+menu-0-0 = logout
 menu-0-0-background = ${color.background}
-menu-0-0-exec = systemctl reboot
-menu-0-1 = power off
+menu-0-0-exec = i3-msg exit
+menu-0-1 = reboot
 menu-0-1-background = ${color.background}
-menu-0-1-exec = systemctl poweroff
+menu-0-1-exec = systemctl reboot
+menu-0-2 = power off
+menu-0-2-background = ${color.background}
+menu-0-2-exec = systemctl poweroff
 
 [module/spotify]
 type = custom/script
 interval = 0.5
-exec = python ~/.config/polybar/scripts/spotify.py -t 100 -f '{play_pause} {artist} ♪ {song}' -p ','
+exec = python ~/.config/polybar/scripts/spotify.py -t 100 -f '{play_pause} {artist} ♪ {song}' -p ','
 
 format = <label>
 format-prefix = " "
-label = "%{A4:i3-msg 'workspace 10' &:}%{A5:i3-msg 'workspace 10' &:}%output%%{A}%{A}"
+label = "%{A4:pactl set-sink-input-volume $(input-sink-num spotify) +5% &:}%{A5:pactl set-sink-input-volume $(input-sink-num spotify) -5%:}%output%%{A}%{A}"
 format-prefix-foreground = ${color.green}
 format-underline = ${color.green}
 format-background = ${color.background}
