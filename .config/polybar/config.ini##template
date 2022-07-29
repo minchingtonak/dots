@@ -103,12 +103,12 @@ border-right-color = #002d333f
 
 font-0 = "Iosevka Nerd Font:size=11;3"
 font-1 = "Iosevka Nerd Font:style=Medium:size=16;4"
-font-2 = "feather:size=13;3"
-font-3 = "Font Awesome 6 Brands:fontformat=opentype:size=10;4"
-font-4 = "Font Awesome 6 Free:fontformat=opentype:size=11;2"
-font-5 = "Font Awesome 6 Free Solid:fontformat=opentype:size=11;2"
-font-6 = "Unifont:fontformat=truetype;1"
-font-7 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
+font-2 = "Font Awesome 6 Brands:fontformat=opentype:size=10;4"
+font-3 = "Font Awesome 6 Free:fontformat=opentype:size=11;2"
+font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=11;2"
+font-5 = "Unifont:fontformat=truetype;1"
+font-6 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
+font-7 = "feather:size=13;3"
 
 tray-position = right
 tray-detached = false
@@ -141,14 +141,14 @@ type = custom/text
 content-background = #002d333f
 content-foreground = ${color.background}
 content = ${glyph.gleft}
-content-font = 2
+content-font = 7
 
 [module/right1]
 type = custom/text
 content-background = #002d333f
 content-foreground = ${color.background}
 content = ${glyph.gright}
-content-font = 2
+content-font = 7
 
 [module/sep]
 type = custom/text
@@ -373,20 +373,20 @@ interval = 1
 unknown-as-up = true
 
 format-connected = <label-connected>
-format-connected-prefix = 
-format-connected-prefix-foreground = ${color.orange}
+format-connected-prefix = 
+format-connected-prefix-foreground = ${color.green}
 format-connected-background = ${color.background}
 format-connected-padding = 0
 
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = 
+format-disconnected-prefix = ""
 format-disconnected-prefix-foreground = ${color.red}
 format-disconnected-background = ${color.background}
 format-disconnected-padding = 0
 
 label-connected = "%{A1:nm-applet &:} %local_ip% %netspeed%%{A}"
 
-label-disconnected = "%{A1:nm-applet &:} Offline%{A}"
+label-disconnected = ""
 
 ; [module/eth-thunderbolt]
 ; inherit = module/eth
@@ -443,27 +443,33 @@ full-at = 98
 time-format = %H:%M
 
 format-charging = <label-charging>
-format-charging-prefix = ""
+format-charging-prefix = ""
 format-charging-prefix-foreground = ${color.green}
+format-charging-background = ${color.background}
 format-charging-prefix-background = ${color.background}
 
-format-discharging = <label-discharging>
-format-discharging-prefix = ""
-format-discharging-prefix-foreground = ${color.pink}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${color.background}
 format-discharging-prefix-background = ${color.background}
 
 format-full = <label-full>
-format-full-prefix = 
-format-full-prefix-foreground = ${color.red}
+format-full-prefix = ""
+format-full-prefix-foreground = ${color.green}
 format-full-prefix-background = ${color.background}
 
 label-charging = " %percentage%%"
 label-charging-background = ${color.background}
 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
 label-discharging = " %percentage%%"
 label-discharging-background = ${color.background}
 
-label-full = " Full"
+label-full = " %percentage%%"
 label-full-background = ${color.background}
 
 [module/battery2]
@@ -479,7 +485,7 @@ format-spacing = 0
 format-background = ${color.background}
 
 label-open = 
-label-open-font = 2
+label-open-font = 7
 label-open-background = ${color.background}
 label-close =  cancel
 label-close-background = ${color.background}
