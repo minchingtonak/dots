@@ -27,13 +27,11 @@
 ;==========================================================
 
 [xresources]
-background = ${xrdb:color0:#222}
-background-alt = ${xrdb:color0:#222}
-foreground = ${xrdb:color7:#222}
-foreground-alt = ${xrdb:color7:#222}
-primary = ${xrdb:color1:#222}
-secondary = ${xrdb:color2:#222}
-alert = ${xrdb:color3:#222}
+background = ${xrdb:color0:#1b1b25}
+foreground = ${xrdb:color7:#dedede}
+primary = ${xrdb:color4:#528a9b}
+secondary = ${xrdb:color2:#776690}
+alert = ${xrdb:color3:#cb5760}
 color6 = ${xrdb:color6:#222}
 
 [color]
@@ -92,13 +90,13 @@ foreground = ${color.foreground}
 dim-value = 1.0
 
 line-size = 1
-line-color = ${color.background}
+line-color = ${xresources.background}
 
 border-top-size = 3
 border-top-color = #002d333f
 border-left-size = 3
 border-left-color = #002d333f
-border-right-size = 0
+border-right-size = 2
 border-right-color = #002d333f
 
 font-0 = "Iosevka Nerd Font:size=11;3"
@@ -113,7 +111,7 @@ font-7 = "feather:size=13;3"
 tray-position = right
 tray-detached = false
 tray-maxsize = 16
-tray-background = ${color.background}
+tray-background = ${xresources.background}
 tray-offset-x = 0
 tray-offset-y = 0
 tray-padding = 0
@@ -139,14 +137,14 @@ gright = 
 [module/left1]
 type = custom/text
 content-background = #002d333f
-content-foreground = ${color.background}
+content-foreground = ${xresources.background}
 content = ${glyph.gleft}
 content-font = 7
 
 [module/right1]
 type = custom/text
 content-background = #002d333f
-content-foreground = ${color.background}
+content-foreground = ${xresources.background}
 content = ${glyph.gright}
 content-font = 7
 
@@ -160,8 +158,8 @@ content-margin = 1px
 type = custom/text
 content = " "
 
-content-foreground = ${color.background}
-content-background = ${color.background}
+content-foreground = ${xresources.background}
+content-background = ${xresources.background}
 
 [module/i3]
 type = internal/i3
@@ -190,28 +188,28 @@ format = <label-state><label-mode>
 
 label-mode = %mode%
 label-mode-padding = 1
-label-mode-background = ${color.background}
+label-mode-background = ${xresources.background}
 label-mode-foreground = ${color.foreground}
 
 label-focused = %icon%
 label-focused-foreground = ${xresources.primary}
-label-focused-background = ${color.background}
+label-focused-background = ${xresources.background}
 label-focused-underline =  ${xresources.primary}
 label-focused-padding = 1
 
 label-unfocused = %icon%
 label-unfocused-padding = 1
-label-unfocused-background = ${color.background}
+label-unfocused-background = ${xresources.background}
 
 label-visible = %icon%
-label-visible-underline = ${color.purple}
+label-visible-underline = ${xresources.secondary}
 label-visible-padding = 1
-label-visible-foreground = ${color.purple}
-label-visible-background = ${color.background}
+label-visible-foreground = ${xresources.secondary}
+label-visible-background = ${xresources.background}
 
 label-urgent = %icon%
 label-urgent-foreground = ${xresources.alert}
-label-urgent-background = ${color.background}
+label-urgent-background = ${xresources.background}
 label-urgent-padding = 1
 
 [module/xbacklight]
@@ -221,7 +219,7 @@ use-actual-brightness = true
 enable-scroll = true
 
 format = <ramp> <label>
-format-background = ${color.background}
+format-background = ${xresources.background}
 
 label = "%percentage:02%%"
 
@@ -243,7 +241,7 @@ interval = 1
 format = <label>
 format-prefix = 
 format-prefix-foreground = ${color.red}
-format-background = ${color.background}
+format-background = ${xresources.background}
 
 label = " %percentage:02%%"
 
@@ -254,7 +252,7 @@ interval = 1
 format = <label>
 ; format-prefix = 
 ; format-prefix-foreground = ${color.purple}
-format-background = ${color.background}
+format-background = ${xresources.background}
 label = " %percentage_used:02%%"
 
 [module/temperature]
@@ -272,10 +270,10 @@ hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input
 
 ; format = <ramp> <label>
 format = <ramp> <label>
-format-background = ${color.background}
+format-background = ${xresources.background}
 
 format-warn = <ramp> <label-warn>
-format-warn-background = ${color.background}
+format-warn-background = ${xresources.background}
 
 label = "%temperature-c:02%"
 
@@ -303,7 +301,7 @@ exec = nvidia-smi --loop=1 --query-gpu=utilization.gpu --format=csv,noheader,nou
 
 format = <label>
 label = " %output:02%%"
-format-background = ${color.background}
+format-background = ${xresources.background}
 format-prefix = 
 format-prefix-foreground = ${color.green}
 
@@ -315,7 +313,7 @@ exec = nvidia-smi --loop=1 --query-gpu=utilization.memory --format=csv,noheader,
 format = <label>
 label = " %output:02%%"
 
-format-background = ${color.background}
+format-background = ${xresources.background}
 ; format-prefix = 
 ; format-prefix-foreground = ${color.green}
 
@@ -326,7 +324,7 @@ exec-if = nvidia-smi
 exec = nvidia-smi --loop=1 --query-gpu=temperature.gpu --format=csv,noheader,nounits
 
 format = <label>
-format-background = ${color.background}
+format-background = ${xresources.background}
 label = " %output:02%°C"
 ; format-prefix = 
 ; format-prefix-foreground = ${color.cyan}
@@ -348,13 +346,13 @@ click-middle = nm-applet
 format-connected = <label-connected>
 format-connected-prefix = 
 format-connected-prefix-foreground = ${color.orange}
-format-connected-background = ${color.background}
+format-connected-background = ${xresources.background}
 format-connected-padding = 0
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = 
 format-disconnected-prefix-foreground = ${color.red}
-format-disconnected-background = ${color.background}
+format-disconnected-background = ${xresources.background}
 format-disconnected-padding = 0
 
 label-connected = "%{A1:nm-applet &:} %essid% %netspeed%%{A}"
@@ -377,13 +375,13 @@ unknown-as-up = true
 format-connected = <label-connected>
 format-connected-prefix = 
 format-connected-prefix-foreground = ${color.green}
-format-connected-background = ${color.background}
+format-connected-background = ${xresources.background}
 format-connected-padding = 0
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = ""
 format-disconnected-prefix-foreground = ${color.red}
-format-disconnected-background = ${color.background}
+format-disconnected-background = ${xresources.background}
 format-disconnected-padding = 0
 
 label-connected = "%{A1:nm-applet &:} %local_ip% %netspeed%%{A}"
@@ -411,7 +409,7 @@ time-alt = "%H:%M:%S"
 format = <label>
 format-prefix = " "
 format-prefix-foreground = ${color.blue}
-format-background = ${color.background}
+format-background = ${xresources.background}
 
 label = %date% %time%
 
@@ -419,9 +417,9 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-background = ${color.background}
+format-volume-background = ${xresources.background}
 format-muted = <label-muted>
-format-muted-background = ${color.background}
+format-muted-background = ${xresources.background}
 
 label-volume = %percentage:02%%
 label-muted = " 00%"
@@ -447,20 +445,20 @@ time-format = %H:%M
 format-charging = <label-charging>
 format-charging-prefix = ""
 format-charging-prefix-foreground = ${color.green}
-format-charging-background = ${color.background}
-format-charging-prefix-background = ${color.background}
+format-charging-background = ${xresources.background}
+format-charging-prefix-background = ${xresources.background}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-background = ${color.background}
-format-discharging-prefix-background = ${color.background}
+format-discharging-background = ${xresources.background}
+format-discharging-prefix-background = ${xresources.background}
 
 format-full = <label-full>
 format-full-prefix = ""
 format-full-prefix-foreground = ${color.green}
-format-full-prefix-background = ${color.background}
+format-full-prefix-background = ${xresources.background}
 
 label-charging = " %percentage%%"
-label-charging-background = ${color.background}
+label-charging-background = ${xresources.background}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -469,10 +467,10 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 
 label-discharging = " %percentage%%"
-label-discharging-background = ${color.background}
+label-discharging-background = ${xresources.background}
 
 label-full = " %percentage%%"
-label-full-background = ${color.background}
+label-full-background = ${xresources.background}
 
 [module/battery2]
 inherit = module/battery
@@ -484,37 +482,37 @@ type = custom/menu
 expand-right = true
 
 format-spacing = 0
-format-background = ${color.background}
+format-background = ${xresources.background}
 
 label-open = 
 label-open-font = 7
-label-open-background = ${color.background}
+label-open-background = ${xresources.background}
 label-close =  cancel
-label-close-background = ${color.background}
+label-close-background = ${xresources.background}
 label-separator = |
-label-separator-background = ${color.background}
+label-separator-background = ${xresources.background}
 
 menu-0-0 = logout
-menu-0-0-background = ${color.background}
+menu-0-0-background = ${xresources.background}
 menu-0-0-exec = i3-msg exit
 menu-0-1 = reboot
-menu-0-1-background = ${color.background}
+menu-0-1-background = ${xresources.background}
 menu-0-1-exec = systemctl reboot
 menu-0-2 = power off
-menu-0-2-background = ${color.background}
+menu-0-2-background = ${xresources.background}
 menu-0-2-exec = systemctl poweroff
 
 [module/spotify]
 type = custom/script
 interval = 0.5
-exec = python ~/.config/polybar/scripts/spotify.py -t 100 -f '{play_pause} {artist} ♪ {song}' -p ','
+exec = ~/.config/polybar/scripts/spotify-bar
 
 format = <label>
 format-prefix = " "
 label = "%{A4:pactl set-sink-input-volume $(input-sink-num spotify) +5% &:}%{A5:pactl set-sink-input-volume $(input-sink-num spotify) -5%:}%output%%{A}%{A}"
 format-prefix-foreground = ${color.green}
 format-underline = ${color.green}
-format-background = ${color.background}
+format-background = ${xresources.background}
 
 click-left = playerctl --player=spotify play-pause
 click-right = playerctl --player=spotify next
