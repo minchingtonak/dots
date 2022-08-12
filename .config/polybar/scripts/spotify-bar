@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+VOL="$(get-input-sink-volume spotify)"
+
+if [ "${VOL:0:-1}" -gt 66 ]; then
+    ICON=""
+elif [ "${VOL:0:-1}" -gt 33 ]; then
+    ICON=""
+elif [ "${VOL:0:-1}" -gt 5 ]; then
+    ICON=""
+else
+    ICON=""
+fi
+
+echo "$(python ~/.config/polybar/scripts/spotify.py -t 100 -f '{play_pause} {artist} ♪ {song}' -p ',') ($ICON $VOL)"

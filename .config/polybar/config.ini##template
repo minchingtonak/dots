@@ -187,9 +187,9 @@ ws-icon-default = ?
 format = <label-state><label-mode>
 
 label-mode = %mode%
-label-mode-padding = 1
 label-mode-background = ${xresources.background}
 label-mode-foreground = ${color.foreground}
+label-mode-padding = 1
 
 label-focused = %icon%
 label-focused-foreground = ${xresources.primary}
@@ -198,14 +198,14 @@ label-focused-underline =  ${xresources.primary}
 label-focused-padding = 1
 
 label-unfocused = %icon%
-label-unfocused-padding = 1
 label-unfocused-background = ${xresources.background}
+label-unfocused-padding = 1
 
 label-visible = %icon%
-label-visible-underline = ${xresources.secondary}
-label-visible-padding = 1
-label-visible-foreground = ${xresources.secondary}
+label-visible-underline = ${xresources.primary}
+label-visible-foreground = ${xresources.primary}
 label-visible-background = ${xresources.background}
+label-visible-padding = 1
 
 label-urgent = %icon%
 label-urgent-foreground = ${xresources.alert}
@@ -504,7 +504,8 @@ menu-0-2-exec = systemctl poweroff
 
 [module/spotify]
 type = custom/script
-interval = 0.5
+interval = 0.2
+exec-if = pgrep -x spotify
 exec = ~/.config/polybar/scripts/spotify-bar
 
 format = <label>
