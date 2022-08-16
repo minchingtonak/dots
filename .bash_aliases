@@ -15,6 +15,7 @@ alias act='source env/bin/activate'
 alias deact='deactivate'
 alias batthresh='sudo $EDITOR /etc/tlp.conf'
 mk() { mkdir -p $1 && cd $1; }
+mktmp() { mk "/tmp/mktmp-$(date '+%y%m%d-%H%M')" }
 mknodeenv() {
   python3 -m venv env &&
   act &&
@@ -25,6 +26,7 @@ mknodeenv() {
 locate() { find . -name "$1" 2> /dev/null; }
 alias scheme='rlwrap plt-r5rs'
 alias vsc='code .'
+alias check='shellcheck'
 
 # yadm
 alias y='yadm'

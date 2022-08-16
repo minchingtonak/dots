@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+while true; do
+    reset
+    "$@"
+    inotifywait -e MODIFY --recursive .
+done

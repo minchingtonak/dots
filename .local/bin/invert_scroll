@@ -3,6 +3,6 @@ set -Eeuo pipefail
 
 TID=$(xinput list | grep -iPo 'synaptics.*id=\K\d+')
 
-prop_id=$(xinput list-props $TID | grep -m 1 -iPo 'natural scrolling.*\(\K\d+')
+prop_id=$(xinput list-props "$TID" | grep -m 1 -iPo 'natural scrolling.*\(\K\d+')
 
 xinput set-prop "$TID" "$prop_id" 1

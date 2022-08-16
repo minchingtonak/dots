@@ -2,7 +2,9 @@
 
 VOL="$(get-input-sink-volume spotify)"
 
-if [ "${VOL:0:-1}" -gt 66 ]; then
+if [ -z "$VOL" ]; then
+    ICON=""
+elif [ "${VOL:0:-1}" -gt 66 ]; then
     ICON=""
 elif [ "${VOL:0:-1}" -gt 33 ]; then
     ICON=""
