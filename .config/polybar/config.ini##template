@@ -400,8 +400,8 @@ label-disconnected = ""
 type = internal/date
 interval = 1
 
-date = "%a %d %b"
-date-alt = "%A %d %B %Y"
+date = "%{A3:gnome-calendar:}%a %d %b%{A}"
+date-alt = "%{A3:gnome-calendar:}%A %d %B %Y%{A}"
 
 time = "%H:%M"
 time-alt = "%H:%M:%S"
