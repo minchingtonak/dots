@@ -432,7 +432,7 @@ ramp-headphones-0 = 
 ramp-volume-foreground = ${color.blue}
 
 click-right = pavucontrol
-click-middle = blueman-manager
+click-middle = blueberry
 
 [module/battery]
 type = internal/battery
