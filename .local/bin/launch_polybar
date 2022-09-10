@@ -6,7 +6,7 @@ sleep 2
 
 # Launch polybar on all connected monitors
 for m in $(polybar --list-monitors | cut -d":" -f1); do
-    sleep 2
+    sleep 1
     echo "Launching polybar on $m"
     MONITOR=$m polybar -l trace --reload wal > /tmp/polybar-"$m".log 2>&1 &
 done
