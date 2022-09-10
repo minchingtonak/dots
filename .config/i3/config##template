@@ -13,7 +13,7 @@
 
 set $mod Mod4
 set $term --no-startup-id alacritty
-set $browser --no-startup-id firefox
+set $browser --no-startup-id firefox-developer-edition
 set $inner-gaps 5
 set $outer-gaps 0
 
@@ -45,6 +45,11 @@ for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 1024 768
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id $term --class=math -e python
+
+for_window [instance="keepassxc"] floating enable
+for_window [instance="keepassxc"] resize set 1024 768
+for_window [instance="keepassxc"] move scratchpad
+
 
 # ===== Basic bindings ===== #
 
@@ -100,7 +105,7 @@ bindsym $mod+Shift+i exec --no-startup-id i3resize up
 bindsym $mod+o sticky toggle
 bindsym $mod+Shift+o exec --no-startup-id i3resize right
 
-# bindsym $mod+p
+bindsym $mod+p [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 # bindsym $mod+Shift+p
 
 bindsym $mod+a [instance="math"] scratchpad show; [instance="math"] move position center
@@ -347,7 +352,7 @@ workspace $ws9 output $mon2 $mon1
 workspace $ws10 output $mon2 $mon1
 
 # Use xprop to find window classes
-assign [class="firefox"] $ws1
+assign [class="^firefox"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Steam"] $ws4
@@ -394,9 +399,8 @@ exec --no-startup-id xset s off && xset -dpms
 # blue light filter
 exec --no-startup-id redshift
 
-exec --no-startup-id firefox
+exec --no-startup-id firefox-developer-edition
 exec --no-startup-id discord
-exec --no-startup-id discord-canary
 exec --no-startup-id slack
 exec --no-startup-id sleep 5 && spotify
 
