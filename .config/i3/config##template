@@ -46,10 +46,11 @@ for_window [instance="math"] resize set 1024 768
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id $term --class=math -e python
 
-for_window [instance="keepassxc"] floating enable
-for_window [instance="keepassxc"] resize set 1024 768
-for_window [instance="keepassxc"] move scratchpad
-
+# for keepassxc, move main window to scratchpad but not any popups (floating windows)
+# commands must be run in this order since `floating enable` changes status to floating
+for_window [instance="keepassxc" tiling] move scratchpad
+for_window [instance="keepassxc" tiling] resize set 1024 768
+for_window [instance="keepassxc" tiling] floating enable
 
 # ===== Basic bindings ===== #
 
@@ -105,7 +106,7 @@ bindsym $mod+Shift+i exec --no-startup-id i3resize up
 bindsym $mod+o sticky toggle
 bindsym $mod+Shift+o exec --no-startup-id i3resize right
 
-bindsym $mod+p [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
+# bindsym $mod+p
 # bindsym $mod+Shift+p
 
 bindsym $mod+a [instance="math"] scratchpad show; [instance="math"] move position center
@@ -142,8 +143,8 @@ bindsym $mod+Ctrl+l move workspace to output right
 bindsym $mod+z [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 # bindsym $mod+Shift+z gaps outer current minus 5
 
-bindsym $mod+x exec --no-startup-id lockscreen
-# bindsym $mod+Shift+x
+bindsym $mod+x [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
+bindsym $mod+Shift+x exec --no-startup-id lockscreen
 
 # bindsym $mod+c
 bindsym $mod+Shift+c reload
@@ -152,13 +153,13 @@ bindsym $mod+v split toggle
 bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set $outer-gaps
 
 # bindsym $mod+b
-bindsym $mod+Shift+b exec --no-startup-id blueman-manager
+bindsym $mod+Shift+b exec --no-startup-id blueberry
 
 bindsym $mod+n exec --no-startup-id wallpaper ~/papes
 bindsym $mod+Shift+n exec --no-startup-id "rofi -show themes:~/.config/rofi/scripts/themeswitch.sh"
 
-# bindsym $mod+m exec --no-startup-id manage_displays
-# bindsym $mod+Shift+m exec --no-startup-id manage_displays -r
+# bindsym $mod+m
+# bindsym $mod+Shift+m
 
 # ===== Arrow keys ===== #
 bindsym $mod+Left focus left
@@ -352,6 +353,8 @@ workspace $ws9 output $mon2 $mon1
 workspace $ws10 output $mon2 $mon1
 
 # Use xprop to find window classes
+# [instance=] compares against first element of WM_CLASS
+# [class=] compares against second element
 assign [class="^firefox"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
@@ -402,6 +405,8 @@ exec --no-startup-id redshift
 exec --no-startup-id firefox-developer-edition
 exec --no-startup-id discord
 exec --no-startup-id slack
+exec --no-startup-id keepassxc
+exec --no-startup-id syncthing-gtk
 exec --no-startup-id sleep 5 && spotify
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
