@@ -28,6 +28,7 @@ alias scheme='rlwrap plt-r5rs'
 alias vsc='code .'
 alias check='shellcheck'
 alias synctime='sudo ntpd -qg'
+alias enablesynctime='sudo systemctl enable systemd-timesyncd.service'
 
 # yadm
 alias y='yadm'
