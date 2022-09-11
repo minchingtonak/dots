@@ -119,11 +119,11 @@ tray-scale = 1.0
 
 modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan eth left1
 {% if yadm.hostname == "WITCH" %}
-modules-right = right1 cpu temperature memory left1 sep right1 gpu gputemperature gpumemory left1 sep right1 date sep2 sep2 powermenu left1
+modules-right = right1 cpu temperature memory left1 sep right1 gpu gputemperature gpumemory left1 sep right1 date sep2 sep2 powermenu left1 sep
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
-modules-right = right1 cpu temperature memory left1 sep right1 backlight-acpi left1 sep right1 battery sep2 sep2 battery2 left1 sep right1 date sep2 sep2 powermenu left1
+modules-right = right1 cpu temperature memory left1 sep right1 backlight-acpi left1 sep right1 battery sep2 sep2 battery2 left1 sep right1 date sep2 sep2 powermenu left1 sep
 {% endif %}
 
 cursor-click = pointer

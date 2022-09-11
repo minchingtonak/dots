@@ -115,8 +115,8 @@ bindsym $mod+Shift+a exec --no-startup-id pavucontrol
 bindsym $mod+s layout stacked
 # bindsym $mod+Shift+s
 
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+shift+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show run -show-icons
+bindsym $mod+shift+d exec --no-startup-id rofi -show drun -show-icons
 
 bindsym $mod+f fullscreen toggle
 # bindsym $mod+Shift+f
