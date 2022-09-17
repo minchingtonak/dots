@@ -110,13 +110,13 @@ bindsym $mod+o sticky toggle
 bindsym $mod+Shift+o exec --no-startup-id i3resize right
 
 # bindsym $mod+p
-# bindsym $mod+Shift+p
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/scripts/power-menu.sh
 
 bindsym $mod+a [instance="math"] scratchpad show; [instance="math"] move position center
 bindsym $mod+Shift+a exec --no-startup-id pavucontrol
 
 bindsym $mod+s layout stacked
-# bindsym $mod+Shift+s
+bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/scripts/screenshot-menu.sh
 
 bindsym $mod+d exec --no-startup-id rofi -show run -show-icons
 bindsym $mod+shift+d exec --no-startup-id rofi -show drun -show-icons
@@ -159,7 +159,7 @@ bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set 
 bindsym $mod+Shift+b exec --no-startup-id blueberry
 
 bindsym $mod+n exec --no-startup-id wallpaper ~/papes
-bindsym $mod+Shift+n exec --no-startup-id "rofi -show themes:~/.config/rofi/scripts/themeswitch.sh"
+bindsym $mod+Shift+n exec --no-startup-id "rofi -show themes:~/.config/rofi/scripts/theme-menu.sh"
 
 # bindsym $mod+m
 # bindsym $mod+Shift+m

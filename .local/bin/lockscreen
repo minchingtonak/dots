@@ -1,15 +1,22 @@
 #!/bin/sh
+# Modified from https://github.com/Keyitdev/dotfiles/blob/v3/scripts/lock
 
 font="dedede"
 green="64ab4b"
 red="db4b4b"
 
-i3lock -n --force-clock -F -i ~/papes/source2.png -e \
+WALLPAPERDIR=~/papes
+
+# Gets a random wallpaper
+# WALLPAPER="$(ls -d1 $WALLPAPERDIR/* | grep -Ei 'png|jpg|jpeg' | sort -R | head -1)"
+WALLPAPER="$WALLPAPERDIR"/source2.png
+
+i3lock -n --force-clock -F -i "$WALLPAPER" -e \
 --refresh-rate=1 --line-uses-inside --pointer=default --pass-media-keys --pass-volume-keys --pass-screen-keys \
 --inside-color="$green" --ring-color="$green" --insidever-color="$green" --ringver-color="$green" --insidewrong-color="$red" --ringwrong-color="$red" \
 --keyhl-color="$green" --separator-color="$green" --bshl-color="$green" --color=000000 \
 --time-str="%H:%M" --time-size=140 --time-pos="960:300" --time-font="Roboto mono:style=Bold" --time-color="$font" \
---date-str="%A %d %B" --date-size=45 --date-pos="960:380" --date-font="Roboto mono" --date-color="$font" \
+--date-str="%A %d %B" --date-size=45 --date-pos="960:410" --date-font="Roboto mono" --date-color="$font" \
 --verif-text="Verifying" --greeter-text="" --wrong-text="Incorrect Password" --noinput-text="No input" \
 --verif-font="Roboto mono"  --greeter-font="Roboto mono" --wrong-font="Roboto mono" \
 --verif-size=35 --greeter-size=35 --wrong-size=35 \
