@@ -99,14 +99,14 @@ border-left-color = #002d333f
 border-right-size = 2
 border-right-color = #002d333f
 
-font-0 = "Iosevka Nerd Font:size=11;3"
-font-1 = "Iosevka Nerd Font:style=Medium:size=16;4"
+; Specifying a font in a module is *1-indexed* (ex: content-font = 1 for font-0)
+font-0 = "Unifont:fontformat=truetype;1"
+font-1 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
 font-2 = "Font Awesome 6 Brands:fontformat=opentype:size=10;2"
 font-3 = "Font Awesome 6 Free:fontformat=opentype:size=11;2"
-font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=11;2"
-font-5 = "Unifont:fontformat=truetype;1"
-font-6 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
-font-7 = "feather:size=13;3"
+font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=10;2"
+font-5 = "feather:fontformat=truetype:size=13;3"
+font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
 tray-position = right
 tray-detached = false
@@ -114,12 +114,12 @@ tray-maxsize = 16
 tray-background = ${xresources.background}
 tray-offset-x = 0
 tray-offset-y = 0
-tray-padding = 0
+tray-padding = 4
 tray-scale = 1.0
 
-modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan eth left1
+modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan eth sep3 left1
 {% if yadm.hostname == "WITCH" %}
-modules-right = right1 cpu temperature memory left1 sep right1 gpu gputemperature gpumemory left1 sep right1 date sep2 sep2 powermenu left1 sep
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 date sep2 sep2 powermenu left1 sep
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
@@ -130,6 +130,7 @@ cursor-click = pointer
 
 ;; Modules
 
+; https://github.com/Keyitdev/dotfiles/blob/v3/config/polybar/config.ini#L147
 [glyph]
 gleft = 
 gright = 
@@ -153,6 +154,7 @@ type = custom/text
 ; Hack: unicode zero-width space as content to allow custom width via margin
 content = "​"
 content-margin = 1px
+content-font = 3
 
 [module/sep2]
 type = custom/text
@@ -160,6 +162,15 @@ content = " "
 
 content-foreground = ${xresources.background}
 content-background = ${xresources.background}
+
+; for padding the inside end of modules so percent signs don't get cut off
+[module/sep3]
+type = custom/text
+; Hack: unicode zero-width space as content to allow custom width via margin
+content = "​"
+content-padding = 1px
+content-background = ${xresources.background}
+content-font = 3
 
 [module/i3]
 type = internal/i3
