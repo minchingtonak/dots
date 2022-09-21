@@ -336,7 +336,7 @@ bindsym $mod+Mod2+Shift+KP_0 move container to workspace $ws10
 
 {% if yadm.hostname == "WITCH" %}
 set $mon1 DP-0
-set $mon2 HDMI-0
+set $mon2 DP-2
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}

@@ -13,7 +13,7 @@ displays:
   - name: DP-0
     workspaces: [1,2,4]
     randr_extra_options: "--primary"
-  - name: HDMI-0
+  - name: DP-2
     workspaces: [3,5,6,7,8,9,10]
     randr_extra_options: "--right-of DP-0"
 {% endif %}
