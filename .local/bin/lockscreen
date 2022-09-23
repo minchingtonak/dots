@@ -15,42 +15,11 @@ i3lock -n --force-clock -F -i "$WALLPAPER" -e \
 --refresh-rate=1 --line-uses-inside --pointer=default --pass-media-keys --pass-volume-keys --pass-screen-keys \
 --inside-color="$green" --ring-color="$green" --insidever-color="$green" --ringver-color="$green" --insidewrong-color="$red" --ringwrong-color="$red" \
 --keyhl-color="$green" --separator-color="$green" --bshl-color="$green" --color=000000 \
---time-str="%H:%M" --time-size=140 --time-pos="960:300" --time-font="Roboto mono:style=Bold" --time-color="$font" \
---date-str="%A %d %B" --date-size=45 --date-pos="960:410" --date-font="Roboto mono" --date-color="$font" \
+--time-str="%H:%M" --time-size=140 --time-pos="1080:300" --time-font="Roboto mono:style=Bold" --time-color="$font" \
+--date-str="%A %d %B" --date-size=45 --date-pos="1080:410" --date-font="Roboto mono" --date-color="$font" \
 --verif-text="Verifying" --greeter-text="" --wrong-text="Incorrect Password" --noinput-text="No input" \
 --verif-font="Roboto mono"  --greeter-font="Roboto mono" --wrong-font="Roboto mono" \
 --verif-size=35 --greeter-size=35 --wrong-size=35 \
---verif-pos="960:540" --greeter-pos="960:600" --wrong-pos="960:540" \
+--verif-pos="1080:540" --greeter-pos="1080:600" --wrong-pos="1080:540" \
 --verif-color="$green" --greeter-color="$font" --wrong-color="$red" \
---bar-indicator --bar-direction=0 --bar-step=10 --bar-max-height=10 --bar-base-width=10 --bar-total-width=2025 --bar-color=00000000 --bar-pos="0:1070"
-
-# #!/usr/bin/env bash
-
-# # make sure to install scrot
-
-# # icon=$HOME/.xlock/icon.png
-# tmpbg=/tmp/screen.png
-# scrot "$tmpbg"
-# convert "$tmpbg" -scale 10% -scale %1000 "$tmpbg"
-# i3lock -i "$tmpbg"
-# rm "$tmpbg"
-
-# # this version uses the current wallpaper instead of a screenshot
-# # tmpbg="$(cat /tmp/wallpaperfile | sed 's/.*\//\/tmp\//')"
-# # cp "$(cat /tmp/wallpaperfile)" "$tmpbg"
-# # ext="$(cat /tmp/wallpaperfile | sed 's/.*\///' | sed 's/.*\.//')"
-# # tmpbg_res="$(echo $tmpbg | sed 's/\..*//')-resized.png"
-# # convert "$tmpbg" -resize 1920x1080 "$tmpbg_res"
-# ## Original ratio: 10% 1000%
-# ## Numbers scale inversely, e.g double one, half the other
-# # convert "$tmpbg_res" -scale 10% -scale %1000 "$tmpbg_res"
-# # i3lock -i "$tmpbg_res"
-# # rm "$tmpbg" "$tmpbg_res"
-
-
-
-
-# # convert "$tmpbg" -gravity center -composite -matte "$tmpbg"
-
-# # Pause music on lock
-# # dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+--bar-indicator --bar-direction=0 --bar-step=10 --bar-max-height=10 --bar-base-width=10 --bar-total-width=2318 --bar-color=00000000 --bar-pos="0:1070"
