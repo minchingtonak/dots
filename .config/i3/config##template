@@ -39,20 +39,23 @@ bindsym $mod+Tab [con_mark=_last] focus
 
 # ===== Scratchpad terminals ===== #
 
+set $scratchpadwidth 1280
+set $scratchpadheight 960
+
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 1024 768
+for_window [instance="dropdown"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="dropdown"] move scratchpad
 exec_always --no-startup-id $term --class=dropdown
 
 for_window [instance="math"] floating enable
-for_window [instance="math"] resize set 1024 768
+for_window [instance="math"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id $term --class=math -e python
 
 # for keepassxc, move main window to scratchpad but not any popups (floating windows)
 # commands must be run in this order since `floating enable` changes status to floating
 for_window [instance="keepassxc" tiling] move scratchpad
-for_window [instance="keepassxc" tiling] resize set 1024 768
+for_window [instance="keepassxc" tiling] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="keepassxc" tiling] floating enable
 
 # ===== Basic bindings ===== #
@@ -363,9 +366,9 @@ assign [class="Alacritty"] $ws2
 assign [class="Code"] $ws3
 assign [class="Steam"] $ws4
 assign [class="discord"] $ws5
-assign [class="Slack"] $ws6
-assign [class="Chromium"] $ws6
-for_window [class="Spotify"] move to workspace $ws10
+assign [class="Slack"] $ws7
+assign [class="Chromium"] $ws7
+for_window [class="Spotify"] move to workspace $ws6
 for_window [title="^zoom$" class="[zoom]*"] floating enable
 
 set_from_resource $bg-color i3wm.color0                    #2f343f

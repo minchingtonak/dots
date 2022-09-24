@@ -4,12 +4,26 @@ USE_POWERLINE="true"
 if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
   source /usr/share/zsh/manjaro-zsh-config
 fi
-# Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
+if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-source "$HOME/.config/yadm/global_vars"
+# Prompt
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:git*' formats "(%b) %m%u%c"
+# zstyle ':vcs_info:git*' actionformats "(%b) (%a) %m%u%c"
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/apple.zsh-theme
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '%F{red}*%f'   # display this when there are unstaged changes
+zstyle ':vcs_info:*' stagedstr '%F{yellow}+%f'  # display this when there are staged changes
+zstyle ':vcs_info:*' actionformats '%F{8}:%F{5}(%F{2}%b%F{3}|%F{1}%a%c%u%F{5})%f'
+zstyle ':vcs_info:*' formats '%F{8}:%F{5}(%F{2}%b%c%u%F{5})%f'
+setopt prompt_subst
+# color test: %F{1}1 %F{2}2 %F{3}3 %F{4}4 %F{5}5 %F{6}6 %F{7}7 %F{8}8 %F{9}9
+PROMPT='%F{4}%~%f${vcs_info_msg_0_}%{$reset_color%} %F{5}$%f '
+RPROMPT='%F{1}1 %F{2}2 %F{3}3 %F{4}4 %F{5}5 %F{6}6 %F{7}7 %F{8}8 %F{9}9%f %(?..%B%F{3}[%?] %f%b)'
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -18,8 +32,7 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-ex ()
-{
+ex() {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -45,6 +58,7 @@ ex ()
 export EDITOR='code'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
+export WORKSPACE="$HOME/workspace"
 
 source $HOME/.bash_aliases
 
