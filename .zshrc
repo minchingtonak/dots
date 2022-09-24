@@ -22,8 +22,8 @@ zstyle ':vcs_info:*' actionformats '%F{8}:%F{5}(%F{2}%b%F{3}|%F{1}%a%c%u%F{5})%f
 zstyle ':vcs_info:*' formats '%F{8}:%F{5}(%F{2}%b%c%u%F{5})%f'
 setopt prompt_subst
 # color test: %F{1}1 %F{2}2 %F{3}3 %F{4}4 %F{5}5 %F{6}6 %F{7}7 %F{8}8 %F{9}9
-PROMPT='%F{4}%~%f${vcs_info_msg_0_}%{$reset_color%} %F{5}$%f '
-RPROMPT='%F{1}1 %F{2}2 %F{3}3 %F{4}4 %F{5}5 %F{6}6 %F{7}7 %F{8}8 %F{9}9%f %(?..%B%F{3}[%?] %f%b)'
+PROMPT='%F{4}%~%f${vcs_info_msg_0_}%{$reset_color%} %F{5}%Bλ%b%f '
+RPROMPT='%(?..%B%F{3} ✗%? %f%b)'
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
