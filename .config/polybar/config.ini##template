@@ -117,7 +117,7 @@ tray-offset-y = 0
 tray-padding = 4
 tray-scale = 1.0
 
-modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan eth sep3 left1
+modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
 {% if yadm.hostname == "WITCH" %}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
 {% endif %}
@@ -361,19 +361,20 @@ format-connected-background = ${xresources.background}
 format-connected-padding = 0
 
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = 
+format-disconnected-prefix = ""
 format-disconnected-prefix-foreground = ${color.red}
 format-disconnected-background = ${xresources.background}
 format-disconnected-padding = 0
 
 label-connected = "%{A1:nm-applet &:} %essid% %netspeed%%{A}"
 
-label-disconnected = "%{A1:nm-applet &:} Offline%{A}"
+# colors.red
+label-disconnected = "%{F#cb5760}%{A1:nm-applet &:}%{A}%{F}"
 
 [module/eth]
 type = internal/network
 {% if yadm.hostname == "WITCH" %}
-interface = enp24s0
+interface = enp6s0
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
