@@ -343,7 +343,7 @@ label = " %output:02%°C"
 [module/wlan]
 type = internal/network
 {% if yadm.hostname == "WITCH" %}
-interface = wlp5s0
+interface = wlan0
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
