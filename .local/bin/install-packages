@@ -10,6 +10,7 @@ yay -S \
     feh \
     ffcast \
     ffmpeg \
+    i3lock-color \
     i3-wm \
     keepassxc \
     nemo \

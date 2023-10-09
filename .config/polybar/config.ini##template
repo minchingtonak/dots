@@ -108,6 +108,7 @@ font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=10;2"
 font-5 = "feather:fontformat=truetype:size=13;3"
 font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
+; TODO migrate to module when it's released https://polybar.readthedocs.io/en/latest/user/modules/tray.html
 tray-position = right
 tray-detached = false
 tray-maxsize = 16
