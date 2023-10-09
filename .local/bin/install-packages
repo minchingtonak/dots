@@ -10,13 +10,9 @@ yay -S \
     feh \
     ffcast \
     ffmpeg \
-    firefox-developer-edition \
-    firefox-gnome-theme-maia \
-    i3-gaps \
-    i3-sensible-browser-git \
+    i3-wm \
     keepassxc \
-    lxappearance \
-    nvidia-utils \
+    nemo \
     pavucontrol \
     picom \
     playerctl \
@@ -24,15 +20,12 @@ yay -S \
     python-pywal \
     redshift \
     rofi \
-    sddm \
-    sddm-config-editor-git \
-    shellcheck-bin \
     siji-ng \
     slop \
     spotify \
     steam \
     syncthing \
-    syncthing-gtk-python3 \
+    syncthing-gtk \
     ungoogled-chromium-xdg-bin \
     visual-studio-code-bin \
     vlc \

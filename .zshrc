@@ -1,9 +1,3 @@
-# Use powerline
-USE_POWERLINE="true"
-# Source manjaro-zsh-configuration
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  source /usr/share/zsh/manjaro-zsh-config
-fi
 if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -40,10 +34,8 @@ ex() {
 
 # User configuration
 
-export EDITOR='code'
-export TERMINAL='alacritty'
-export BROWSER='firefox'
-export WORKSPACE="$HOME/workspace"
+# env var and PATH setup
+source ~/.profile
 
 source $HOME/.bash_aliases
 
@@ -61,5 +53,10 @@ bindkey '^[[3;5~' kill-word
 # ( ) # Hide shell job control messages.
 (cat ~/.cache/wal/sequences &)
 
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+setopt EXTENDED_HISTORY
+
 PATH=~/.local/bin:$PATH
-source /usr/share/nvm/init-nvm.sh
+
