@@ -408,12 +408,11 @@ exec --no-startup-id xset s off && xset -dpms
 # blue light filter
 exec --no-startup-id redshift
 
-exec --no-startup-id firefox > /tmp/firefox.log 2>&1
-exec --no-startup-id discord
-exec --no-startup-id slack
-exec --no-startup-id keepassxc
-exec --no-startup-id syncthing-gtk
 exec --no-startup-id sleep 5 && spotify
+exec --no-startup-id sleep 10 && firefox > /tmp/firefox.log 2>&1
+exec --no-startup-id sleep 15 && discord
+exec --no-startup-id sleep 20 && keepassxc
+exec --no-startup-id sleep 25 && syncthing-gtk
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
 
