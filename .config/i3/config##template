@@ -363,13 +363,13 @@ workspace $ws10 output $mon2 $mon1
 # [class=] compares against second element
 assign [class="^firefox"] $ws1
 assign [class="Alacritty"] $ws2
+assign [class="obsidian"] $ws2
 assign [class="Code"] $ws3
 assign [class="steam"] $ws4
 assign [class="discord"] $ws5
 assign [class="Slack"] $ws7
 assign [class="Chromium"] $ws7
 for_window [class="Spotify"] move to workspace $ws6
-for_window [title="^zoom$" class="[zoom]*"] floating enable
 
 set_from_resource $bg-color i3wm.color0                    #2f343f
 set_from_resource $focused-bg-color i3wm.color1            #2f343f
