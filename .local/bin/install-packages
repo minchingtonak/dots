@@ -20,6 +20,7 @@ yay -S \
     playerctl \
     polybar \
     python-pywal \
+    python-pywalfox \
     redshift \
     rofi \
     siji-ng \
