@@ -112,7 +112,7 @@ font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 tray-position = right
 tray-detached = false
 tray-maxsize = 16
-tray-background = ${xresources.background}
+tray-background = #00000000
 tray-offset-x = 0
 tray-offset-y = 0
 tray-padding = 4
