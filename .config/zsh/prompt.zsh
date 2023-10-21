@@ -14,7 +14,8 @@ source ~/.config/zsh/command-time.zsh
 ZSH_COMMAND_TIME_MIN_SECONDS=3
 
 autoload -Uz vcs_info
-precmd() { vcs_info }
+vcscmd() { vcs_info }
+precmd_functions+=(vcscmd)
 zstyle ':vcs_info:*' enable git
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/apple.zsh-theme
 zstyle ':vcs_info:*' check-for-changes true

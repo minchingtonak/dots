@@ -11,6 +11,12 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
+# set window title to last command name + working directory
+preexec() { SHELL_PREV_CMD=$1;print -Pn "\e]0;$1 - $(shrink_path -t -1)\a" }
+# set window title after command in case we changed directories (cd)
+promptcmd() { print -Pn "\e]0;${SHELL_PREV_CMD-New Shell} - $(shrink_path -t -1)\a"; }
+precmd_functions+=(promptcmd)
+
 ex() {
   if [ -f $1 ] ; then
     case $1 in
