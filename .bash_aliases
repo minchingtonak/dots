@@ -11,7 +11,7 @@ alias la='ls -A --color=tty'
 alias aliases="$EDITOR ~/.bash_aliases"
 alias bashrc="$EDITOR ~/.bashrc"
 alias zshrc="$EDITOR ~/.zshrc"
-alias config="$EDITOR ~/.config/"
+alias config="xdg-open ~/.config/.config.code-workspace"
 alias act='source env/bin/activate'
 alias deact='deactivate'
 alias batthresh='sudo $EDITOR /etc/tlp.conf'

@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../.local/bin"
+		},
+		{
+			"path": "../.local/share/fonts"
+		},
+		{
+			"path": "../.cache/wal"
+		}
+	]
+}
