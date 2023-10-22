@@ -1,15 +1,19 @@
 #!/bin/sh
 # Modified from https://github.com/Keyitdev/dotfiles/blob/v3/scripts/lock
 
-font="dedede"
-green="64ab4b"
-red="db4b4b"
+# sets variables for colors,fg/bg,wallpaper
+source ~/.cache/wal/colors.sh
 
-WALLPAPERDIR=~/papes
+font=$foreground
+green=$foreground
+red=$color3
 
 # Gets a random wallpaper
+# WALLPAPERDIR=~/papes
 # WALLPAPER="$(ls -d1 $WALLPAPERDIR/* | grep -Ei 'png|jpg|jpeg' | sort -R | head -1)"
-WALLPAPER="$WALLPAPERDIR"/source2.png
+
+# Use current desktop wallpaper
+WALLPAPER=$wallpaper
 
 i3lock -n --force-clock -F -i "$WALLPAPER" -e \
 --refresh-rate=1 --line-uses-inside --pointer=default --pass-media-keys --pass-volume-keys --pass-screen-keys \
