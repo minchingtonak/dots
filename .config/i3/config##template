@@ -372,6 +372,7 @@ for_window [class="Spotify"] move to workspace $ws5 # normal assign directive do
 assign [class="discord"] $ws6
 assign [class="Slack"] $ws7
 assign [class="Chromium"] $ws7
+assign [class="Microsoft Teams - Preview"] $ws7
 
 set_from_resource $bg-color i3wm.color0                    #2f343f
 set_from_resource $focused-bg-color i3wm.color1            #2f343f
@@ -410,11 +411,12 @@ exec --no-startup-id xset s off && xset -dpms
 # blue light filter
 exec --no-startup-id redshift
 
-exec --no-startup-id sleep 5 && spotify
-exec --no-startup-id sleep 10 && firefox > /tmp/firefox.log 2>&1
+exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
+exec --no-startup-id sleep 10 && spotify
 exec --no-startup-id sleep 15 && discord
 exec --no-startup-id sleep 20 && keepassxc
 exec --no-startup-id sleep 25 && syncthing-gtk
+exec --no-startup-id sleep 30 && teams
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
 
