@@ -4,6 +4,7 @@ yay -Syu
 
 yay -S \
     alacritty \
+    betterdiscordctl \
     blueberry \
     discord \
     dunst \
@@ -19,6 +20,7 @@ yay -S \
     picom \
     playerctl \
     polybar \
+    pywal-discord-git \
     python-pywal \
     python-pywalfox \
     redshift \
@@ -34,3 +36,5 @@ yay -S \
     vlc \
     yadm \
     zsh-autosuggestions
+
+betterdiscordctl install
