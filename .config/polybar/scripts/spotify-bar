@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VOL="$(get-input-sink-volume spotify)"
+VOL="$(get_input_sink_volume spotify)"
 
 if [ -z "$VOL" ]; then
     ICON=""

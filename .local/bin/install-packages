@@ -27,6 +27,7 @@ yay -S \
     rofi \
     siji-ng \
     slop \
+    spicetify-cli \
     spotify \
     steam \
     syncthing \
@@ -38,3 +39,8 @@ yay -S \
     zsh-autosuggestions
 
 betterdiscordctl install
+
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+
+spicetify && spicetify backup apply enable-devtools
