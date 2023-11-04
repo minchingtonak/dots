@@ -523,7 +523,7 @@ exec = ~/.config/polybar/scripts/spotify-bar
 
 format = <label>
 format-prefix = " "
-label = "%{A4:pactl set-sink-input-volume $(input-sink-num spotify) +5% &:}%{A5:pactl set-sink-input-volume $(input-sink-num spotify) -5%:}%output%%{A}%{A}"
+label = "%{A4:pactl set-sink-input-volume $(input_sink_num spotify) +5% &:}%{A5:pactl set-sink-input-volume $(input_sink_num spotify) -5%:}%output%%{A}%{A}"
 format-prefix-foreground = ${color.green}
 format-underline = ${color.green}
 format-background = ${xresources.background}
