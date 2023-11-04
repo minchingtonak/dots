@@ -17,6 +17,6 @@ else
         exit 0
     elif [ -n "${THEMES}" ]
     then
-        wal --saturate 1 -i "$WALLPAPERDIR/${THEMES}" > /dev/null
+        wallpaper "$WALLPAPERDIR/${THEMES}" > /dev/null
     fi
 fi

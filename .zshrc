@@ -51,6 +51,10 @@ bindkey '^H' backward-delete-word
 # ctrl + delete
 bindkey '^[[3;5~' kill-word
 
+# tab completion
+# bindkey '^I' autosuggest-accept
+bindkey '\t\t' autosuggest-accept
+
 # start in workspace unless this in an integrated vscode terminal
 [ -z "$VSC" ] && ws
 
