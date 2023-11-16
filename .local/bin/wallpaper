@@ -9,6 +9,8 @@ bgfile="$1/$(wal --saturate 0.75 -i "$1" | grep -E 'png|jpe?g' - | head -1 | awk
 update_spotify_and_restart() {
     STATUS=$(playerctl --player=spotify status)
 
+    # If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
+    # then update spicetify-cli using your package manager
     spicetify update && restart spotify
 
     while ! pgrep -u $UID spotify; do sleep 1; done
