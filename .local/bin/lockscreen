@@ -3,18 +3,47 @@
 
 # sets variables for colors,fg/bg,wallpaper
 source ~/.cache/wal/colors.sh
-
 font=$foreground
 green=$foreground
 red=$color3
 
-# Gets a random wallpaper
+
+
+# 1. Select wallpaper
+
+## a. use current screen
+# WALLPAPER=/tmp/lockscreen.png
+# scrot "$WALLPAPER"
+# WALLPAPER="$WALLPAPER"
+
+## b. use random wallpaper from folder
 # WALLPAPERDIR=~/papes
 # WALLPAPER="$(ls -d1 $WALLPAPERDIR/* | grep -Ei 'png|jpg|jpeg' | sort -R | head -1)"
 
-# Use current desktop wallpaper
+## c. use current wallpaper
 WALLPAPER=$wallpaper
 
+
+
+# 2. Apply effects
+
+## a. apply pixelation effect
+# Original ratio: 10% 1000%
+# Numbers scale inversely, e.g double one, half the other
+# convert "$WALLPAPER" -scale 20% -scale %500 "$WALLPAPER"
+
+## b. apply gaussian blur
+# magick "$WALLPAPER" -blur 0x8 "$WALLPAPER"
+
+
+
+# 3. Lock the screen
+
+## a. use default i3lock
+# i3lock -i "$WALLPAPER"
+
+## b. use custom lockscreen
+# TODO fix lockscreen styling
 i3lock -n --force-clock -F -i "$WALLPAPER" -e \
 --refresh-rate=1 --line-uses-inside --pointer=default --pass-media-keys --pass-volume-keys --pass-screen-keys \
 --inside-color="$green" --ring-color="$green" --insidever-color="$green" --ringver-color="$green" --insidewrong-color="$red" --ringwrong-color="$red" \
@@ -27,3 +56,6 @@ i3lock -n --force-clock -F -i "$WALLPAPER" -e \
 --verif-pos="1080:540" --greeter-pos="1080:600" --wrong-pos="1080:540" \
 --verif-color="$green" --greeter-color="$font" --wrong-color="$red" \
 --bar-indicator --bar-direction=0 --bar-step=10 --bar-max-height=10 --bar-base-width=10 --bar-total-width=2318 --bar-color=00000000 --bar-pos="0:1070"
+
+# only remove temporary lockscreen backgrounds
+[ -f "$WALLPAPER" ] && (echo "$WALLPAPER" | grep -i '/tmp/') && rm "$WALLPAPER"
