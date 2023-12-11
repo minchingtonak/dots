@@ -5,25 +5,8 @@
 # parse background image filename and remove bash color sequences
 bgfile="$1/$(wal --saturate 0.75 -i "$1" | grep -E 'png|jpe?g' - | head -1 | awk '{ print $5; }' | sed 's/.$//' | sed -r 's/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g')"
 
-
-update_spotify_and_restart() {
-    STATUS=$(playerctl --player=spotify status)
-
-    # If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
-    # then update spicetify-cli using your package manager
-    spicetify update && restart spotify
-
-    while ! pgrep -u $UID spotify; do sleep 1; done
-
-    sleep 5
-
-    if [ $STATUS = "Playing" ]; then
-        playerctl --player=spotify play
-    fi
-}
-
 pywalfox update
 pywal-discord -t wal
-update_spotify_and_restart & # run asynchronously so we don't block rofi from closing if using wallpaper menu
+launch_spotify & # run asynchronously so we don't block rofi from closing if using wallpaper menu
 
 echo "$bgfile" > /tmp/wallpaperfile
