@@ -13,6 +13,8 @@ inode/directory=nemo.desktop
 x-scheme-handler/msteams=teams.desktop
 application/json=code.desktop
 application/x-zerosize=code.desktop
+image/png=org.gnome.gThumb.desktop
+image/gif=org.gnome.gThumb.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -26,3 +28,5 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 application/x-zerosize=code.desktop;
+image/png=feh.desktop;org.gnome.gThumb.desktop;
+image/gif=org.gnome.gThumb.desktop;
