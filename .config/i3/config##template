@@ -414,7 +414,8 @@ exec --no-startup-id xset s off && xset -dpms
 exec --no-startup-id redshift
 
 exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
-exec --no-startup-id sleep 10 && launch_spotify
+# spotify is launched via wallpaper script
+# exec --no-startup-id sleep 10 && launch_spotify
 exec --no-startup-id sleep 15 && discord
 exec --no-startup-id sleep 20 && keepassxc
 exec --no-startup-id sleep 25 && syncthing-gtk

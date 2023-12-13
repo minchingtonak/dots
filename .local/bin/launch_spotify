@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
+set -x
+
 STATUS=$(playerctl --player=spotify status)
 
-spicetify auto
-
-while pgrep -u $UID spotify > /dev/null; do sleep 1; done
+kill_and_wait spotify
 
 # https://spicetify.app/docs/faq/#after-spotifys-update-running-spicetify-apply-or-spicetify-update-breaks-spotify
 # If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
 # then update spicetify-cli using your package manager
-spicetify apply && spicetify auto
+spicetify auto
 
 while ! pgrep -u $UID spotify > /dev/null; do sleep 1; done
 
@@ -19,3 +19,5 @@ sleep 5
 if [ "$STATUS" = "Playing" ]; then
     playerctl --player=spotify play
 fi
+
+set +x
