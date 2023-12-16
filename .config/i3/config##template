@@ -161,12 +161,12 @@ bindsym $mod+Shift+l move right 30
 bindsym $mod+Ctrl+l move workspace to output right
 
 bindsym $mod+z [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
-bindsym $mod+Shift+z [instance="llm"] scratchpad show; [instance="llm"] move position center
+# bindsym $mod+Shift+z
 
 bindsym $mod+x [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 bindsym $mod+Shift+x exec --no-startup-id lockscreen
 
-# bindsym $mod+c
+bindsym $mod+c [instance="llm"] scratchpad show; [instance="llm"] move position center
 bindsym $mod+Shift+c reload
 
 bindsym $mod+v split toggle
