@@ -1,19 +1,28 @@
 #!/usr/bin/env bash
 
+# https://spicetify.app/docs/faq/#after-spotifys-update-running-spicetify-apply-or-spicetify-update-breaks-spotify
+# If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
+# then update spicetify-cli using your package manager
+
 set -x
 
 STATUS=$(playerctl --player=spotify status)
 
 kill_and_wait spotify
 
-# https://spicetify.app/docs/faq/#after-spotifys-update-running-spicetify-apply-or-spicetify-update-breaks-spotify
-# If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
-# then update spicetify-cli using your package manager
-spicetify auto
+function start_spotify() {
+    spicetify auto
+    while ! pgrep -u $UID spotify >/dev/null; do sleep 1; done
+    sleep 5
+}
 
-while ! pgrep -u $UID spotify > /dev/null; do sleep 1; done
+(yes n | spicetify apply) || {
+    start_spotify
+    kill_and_wait spotify
+    spicetify apply
+}
 
-sleep 5
+start_spotify
 
 # If audio was being played when we killed spotify, continue playing
 if [ "$STATUS" = "Playing" ]; then
