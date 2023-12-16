@@ -12,8 +12,8 @@
 # Some bindings taken from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/i3/config, credit Luke Smith
 
 set $mod Mod4
-set $term --no-startup-id alacritty
-set $browser --no-startup-id firefox-developer-edition
+set $term alacritty
+set $browser firefox-developer-edition
 set $inner-gaps 5
 set $outer-gaps 0
 
@@ -44,21 +44,33 @@ bindsym $mod+Tab [con_mark=_last] focus
 set $scratchpadwidth 1280
 set $scratchpadheight 960
 
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set $scratchpadwidth $scratchpadheight
-for_window [instance="dropdown"] move scratchpad
-exec_always --no-startup-id $term --class=dropdown
+set $scratchpads term|math|llm|keepassxc
+
+for_window [instance="term"] floating enable
+for_window [instance="term"] sticky enable
+for_window [instance="term"] resize set $scratchpadwidth $scratchpadheight
+for_window [instance="term"] move scratchpad
+exec_always --no-startup-id pgrep -x -f "$term --class=term" > /dev/null || $term --class=term
 
 for_window [instance="math"] floating enable
+for_window [instance="math"] sticky enable
 for_window [instance="math"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="math"] move scratchpad
-exec_always --no-startup-id $term --class=math -e python
+exec_always --no-startup-id pgrep -x -f "$term --class=math -e python" > /dev/null || $term --class=math -e python
+
+
+for_window [instance="llm"] floating enable
+for_window [instance="llm"] sticky enable
+for_window [instance="llm"] resize set $scratchpadwidth $scratchpadheight
+for_window [instance="llm"] move scratchpad
+exec_always --no-startup-id pgrep -x -f "$term --class=llm -e llm chat -m gpt-4-turbo" > /dev/null || $term --class=llm -e llm chat -m gpt-4-turbo
 
 # for keepassxc, move main window to scratchpad but not any popups (floating windows)
 # commands must be run in this order since `floating enable` changes status to floating
 for_window [instance="keepassxc" tiling] move scratchpad
 for_window [instance="keepassxc" tiling] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="keepassxc" tiling] floating enable
+for_window [instance="keepassxc"] sticky enable
 
 # ===== Basic bindings ===== #
 
@@ -87,8 +99,8 @@ bindsym $mod+Print exec --no-startup-id gnome-screenshot -i
 
 # ===== Letter bindings ===== #
 
-bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+bindsym $mod+q [con_id="__focused__" instance="^(?!dropdown_|$scratchpads).*$"] kill
+bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!dropdown_|$scratchpads).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
 bindsym $mod+w layout tabbed
 # bindsym $mod+Shift+w
@@ -149,7 +161,7 @@ bindsym $mod+Shift+l move right 30
 bindsym $mod+Ctrl+l move workspace to output right
 
 bindsym $mod+z [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
-# bindsym $mod+Shift+z gaps outer current minus 5
+bindsym $mod+Shift+z [instance="llm"] scratchpad show; [instance="llm"] move position center
 
 bindsym $mod+x [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 bindsym $mod+Shift+x exec --no-startup-id lockscreen
