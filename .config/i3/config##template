@@ -63,7 +63,7 @@ for_window [instance="llm"] floating enable
 for_window [instance="llm"] sticky enable
 for_window [instance="llm"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="llm"] move scratchpad
-exec_always --no-startup-id pgrep -x -f "$term --class=llm -e llm chat -m gpt-4-turbo" > /dev/null || $term --class=llm -e llm chat -m gpt-4-turbo
+exec_always --no-startup-id pgrep -x -f "$term --class=llm" > /dev/null || LLM=true $term --class=llm
 
 # for keepassxc, move main window to scratchpad but not any popups (floating windows)
 # commands must be run in this order since `floating enable` changes status to floating

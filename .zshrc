@@ -61,7 +61,7 @@ bindkey '\t\t' autosuggest-accept
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
+(cat ~/.cache/wal/sequences && source ~/.config/zsh/colors.zsh &)
 
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
