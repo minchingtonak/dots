@@ -436,7 +436,3 @@ exec --no-startup-id sleep 30 && teams
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
 
 exec_always --no-startup-id numlockx on
-
-{% if yadm.hostname == "ENIAC" %}
-exec --no-startup-id invert_scroll
-{% endif %}
