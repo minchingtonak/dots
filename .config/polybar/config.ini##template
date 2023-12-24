@@ -343,14 +343,14 @@ label = " %output:02%°C"
 
 [module/wlan]
 type = internal/network
+interval = 1
 {% if yadm.hostname == "WITCH" %}
 interface = wlan0
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
-interface = wlp3s0
+interface = wlan0
 {% endif %}
-interval = 1
 
 unknown-as-up = true
 click-middle = nm-applet
