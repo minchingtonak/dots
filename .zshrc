@@ -55,13 +55,8 @@ bindkey '^[[3;5~' kill-word
 # bindkey '^I' autosuggest-accept
 bindkey '\t\t' autosuggest-accept
 
-# start in workspace unless this in an integrated vscode terminal
-[ -z "$VSC" ] && ws
-
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences && source ~/.config/zsh/colors.zsh &)
+cat ~/.cache/wal/sequences
+source ~/.config/zsh/special-shells.zsh
 
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000

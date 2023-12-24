@@ -1,6 +1,11 @@
 if [ "${LLM}" = "true" ]; then
-    echo -ne '\033]11;#0a1c21\007'; # dark cyan bg for llm terminal
+    echo -ne '\033]11;#0a1c21\007' # dark cyan bg for llm terminal
+    mkdir -p /tmp/llm
+    export WORKSPACE=/tmp/llm
 fi
+
+# start in workspace unless this in an integrated vscode terminal
+[ -z "$VSC" ] && ws
 
 # Manipulate colors 0-256
 # \033]4;{index};{color}\007
