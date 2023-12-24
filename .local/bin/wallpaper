@@ -2,11 +2,11 @@
 
 # make sure to install feh so pywal can use it to set the wallpaper
 
-# parse background image filename and remove bash color sequences
-bgfile="$1/$(wal --saturate 0.75 -i "$1" | grep -E 'png|jpe?g' - | head -1 | awk '{ print $5; }' | sed 's/.$//' | sed -r 's/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g')"
+FOLDER=$( [ -z "$1" ] && echo ~/papes || echo "$1" )
+
+# wallpaper file path stored in ~/.cache/wal/wal
+wal --saturate 0.75 -i "$FOLDER"
 
 pywalfox update
 pywal-discord -t wal
 launch_spotify & # run asynchronously so we don't block rofi from closing if using wallpaper menu
-
-echo "$bgfile" > /tmp/wallpaperfile
