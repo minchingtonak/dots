@@ -27,7 +27,7 @@ mknodeenv() {
 locate() { find . -name "$1" 2> /dev/null; }
 alias exists='pgrep -u $UID -f'
 alias scheme='rlwrap plt-r5rs'
-alias llm='llm -m gpt-4-turbo'
+alias q='llm -t question'
 alias vsc='code .'
 alias check='shellcheck'
 alias synctime='sudo ntpd -qg'
