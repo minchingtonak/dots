@@ -16,14 +16,17 @@ yay -S \
     keepassxc \
     nemo \
     noto-fonts-emoji \
+    nvm \
     pavucontrol \
     picom \
     playerctl \
     polybar \
+    pyenv \
     pywal-discord-git \
     python-pywal \
     python-pywalfox \
     redshift \
+    rlwrap \
     rofi \
     siji-ng \
     slop \
