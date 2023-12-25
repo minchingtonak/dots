@@ -6,6 +6,8 @@ alias weather='curl http://wttr.in/ann_arbor'
 alias l='ls -a --color=tty'
 alias ll='ls -alhF --color=tty'
 alias lld='du -h --max-depth=1 | sort -hr'
+alias igrep='grep --color=auto -i'
+alias cgrep='grep --color=auto'
 llf() { ll | awk 'NR > 1 && !/^d/ { printf "%s\t%s\n",$5,$9 }' | sort -hr; }
 alias la='ls -A --color=tty'
 alias aliases="$EDITOR ~/.bash_aliases"
