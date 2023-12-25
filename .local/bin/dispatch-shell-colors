@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+# applies custom colors to specific special shell instances (llm, calculator, etc)
+
+SHELLS=$(ps aux | grep '/usr/bin/zsh' | grep -v grep)
+
+while IFS= read -r line || [[ -n $line ]]; do
+    SHELL_ENV_PATH=$(echo "$line" | awk '{print $2}' | sed -E 's/(.*)/\/proc\/\1\/environ/g')
+    SHELL_TTY_PATH=$(echo "$line" | awk '{print $7}' | sed -E 's/(.*)/\/dev\/\1/g')
+
+    [ -e "$SHELL_ENV_PATH" ] || continue
+
+    SHELL_ENV=$(cat "$SHELL_ENV_PATH")
+
+    # if the shell instance contains a special environment variable, we treat it
+    # as a special shell and apply special colors to it
+
+    # use sed -z to read the null-delineated env string
+    LLM_FLAG=$(echo $SHELL_ENV | sed -nzE 's/LLM=(\S+)/\1/gp' | tr -d '\0')
+    if [ "${LLM_FLAG}" = "true" ]; then
+        echo -ne '\033]11;#0a1c21\007' >>$SHELL_TTY_PATH # dark cyan bg for llm terminal
+    fi
+
+    # add more logic for other special shells here
+done < <(printf '%s' "$SHELLS")
+
+# Manipulate colors 0-256
+# \033]4;{index};{color}\007
+
+# Change color 7 to #FFFFFF
+# \033]4;7;#FFFFFF\007
+
+# Change color 14 to #333333
+# \033]4;14;#333333\007
+
+# Manipulate special colors.
+# 10 = foreground, 11 = background, 12 = cursor foregound
+# 13 = mouse foreground, 708 = terminal border background
+# \033]{index};{color}\007
+
+# Change the terminal foreground to #FFFFFF
+# \033]10;#FFFFFF\007
+
+# Change the terminal background to #000000
+# \033]11;#000000\007
+
+# Change the terminal cursor to #FFFFFF
+# \033]12;#FFFFFF\007
+
+# Change the terminal border background to #000000
+# \033]708;#000000\007

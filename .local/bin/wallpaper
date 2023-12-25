@@ -7,6 +7,8 @@ FOLDER=$( [ -z "$1" ] && echo ~/papes || echo "$1" )
 # wallpaper file path stored in ~/.cache/wal/wal
 wal --saturate 0.75 -i "$FOLDER"
 
-pywalfox update
-pywal-discord -t wal
-launch_spotify & # run asynchronously so we don't block rofi from closing if using wallpaper menu
+# run asynchronously so we don't block rofi from closing if using wallpaper menu
+dispatch-shell-colors &
+launch_spotify &
+pywalfox update &
+pywal-discord -t wal &

@@ -55,7 +55,8 @@ bindkey '^[[3;5~' kill-word
 # bindkey '^I' autosuggest-accept
 bindkey '\t\t' autosuggest-accept
 
-cat ~/.cache/wal/sequences
+# outer parens are to silence control messages
+((cat ~/.cache/wal/sequences && dispatch-shell-colors) &)
 source ~/.config/zsh/special-shells.zsh
 
 export HISTFILE="$HOME/.zsh_history"
@@ -73,3 +74,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# start in workspace unless this in an integrated vscode terminal
+[ -z "$VSC" ] && ws
