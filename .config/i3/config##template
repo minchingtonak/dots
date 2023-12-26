@@ -414,10 +414,10 @@ client.background $bg-color
 exec_always --no-startup-id setxkbmap -option caps:super
 
 exec --no-startup-id i3-autodisplay > /tmp/i3-autodisplay.log 2>&1
-exec --no-startup-id wallpaper
+exec --no-startup-id picom --daemon > /tmp/picom.log 2>&1
+exec --no-startup-id wallpaper > /tmp/wallpaper.log 2>&1
 exec_always --no-startup-id launch_polybar > /tmp/polybar.log 2>&1
 exec_always --no-startup-id launch_dunst > /tmp/dunst.log 2>&1
-exec_always --no-startup-id restart picom > /tmp/picom.log 2>&1
 
 # disable screen sleeping
 exec --no-startup-id xset s off && xset -dpms
