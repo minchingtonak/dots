@@ -124,7 +124,7 @@ modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputempe
 {% endif %}
 
 {% if yadm.hostname == "ENIAC" %}
-modules-right = right1 cpu temperature memory left1 sep right1 backlight-acpi left1 sep right1 battery sep2 sep2 battery2 left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
 {% endif %}
 
 cursor-click = pointer
@@ -449,7 +449,7 @@ click-middle = blueberry
 
 [module/battery]
 type = internal/battery
-poll-interval = 2
+poll-interval = 5
 battery = BAT0
 adapter = AC
 full-at = 98
@@ -470,7 +470,7 @@ format-full-prefix = ""
 format-full-prefix-foreground = ${color.green}
 format-full-prefix-background = ${xresources.background}
 
-label-charging = " %percentage%%"
+label-charging = "%percentage%%"
 label-charging-background = ${xresources.background}
 
 ramp-capacity-0 = 
@@ -479,10 +479,10 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-label-discharging = " %percentage%%"
+label-discharging = "%percentage%%"
 label-discharging-background = ${xresources.background}
 
-label-full = " %percentage%%"
+label-full = "%percentage%%"
 label-full-background = ${xresources.background}
 
 [module/battery2]
