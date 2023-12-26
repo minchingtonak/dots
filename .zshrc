@@ -1,5 +1,13 @@
+if [[ -e /usr/share/zsh/plugins/zsh-autopair/autopair.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autopair/autopair.zsh
+fi
+
 if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if [[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 source ~/.config/zsh/prompt.zsh

@@ -39,7 +39,9 @@ yay -S \
     visual-studio-code-bin \
     vlc \
     yadm \
-    zsh-autosuggestions
+    zsh-autopair-git \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting
 
 betterdiscordctl install
 
