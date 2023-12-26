@@ -175,7 +175,7 @@ bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set 
 # bindsym $mod+b
 bindsym $mod+Shift+b exec --no-startup-id blueberry
 
-bindsym $mod+n exec --no-startup-id wallpaper ~/papes
+bindsym $mod+n exec --no-startup-id wallpaper
 bindsym $mod+Shift+n exec --no-startup-id "rofi -show themes:~/.config/rofi/scripts/theme-menu.sh"
 
 # bindsym $mod+m
@@ -414,7 +414,7 @@ client.background $bg-color
 exec_always --no-startup-id setxkbmap -option caps:super
 
 exec --no-startup-id i3-autodisplay > /tmp/i3-autodisplay.log 2>&1
-exec --no-startup-id wallpaper ~/papes
+exec --no-startup-id wallpaper
 exec_always --no-startup-id launch_polybar > /tmp/polybar.log 2>&1
 exec_always --no-startup-id launch_dunst > /tmp/dunst.log 2>&1
 exec_always --no-startup-id restart picom > /tmp/picom.log 2>&1

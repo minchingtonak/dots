@@ -1,7 +1,7 @@
 #!/bin/sh
 ### Created by ilsenatorov https://github.com/Mocktezuma/dotfiles/blob/master/.config/rofi/scripts/themeswitch.sh
 
-WALLPAPERDIR=~/papes
+WALLPAPERDIR=~/wp
 
 if [ -z $@ ]
 then

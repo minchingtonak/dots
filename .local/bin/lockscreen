@@ -17,7 +17,7 @@ red=$color3
 # WALLPAPER="$WALLPAPER"
 
 ## b. use random wallpaper from folder
-# WALLPAPERDIR=~/papes
+# WALLPAPERDIR=~/wp
 # WALLPAPER="$(ls -d1 $WALLPAPERDIR/* | grep -Ei 'png|jpg|jpeg' | sort -R | head -1)"
 
 ## c. use current wallpaper
