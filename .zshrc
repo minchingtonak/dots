@@ -39,6 +39,12 @@ ex() {
 }
 
 # User configuration
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+setopt EXTENDED_HISTORY
+
+PATH=~/.local/bin:$PATH
 
 # env var and PATH setup
 source ~/.profile
@@ -58,13 +64,6 @@ bindkey '\t\t' autosuggest-accept
 # outer parens are to silence control messages
 ((cat ~/.cache/wal/sequences && dispatch-shell-colors) &)
 source ~/.config/zsh/special-shells.zsh
-
-export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=1000000000
-export SAVEHIST=1000000000
-setopt EXTENDED_HISTORY
-
-PATH=~/.local/bin:$PATH
 
 # nvm setup
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

@@ -75,7 +75,7 @@ for_window [instance="keepassxc"] sticky enable
 # ===== Basic bindings ===== #
 
 bindsym $mod+Return exec --no-startup-id $term
-bindsym $mod+Shift+Return exec --no-startup-id samedir
+bindsym $mod+Shift+Return exec --no-startup-id LLM=true $term
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
