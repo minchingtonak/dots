@@ -51,11 +51,14 @@ source ~/.profile
 
 source $HOME/.bash_aliases
 
-bindkey '^H' backward-delete-word
+# invoke cat with no args and enter a key to get its keycode
 # bindkey -l will give you a list of existing keymap names
 # bindkey -M <keymap> will list all the bindings in a given keymap
-# ctrl + delete
-bindkey '^[[3;5~' kill-word
+bindkey "^[[1;5C" forward-word # ctrl + right
+bindkey "^[[1;5D" backward-word # ctrl + left
+bindkey '^H' backward-delete-word # ctrl + backspace
+bindkey '^[[3~' delete-char # delete
+bindkey '^[[3;5~' kill-word # ctrl + delete
 
 # tab completion
 # bindkey '^I' autosuggest-accept
