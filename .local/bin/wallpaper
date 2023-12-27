@@ -10,7 +10,7 @@ FOLDER=$( [ -z "$1" ] && echo ~/wp || echo "$1" )
 wal --saturate 0.75 -i "$FOLDER"
 
 # run asynchronously so we don't block rofi from closing if using wallpaper menu
-dispatch-shell-colors &
+dispatch_shell_colors &
 launch_spotify &
 pywalfox update &
 pywal-discord -t wal &

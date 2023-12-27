@@ -73,7 +73,7 @@ bindkey '^[[3;5~' kill-word # ctrl + delete
 bindkey '\t\t' autosuggest-accept
 
 # outer parens are to silence control messages
-((cat ~/.cache/wal/sequences && dispatch-shell-colors) &)
+((cat ~/.cache/wal/sequences && dispatch_shell_colors) &)
 source ~/.config/zsh/special-shells.zsh
 
 # nvm setup
