@@ -6,6 +6,7 @@ yay -S \
     alacritty \
     betterdiscordctl \
     blueberry \
+    chezmoi \
     discord \
     dunst \
     feh \
@@ -38,7 +39,6 @@ yay -S \
     ungoogled-chromium-xdg-bin \
     visual-studio-code-bin \
     vlc \
-    yadm \
     zsh-autopair-git \
     zsh-autosuggestions \
     zsh-syntax-highlighting

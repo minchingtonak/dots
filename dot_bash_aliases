@@ -54,8 +54,10 @@ alias gdt='git difftool'
 
 # chezmoi
 alias cm='chezmoi'
-alias cms='chezmoi status'
+alias cmst='chezmoi status'
 alias cmg='chezmoi git --'
+alias cmgst='chezmoi git -- status'
+alias cmc='chezmoi git -- commit'
 alias cma='chezmoi add'
 alias cmd='chezmoi diff'
 alias cmap='chezmoi apply'
