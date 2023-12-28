@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "ENIAC" -}}
+{{- if eq .chezmoi.hostname "WITCH" -}}
 displays:
   - name: HDMI-0
     workspaces: [1,2,4]
@@ -9,7 +9,7 @@ displays:
   - name: DP-2
     workspaces: [10]
     randr_extra_options: "--right-of HDMI-0"
-{{- else if eq .chezmoi.hostname "WITCH" -}}
+{{- else if eq .chezmoi.hostname "ENIAC" -}}
 displays:
   - name: eDP-1
     workspaces: [1,2,4]
