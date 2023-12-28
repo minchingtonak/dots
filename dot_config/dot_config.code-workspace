@@ -1,19 +1,13 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../.local/bin"
-		},
-		{
-			"path": "../.local/share/fonts"
-		},
-		{
-			"path": "../.cache/wal"
-		},
-		{
-			"path": "../.ssh"
-		}
-	]
+  "folders": [
+    {
+      "path": "../.local/share/chezmoi"
+    },
+    {
+      "path": "../.cache/wal"
+    },
+    {
+      "path": "../.ssh"
+    }
+  ]
 }
