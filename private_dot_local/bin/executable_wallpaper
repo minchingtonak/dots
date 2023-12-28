@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+FOLDER=$([ -z "$1" ] && echo ~/wp || echo "$1")
+
+wal -n --saturate 0.75 -i "$FOLDER"
+
+WALLPAPER_PATH=$(cat ~/.cache/wal/wal)
+
+feh --bg-fill "$WALLPAPER_PATH"
+
+# run asynchronously so we don't block rofi from closing if using wallpaper menu
+dispatch_shell_colors &
+launch_spotify &
+pywalfox update &
+pywal-discord -t wal &

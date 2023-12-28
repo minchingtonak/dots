@@ -9,4 +9,5 @@ if [ "${LLM}" = "true" ]; then
     export HISTFILE="$HOME/.llm_history"
 
     alias q='llm -t question'
+    alias chat='llm chat -t chat'
 fi

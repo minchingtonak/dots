@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# script to quickly grep through manpages to grab info about options for cli tools
+# ch feh --bg-fill will print a description of feh and a description of what the
+# --bg-fill flag will do
+
 # catch uninitialized variables
 set -u
 

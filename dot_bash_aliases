@@ -35,24 +35,6 @@ alias synctime='sudo ntpd -qg'
 alias enablesynctime='sudo systemctl enable systemd-timesyncd.service'
 alias copy='xclip -selection clipboard'
 
-# yadm
-alias y='yadm'
-alias ya='y add'
-alias yaa='y add -u'
-alias yc='y commit'
-alias ycm='y commit -m'
-alias yco='y checkout'
-alias yb='y branch'
-alias yp='y push'
-alias ypo='yp origin'
-alias yrh='y reset HEAD'
-alias yd='y diff'
-alias ydt='y difftool'
-alias yl='y log --oneline --decorate --graph'
-alias ypom='yp origin master'
-alias yst='y status'
-alias yr='y remote'
-
 # git
 alias gst='git status'
 alias gl='git log --oneline --decorate --graph'
@@ -69,3 +51,15 @@ alias gb='git branch'
 alias gc='git commit'
 alias gd='git diff'
 alias gdt='git difftool'
+
+# chezmoi
+alias cm='chezmoi'
+alias cms='chezmoi status'
+alias cmg='chezmoi git --'
+alias cma='chezmoi add'
+alias cmd='chezmoi diff'
+alias cmap='chezmoi apply'
+alias cmu='chezmoi update' # Pull changes from the source repo and apply any changes.
+alias cmf='chezmoi forget' # Remove targets from the source state, i.e. stop managing them.
+alias cmr='chezmoi remove' # Remove targets from both the source state and the destination directory.
+alias cmet='chezmoi execute-template'

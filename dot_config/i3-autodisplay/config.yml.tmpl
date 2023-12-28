@@ -1,0 +1,20 @@
+{{- if eq .chezmoi.hostname "ENIAC" -}}
+displays:
+  - name: HDMI-0
+    workspaces: [1,2,4]
+    randr_extra_options: "--primary"
+  - name: DP-0
+    workspaces: [3,5,6,7,8,9]
+    randr_extra_options: "--right-of HDMI-0"
+  - name: DP-2
+    workspaces: [10]
+    randr_extra_options: "--right-of HDMI-0"
+{{- else if eq .chezmoi.hostname "WITCH" -}}
+displays:
+  - name: eDP-1
+    workspaces: [1,2,4]
+    randr_extra_options: "--primary"
+  - name: HDMI-0
+    workspaces: [3,5,6,7,8,9,10]
+    randr_extra_options: "--right-of DP-2"
+{{- end }}
