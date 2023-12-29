@@ -12,6 +12,8 @@ yay -S \
     feh \
     ffcast \
     ffmpeg \
+    fzf \
+    highlight \
     i3lock-color \
     i3-wm \
     keepassxc \
@@ -36,6 +38,7 @@ yay -S \
     steam \
     syncthing \
     syncthing-gtk \
+    tree \
     ungoogled-chromium-xdg-bin \
     visual-studio-code-bin \
     vlc \
