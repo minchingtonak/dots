@@ -15,6 +15,13 @@ opacity = 0.8
 x = 5
 y = 5
 
+{{- if eq .chezmoi.hostname "ENIAC" }}
+
+[font]
+size = 8
+
+{{ end -}}
+
 
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
