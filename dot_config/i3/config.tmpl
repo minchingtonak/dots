@@ -266,8 +266,8 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86Finance
 # bindsym XF86Game
 # bindsym XF86Shop
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 10
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # bindsym XF86AudioMedia
 # bindsym XF86Display
 # bindsym XF86KbdLightOnOff

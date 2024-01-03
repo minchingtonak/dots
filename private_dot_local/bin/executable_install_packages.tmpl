@@ -46,6 +46,11 @@ yay -S \
     zsh-autosuggestions \
     zsh-syntax-highlighting
 
+{{ if eq .chezmoi.hostname "ENIAC" }}
+yay -S \
+    brightnessctl
+{{ end }}
+
 betterdiscordctl install
 
 sudo chmod a+wr /opt/spotify

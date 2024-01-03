@@ -220,7 +220,7 @@ enable-scroll = true
 format = <ramp> <label>
 format-background = ${xresources.background}
 
-label = "%percentage:02%%"
+label = "%{A4:brightnessctl set +5% &:}%{A5:brightnessctl set 5%-:}%percentage:02%%%{A}%{A}"
 
 ramp-0 =
 ramp-1 =
