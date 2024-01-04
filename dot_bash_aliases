@@ -34,6 +34,7 @@ alias check='shellcheck'
 alias synctime='sudo ntpd -qg'
 alias enablesynctime='sudo systemctl enable systemd-timesyncd.service'
 alias copy='xclip -selection clipboard'
+alias nuke-docker='docker image prune && docker volume prune && docker builder prune'
 
 # git
 alias gst='git status'
@@ -51,6 +52,9 @@ alias gb='git branch'
 alias gc='git commit'
 alias gd='git diff'
 alias gdt='git difftool'
+alias gs='git stash'
+alias gsl='git stash list'
+alias gsp='git stash pop'
 
 # chezmoi
 alias cm='chezmoi'
