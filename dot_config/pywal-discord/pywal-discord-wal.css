@@ -3,12 +3,13 @@
 */
 
 /* firends page */
-.peopleList-2VBrVI, .inner-2pOSmK {
-    background: var(--darkbg);
+.peopleList-2VBrVI,
+.inner-2pOSmK {
+  background: var(--darkbg);
 }
 
-.peopleColumn-1wMU14{
-    background: var(--color0);
+.peopleColumn-1wMU14 {
+  background: var(--color0);
 }
 
 element {
@@ -19,8 +20,10 @@ element {
 :root {
   /* Yeah, I know lightbg is actually darker than darkbg but whatever
      * change & pull it if you wish */
-  --lightbg: linear-gradient(rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0.06)),
+  --lightbg: linear-gradient(
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.06)
+    ),
     var(--background);
   --darkbg: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
     var(--background);
@@ -223,7 +226,7 @@ html.newBrand {
 
 /* Bottom part of user popout */
 .body-3ND3kc {
-  opacity: 1.0 !important;
+  opacity: 1 !important;
   background-color: var(--color0) !important;
 }
 
@@ -292,7 +295,6 @@ html.newBrand {
 
 /* End rebranding gross yuck */
 
-
 /* Tab underneath users in the Active Now tab on the friends page */
 .theme-dark .inset-3sAvek {
   background-color: rgba(255, 255, 255, 0.06);
@@ -304,7 +306,6 @@ html.newBrand {
   background-color: var(--color1);
 }
 
-
 .scroller-2FKFPG.sidebarRegionScroller-3MXcoP {
   /* Settings */
   background: var(--darkbg);
@@ -313,7 +314,6 @@ html.newBrand {
 /* end of settings */
 
 html body {
-
   .appMount-3lHmkl,
   body,
   html {
@@ -390,7 +390,8 @@ html body {
 
   /* end a, abbr, acronym, address, applet, big, blockquote, body, caption, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, form, h1, h2, h3, h4, h5, h6, html, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, table, tbody, td, tfoot, th, thead, tr, tt, ul, var */
 
-  element {}
+  element {
+  }
 
   /* end element */
 
@@ -437,7 +438,8 @@ html body {
 /* end body */
 
 html body div#app-mount.appMount-3lHmkl {
-  element {}
+  element {
+  }
 
   /* end element */
 
@@ -630,4 +632,14 @@ html body div#app-mount.appMount-3lHmkl {
   -webkit-box-shadow: inset 0 0 0 2px var(--color6),
     inset 0 0 0 3px var(--background-secondary);
   box-shadow: inset 0 0 0 2px var(--color6), inset 0 0 0 3px;
+}
+
+/* background of profile display after clicking your own profile picture in the bottom right */
+.userProfileInner__8065b:before {
+  background-color: var(--background);
+}
+
+/* background of server status popup after hovering name in vc */
+.popout__7a706 {
+  background-color: var(--background);
 }
