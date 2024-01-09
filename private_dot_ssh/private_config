@@ -3,7 +3,7 @@ Host mc
   User root
   IdentityFile ~/.ssh/hetzner-mc_ed25519
 
-Host gravytrain
+Host solitude
   HostName gravytrain.alecminch.dev
   User root
   IdentityFile ~/.ssh/hetzner_ed25519
