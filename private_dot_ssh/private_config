@@ -14,14 +14,12 @@ Host nextcloud
   IdentityFile ~/.ssh/hetzner_ed25519
 
 Host kubessh.needlestack.net
-  HostName 10.4.1.3
   User alec
   IdentityFile ~/.ssh/needlestack_ed25519
   ForwardAgent yes
   Port 8022
 
 Host gitlab.needlestack.net
-  HostName 10.4.0.2
   User git
   IdentityFile ~/.ssh/ns_ed25519
 
@@ -31,8 +29,8 @@ Host github.com
   IdentityFile ~/.ssh/github_ed25519
 
 Host gravytrain-pi
-     HostName gravytrain.local
-     User pi
+  HostName gravytrain.local
+  User pi
 
 # SSH multiplexing
 # Host *

@@ -16,6 +16,7 @@ application/x-zerosize=code.desktop
 image/png=org.gnome.gThumb.desktop
 image/gif=org.gnome.gThumb.desktop
 image/jpeg=org.gnome.gThumb.desktop
+video/x-matroska=vlc.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -32,3 +33,4 @@ application/x-zerosize=code.desktop;
 image/png=feh.desktop;org.gnome.gThumb.desktop;
 image/gif=org.gnome.gThumb.desktop;
 image/jpeg=org.gnome.gThumb.desktop;
+video/x-matroska=vlc.desktop;
