@@ -1,3 +1,5 @@
+# shellcheck shell=sh
+
 alias caen='ssh $UNIQNAME@login.engin.umich.edu'
 alias ws='cd $WORKSPACE'
 alias dl='cd $HOME/Downloads'
@@ -10,23 +12,23 @@ alias igrep='grep --color=auto -i'
 alias cgrep='grep --color=auto'
 llf() { ll | awk 'NR > 1 && !/^d/ { printf "%s\t%s\n",$5,$9 }' | sort -hr; }
 alias la='ls -A --color=tty'
-alias aliases="$EDITOR ~/.bash_aliases"
-alias bashrc="$EDITOR ~/.bashrc"
-alias zshrc="$EDITOR ~/.zshrc"
+alias aliases='$EDITOR ~/.bash_aliases'
+alias bashrc='$EDITOR ~/.bashrc'
+alias zshrc='$EDITOR ~/.zshrc'
 alias config="xdg-open ~/.config/.config.code-workspace"
 alias act='source env/bin/activate'
 alias deact='deactivate'
 alias batthresh='sudo $EDITOR /etc/tlp.conf'
-mk() { mkdir -p $1 && cd $1; }
-mktmp() { mk "/tmp/mktmp-$(date '+%y%m%d-%H%M')" }
+mk() { mkdir -p "$1" && cd "$1" || exit; }
+mktmp() { mk "/tmp/mktmp-$(date '+%y%m%d-%H%M')"; }
 mknodeenv() {
   python3 -m venv env &&
-  act &&
-  pip install nodeenv &&
-  nodeenv --python-virtualenv env &&
-  deact && act
+    act &&
+    pip install nodeenv &&
+    nodeenv --python-virtualenv env &&
+    deact && act
 }
-locate() { find . -name "$1" 2> /dev/null; }
+locate() { find . -name "$1" 2>/dev/null; }
 alias exists='pgrep -u $UID -f'
 alias scheme='rlwrap plt-r5rs'
 alias vsc='code .'
