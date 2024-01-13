@@ -9,14 +9,14 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 # set window title to working directory + last command name
-function preexec () {
+function preexec() {
   SHELL_PREV_CMD=${1}
-  print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD}\a"
+  print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD}\a\a" # second \a sends bell signal
 }
 
 # set window title after command in case we changed directories (cd)
-function promptcmd () {
-  print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD}\a"
+function promptcmd() {
+  print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD}\a\a"
 }
 precmd_functions+=(promptcmd)
 

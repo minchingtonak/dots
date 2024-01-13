@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# only run this script when source file changes
+# seturgent.c hash: {{ include "private_dot_local/bin/src/seturgent/seturgent.c" | sha256sum }}
+
+OUTPUT_PATH=~/.local/bin/seturgent
+
+echo "building $OUTPUT_PATH"
+
+rm -f $OUTPUT_PATH
+gcc seturgent.c -o seturgent -lX11 && mv seturgent $OUTPUT_PATH
