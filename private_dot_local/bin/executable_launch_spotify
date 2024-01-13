@@ -7,6 +7,7 @@
 set -x
 
 STATUS=$(playerctl --player=spotify status)
+VOLUME=$(playerctl --player=spotify volume)
 
 kill_and_wait spotify
 
@@ -16,16 +17,18 @@ function start_spotify() {
     sleep 5
 }
 
-(yes n | spicetify apply) || {
-    start_spotify
-    kill_and_wait spotify
-    spicetify apply
-}
+ATTEMPT_APPLY_OUTPUT=$(yes n | spicetify apply)
+EXIT_CODE=$?
 
-start_spotify
+if [ $EXIT_CODE -ne 0 ] && grep -iq 'spicetify restore backup apply' <<< "$ATTEMPT_APPLY_OUTPUT"; then
+    spicetify restore backup apply
+else
+    start_spotify
+fi
 
 # If audio was being played when we killed spotify, continue playing
 if [ "$STATUS" = "Playing" ]; then
+    playerctl --player=spotify volume "$VOLUME" # preserve previous volume setting
     playerctl --player=spotify play
 fi
 
