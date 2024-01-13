@@ -69,6 +69,7 @@ alias cmgc='chezmoi git -- commit'
 alias cmgpo='chezmoi git -- push origin'
 alias cmgpl='chezmoi git -- pull'
 alias cma='chezmoi add'
+alias cmra='chezmoi re-add'
 alias cmd='chezmoi diff'
 alias cmap='chezmoi apply'
 alias cmu='chezmoi update' # Pull changes from the source repo and apply any changes.
