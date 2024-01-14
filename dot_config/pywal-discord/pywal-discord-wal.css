@@ -643,3 +643,8 @@ html body div#app-mount.appMount-3lHmkl {
 .popout__7a706 {
   background-color: var(--background);
 }
+
+/* background of message reaction popup */
+#popout_374 {
+  background-color: var(--background);
+}
