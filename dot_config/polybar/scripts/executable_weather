@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+WEATHER=$(ansiweather)
+
+OUTPUT=$(sed -nE 's/Weather in .+: (.+) (.+) - Feels like: (.+) /\3 \2 /p' <<< "$WEATHER")
+
+echo "$OUTPUT"

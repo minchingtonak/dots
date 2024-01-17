@@ -109,7 +109,7 @@ tray-scale = 1.0
 modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
 
 {{- if eq .chezmoi.hostname "WITCH" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
 {{- else if eq .chezmoi.hostname "ENIAC" }}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
 {{- end }}
@@ -512,4 +512,16 @@ format-background = ${xresources.background}
 click-left = playerctl --player=spotify play-pause
 click-right = playerctl --player=spotify next
 click-middle = playerctl --player=spotify previous
+
+[module/weather]
+type = custom/script
+interval = 300 ; 5 minutes
+exec = ~/.config/polybar/scripts/weather
+
+format = <label>
+format-prefix = "☁ "
+format-prefix-font = 5
+label = "%output%"
+format-prefix-foreground = ${color.cyan}
+format-background = ${xresources.background}
 
