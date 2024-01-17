@@ -35,7 +35,7 @@ alias check='shellcheck'
 alias synctime='sudo ntpd -qg'
 alias enablesynctime='sudo systemctl enable systemd-timesyncd.service'
 alias copy='xclip -selection clipboard'
-alias nuke-docker='docker image prune && docker volume prune && docker builder prune'
+alias nuke-docker='docker image prune && docker volume prune && docker builder prune && docker network prune'
 
 # git
 alias gst='git status'
