@@ -2,4 +2,12 @@
 
 [ -z "$1" ] && echo "Usage: $0 MEDIANAME" && exit 1
 
-pactl list sink-inputs | grep -E 'Sink Input #|media\.name' |  paste -d ' ' - - | grep -i "$1" | awk '{ print $3 }' | tr -d '#\n'
+# example format of this variable
+# Sink Input #105484 		media.name = "LoFi House Mix | The Stoner House Edition VII - YouTube"
+# Sink Input #271523 		media.name = "Spotify"
+SINKS_BY_NAME=$(pactl list sink-inputs | grep -E 'Sink Input #|media\.name' | paste -d ' ' - -)
+
+# filter rows by media name and get sink number
+# if multiple sinks found with matching name, choose last one
+# (mainly because spotify likes to create new sinks when switching from remote play on another device)
+echo "$SINKS_BY_NAME" | grep -i "$1" | awk '{ print $3 }' | tr -d '#' | tail -1
