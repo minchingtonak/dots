@@ -96,22 +96,12 @@ font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=10;2"
 font-5 = "feather:fontformat=truetype:size=13;3"
 font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
-; TODO migrate to module when it's released https://polybar.readthedocs.io/en/latest/user/modules/tray.html
-tray-position = right
-tray-detached = false
-tray-maxsize = 16
-tray-background = #00000000
-tray-offset-x = 0
-tray-offset-y = 0
-tray-padding = 4
-tray-scale = 1.0
-
 modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
 
 {{- if eq .chezmoi.hostname "WITCH" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 sep2 powermenu sep2 tray left1
 {{- else if eq .chezmoi.hostname "ENIAC" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 sep2 powermenu sep3 left1 sep
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 sep2 powermenu sep2 tray left1
 {{- end }}
 
 cursor-click = pointer
@@ -473,7 +463,7 @@ battery = BAT1
 [module/powermenu]
 type = custom/menu
 
-expand-right = true
+expand-right = false
 
 format-spacing = 0
 format-background = ${xresources.background}
@@ -481,20 +471,20 @@ format-background = ${xresources.background}
 label-open = 
 label-open-font = 7
 label-open-background = ${xresources.background}
-label-close =  cancel
+label-close = cancel 
 label-close-background = ${xresources.background}
 label-separator = |
 label-separator-background = ${xresources.background}
 
-menu-0-0 = logout
+menu-0-0 = power off
 menu-0-0-background = ${xresources.background}
-menu-0-0-exec = i3-msg exit
+menu-0-0-exec = systemctl poweroff
 menu-0-1 = reboot
 menu-0-1-background = ${xresources.background}
 menu-0-1-exec = systemctl reboot
-menu-0-2 = power off
+menu-0-2 = logout
 menu-0-2-background = ${xresources.background}
-menu-0-2-exec = systemctl poweroff
+menu-0-2-exec = i3-msg exit
 
 [module/spotify]
 type = custom/script
@@ -525,3 +515,18 @@ label = "%output%"
 format-prefix-foreground = ${color.cyan}
 format-background = ${xresources.background}
 
+[module/tray]
+type = internal/tray
+; https://polybar.readthedocs.io/en/latest/user/modules/tray.html#tray-module
+
+; cannot round corners on the tray after migration to new module
+; instead, we put the tray module within the final rounded section
+; that contains the clock and powermenu
+
+tray-size = 66%
+; bg color of the icons
+tray-background = ${xresources.background}
+; bg color *around* the icons
+format-background = ${xresources.background}
+; spacing before and after each icon
+tray-padding = 4
