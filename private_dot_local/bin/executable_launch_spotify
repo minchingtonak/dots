@@ -4,10 +4,9 @@
 # If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
 # then update spicetify-cli using your package manager
 
-set -x
-
 STATUS=$(playerctl --player=spotify status)
 VOLUME=$(playerctl --player=spotify volume)
+POSITION=$(playerctl --player=spotify position)
 
 kill_and_wait spotify
 
@@ -20,7 +19,7 @@ function start_spotify() {
 ATTEMPT_APPLY_OUTPUT=$(yes n | spicetify apply)
 EXIT_CODE=$?
 
-if [ $EXIT_CODE -ne 0 ] && grep -iq 'spicetify restore backup apply' <<< "$ATTEMPT_APPLY_OUTPUT"; then
+if [ $EXIT_CODE -ne 0 ] && grep -iq 'spicetify restore backup apply' <<<"$ATTEMPT_APPLY_OUTPUT"; then
     spicetify restore backup apply
 else
     start_spotify
@@ -28,8 +27,8 @@ fi
 
 # If audio was being played when we killed spotify, continue playing
 if [ "$STATUS" = "Playing" ]; then
-    playerctl --player=spotify volume "$VOLUME" # preserve previous volume setting
+    # preserve previous volume and song progress
+    playerctl --player=spotify volume "$VOLUME"
+    playerctl --player=spotify position "$POSITION"
     playerctl --player=spotify play
 fi
-
-set +x
