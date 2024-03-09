@@ -4,9 +4,9 @@
 # If you get `fatal rename /usr/share/spicetify-cli/spicetify /usr/share/spicetify-cli/spicetify.old: permission denied`
 # then update spicetify-cli using your package manager
 
-STATUS=$(playerctl --player=spotify status)
-VOLUME=$(playerctl --player=spotify volume)
-POSITION=$(playerctl --player=spotify position)
+STATUS=$(playerctl --player=spotify status 2>&1)
+VOLUME=$(playerctl --player=spotify volume 2>&1)
+POSITION=$(playerctl --player=spotify position 2>&1)
 
 kill_and_wait spotify
 
@@ -25,10 +25,16 @@ else
     start_spotify
 fi
 
+# preserve previous volume and song progress
+if [ "$VOLUME" != "No players found" ]; then
+    playerctl --player=spotify volume "$VOLUME"
+fi
+
+if [ "$POSITION" != "No players found" ]; then
+    playerctl --player=spotify position "$POSITION"
+fi
+
 # If audio was being played when we killed spotify, continue playing
 if [ "$STATUS" = "Playing" ]; then
-    # preserve previous volume and song progress
-    playerctl --player=spotify volume "$VOLUME"
-    playerctl --player=spotify position "$POSITION"
     playerctl --player=spotify play
 fi
