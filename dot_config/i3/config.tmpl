@@ -405,6 +405,8 @@ client.background $bg-color
 
 # Bind capslock as mod key
 exec_always --no-startup-id setxkbmap -option caps:super
+# disable middleclick paste
+exec --no-startup-id disable_middleclick_paste
 
 exec --no-startup-id i3-autodisplay > /tmp/i3-autodisplay.log 2>&1
 exec --no-startup-id picom --daemon > /tmp/picom.log 2>&1
