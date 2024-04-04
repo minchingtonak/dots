@@ -48,12 +48,23 @@ for_window [instance="math"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=math -e python" > /dev/null || $term --class=math -e python
 
-
 for_window [instance="llm"] floating enable
 for_window [instance="llm"] sticky enable
 for_window [instance="llm"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="llm"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=llm" > /dev/null || LLM=true $term --class=llm
+
+for_window [instance="obsidian"] floating enable
+for_window [instance="obsidian"] sticky enable
+{{- if eq .chezmoi.hostname "WITCH" }}
+for_window [instance="obsidian"] resize set 1550 1230
+
+{{- else if eq .chezmoi.hostname "ENIAC" }}
+for_window [instance="obsidian"] resize set $scratchpadwidth $scratchpadheight
+
+{{- end }}
+for_window [instance="obsidian"] move scratchpad
+exec_always --no-startup-id pgrep -x -f "/usr/lib/electron28/electron /usr/lib/obsidian/app.asar" > /dev/null || obsidian
 
 # for keepassxc, move main window to scratchpad but not any popups (floating windows)
 # commands must be run in this order since `floating enable` changes status to floating
@@ -61,6 +72,7 @@ for_window [instance="keepassxc" tiling] move scratchpad
 for_window [instance="keepassxc" tiling] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="keepassxc" tiling] floating enable
 for_window [instance="keepassxc"] sticky enable
+exec_always --no-startup-id pgrep -x -f "keepassxc" > /dev/null || keepassxc
 
 # ===== Basic bindings ===== #
 
@@ -152,7 +164,7 @@ bindsym $mod+Shift+l move right 30
 bindsym $mod+Ctrl+l move workspace to output right
 
 bindsym $mod+z [instance="term"] scratchpad show; [instance="term"] move position center
-# bindsym $mod+Shift+z
+bindsym $mod+Shift+z [instance="obsidian"] scratchpad show; [instance="obsidian"] move position center
 
 bindsym $mod+x [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 bindsym $mod+Shift+x exec --no-startup-id lockscreen
@@ -423,10 +435,9 @@ exec --no-startup-id redshift
 exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
 # spotify is launched via wallpaper script
 # exec --no-startup-id sleep 10 && launch_spotify
-exec --no-startup-id sleep 15 && discord
-exec --no-startup-id sleep 20 && keepassxc
-exec --no-startup-id sleep 25 && syncthing-gtk
-exec --no-startup-id sleep 30 && teams
+exec --no-startup-id sleep 10 && discord
+exec --no-startup-id sleep 12 && syncthing-gtk
+exec --no-startup-id sleep 14 && teams
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
 
