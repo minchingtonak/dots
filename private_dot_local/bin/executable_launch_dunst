@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-sleep 2
-
-[ -f "$HOME/.cache/wal/colors.sh" ] && . "$HOME/.cache/wal/colors.sh"
-
 kill_and_wait dunst
 
-dunst -config ~/.config/dunst/dunstrc &
+dunst -config ~/.cache/wal/dunstrc &

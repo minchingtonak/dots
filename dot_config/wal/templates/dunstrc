@@ -1,6 +1,7 @@
 # Documentation: https://dunst-project.org/documentation/
 # Config created by Keyitdev https://www.github.com/keyitdev/dotfiles
 # Copyright (C) 2022 Keyitdev
+# Modified by minchingtonak
 
 [global]
     monitor = 0
@@ -17,7 +18,7 @@
     padding = 12
     horizontal_padding = 12
     frame_width = 2
-    frame_color = "#343746"
+    frame_color = "{color2}"
     separator_color = frame
     sort = yes
     idle_threshold = 420
@@ -40,8 +41,8 @@
     icon_path = /usr/share/icons/Papirus/16x16/
     sticky_history = no
     history_length = 50
-    dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/i3-sensible-browser
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
+    browser = /usr/bin/xdg-open
     always_run_script = true
     title = Dunst
     class = Dunst
@@ -54,20 +55,15 @@
     mouse_right_click = close_all
 [experimental]
     per_monitor_dpi = false
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
 [urgency_low]
-    background = "#1b1b25"
-    foreground = "#dedede"
+    background = "{background}"
+    foreground = "{foreground}"
     timeout = 5
 [urgency_normal]
-    background = "#1b1b25"
-    foreground = "#dedede"
-    timeout = 5
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 7
 [urgency_critical]
-    background = "#1b1b25"
-    foreground = "#dedede"
+    background = "{background}"
+    foreground = "{foreground}"
     frame_color = "#f07178"

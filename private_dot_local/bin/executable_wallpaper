@@ -11,5 +11,6 @@ feh --bg-fill "$WALLPAPER_PATH"
 # run asynchronously so we don't block rofi from closing if using wallpaper menu
 dispatch_shell_colors &
 launch_spotify &
+launch_dunst &
 pywalfox update &
 pywal-discord -t wal &
