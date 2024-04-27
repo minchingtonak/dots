@@ -16,7 +16,8 @@ function preexec() {
 
 # set window title after command in case we changed directories (cd)
 function promptcmd() {
-  print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD}\a\a"
+    RET_CODE="$?"
+    print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD} ($RET_CODE)\a\a"
 }
 precmd_functions+=(promptcmd)
 
