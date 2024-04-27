@@ -142,6 +142,6 @@ ex() {
 	fi
 }
 
-export EDITOR='code'
+export EDITOR='vim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'

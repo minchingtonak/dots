@@ -36,6 +36,33 @@ alias synctime='sudo ntpd -qg'
 alias enablesynctime='sudo systemctl enable systemd-timesyncd.service'
 alias copy='xclip -selection clipboard'
 alias nuke-docker='docker image prune && docker volume prune && docker builder prune && docker network prune && docker images -q | xargs docker rmi -f'
+alias nuke-zellij='zellij delete-all-sessions --force --yes'
+
+# $1=session name, required
+# $2=path to open as workspace, optional, default=.
+session() {
+  if [ -z "$1" ]; then
+    echo 'must provide session name'
+    return
+  fi
+
+  name="$1"
+  root=${2:-$(pwd)}
+
+  if zellij attach "$name"; then
+    return # return if session exists or if we can resurrect
+  fi
+
+  zellij attach -b "$name"
+
+  dirs=$(find "$root" -maxdepth 1 -type d | tail -n +2 | awk -F'/' '{print $NF}')
+  for dir in $(echo "$dirs" | tr '\n' ' '); do
+    echo "Adding $dir"
+    zellij --session "$name" action new-tab --name "$dir" --cwd "$dir/" --layout "workspace"
+  done
+
+  zellij attach "$name"
+}
 
 # git
 alias gst='git status'

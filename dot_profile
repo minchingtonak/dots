@@ -10,7 +10,7 @@ if [ -d "$HOME/.local/bin" ]; then
     esac
 fi
 
-export EDITOR='code'
+export EDITOR='vim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
 export WORKSPACE="$HOME/workspace"
