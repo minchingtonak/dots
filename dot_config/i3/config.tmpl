@@ -34,7 +34,11 @@ bindsym $mod+Tab [con_mark=_last] focus
 set $scratchpadwidth 1280
 set $scratchpadheight 960
 
-set $scratchpads term|math|llm|keepassxc
+set $largescratchpadwidth 1550
+set $largescratchpadheight 1230
+
+# list of scratchpad class names to disallow quitting via hotkey
+set $scratchpads term|math|lm studio|obsidian|keepassxc
 
 for_window [instance="term"] floating enable
 for_window [instance="term"] sticky enable
@@ -48,16 +52,22 @@ for_window [instance="math"] resize set $scratchpadwidth $scratchpadheight
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=math -e python" > /dev/null || $term --class=math -e python
 
-for_window [instance="llm"] floating enable
-for_window [instance="llm"] sticky enable
-for_window [instance="llm"] resize set $scratchpadwidth $scratchpadheight
-for_window [instance="llm"] move scratchpad
-exec_always --no-startup-id pgrep -x -f "$term --class=llm" > /dev/null || LLM=true $term --class=llm
+for_window [instance="lm studio"] floating enable
+for_window [instance="lm studio"] sticky enable
+{{- if eq .chezmoi.hostname "WITCH" }}
+for_window [instance="lm studio"] resize set $largescratchpadwidth $largescratchpadheight
+
+{{- else if eq .chezmoi.hostname "ENIAC" }}
+for_window [instance="lm studio"] resize set $scratchpadwidth $scratchpadheight
+
+{{- end }}
+for_window [instance="lm studio"] move scratchpad
+exec_always --no-startup-id pgrep -x -f "lm-studio" > /dev/null || lm-studio
 
 for_window [instance="obsidian"] floating enable
 for_window [instance="obsidian"] sticky enable
 {{- if eq .chezmoi.hostname "WITCH" }}
-for_window [instance="obsidian"] resize set 1550 1230
+for_window [instance="obsidian"] resize set $largescratchpadwidth $largescratchpadheight
 
 {{- else if eq .chezmoi.hostname "ENIAC" }}
 for_window [instance="obsidian"] resize set $scratchpadwidth $scratchpadheight
@@ -77,7 +87,7 @@ exec_always --no-startup-id pgrep -x -f "keepassxc" > /dev/null || keepassxc
 # ===== Basic bindings ===== #
 
 bindsym $mod+Return exec --no-startup-id $term
-bindsym $mod+Shift+Return exec --no-startup-id LLM=true $term
+# bindsym $mod+Shift+Return
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
@@ -169,7 +179,7 @@ bindsym $mod+Shift+z [instance="obsidian"] scratchpad show; [instance="obsidian"
 bindsym $mod+x [instance="keepassxc"] scratchpad show; [instance="keepassxc"] move position center
 bindsym $mod+Shift+x exec --no-startup-id lockscreen
 
-bindsym $mod+c [instance="llm"] scratchpad show; [instance="llm"] move position center
+bindsym $mod+c [instance="lm studio"] scratchpad show; [instance="lm studio"] move position center
 bindsym $mod+Shift+c reload
 
 bindsym $mod+v split toggle

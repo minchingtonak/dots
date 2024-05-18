@@ -15,10 +15,10 @@ while IFS= read -r line || [[ -n $line ]]; do
     # as a special shell and apply special colors to it
 
     # use sed -z to read the null-delineated env string
-    LLM_FLAG=$(echo $SHELL_ENV | sed -nzE 's/LLM=(\S+)/\1/gp' | tr -d '\0')
-    if [ "${LLM_FLAG}" = "true" ]; then
-        echo -ne '\033]11;#0a1c21\007' >>$SHELL_TTY_PATH # dark cyan bg for llm terminal
-    fi
+    # LLM_FLAG=$(echo $SHELL_ENV | sed -nzE 's/LLM=(\S+)/\1/gp' | tr -d '\0')
+    # if [ "${LLM_FLAG}" = "true" ]; then
+    #     echo -ne '\033]11;#0a1c21\007' >>$SHELL_TTY_PATH # dark cyan bg for llm terminal
+    # fi
 
     # add more logic for other special shells here
 done < <(printf '%s' "$SHELLS")

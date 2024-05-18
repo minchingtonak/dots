@@ -49,7 +49,6 @@ bindkey '\t\t' autosuggest-accept
 
 # outer parens are to silence control messages
 ((cat ~/.cache/wal/sequences && dispatch_shell_colors) &)
-source ~/.config/zsh/special-shells.zsh
 
 # nvm setup
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
