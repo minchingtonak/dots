@@ -21,6 +21,13 @@ EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ] && grep -iq 'spicetify restore backup apply' <<<"$ATTEMPT_APPLY_OUTPUT"; then
     spicetify restore backup apply
+elif [ $EXIT_CODE -ne 0 ] && grep -iq 'Spotify cannot be backed up at this state. Please re-install Spotify then run "spicetify backup apply".' <<<"$ATTEMPT_APPLY_OUTPUT"; then
+    echo '!!! Reinstalling spotify...'
+    yay -R spotify --noconfirm && yay -S spotify --noconfirm
+    echo '!!! Running "spicetify backup apply"'
+    spicetify backup apply
+    echo '!!! Starting spotify'
+    start_spotify
 else
     start_spotify
 fi
