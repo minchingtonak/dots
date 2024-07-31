@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-FOLDER=$([ -z "$1" ] && echo ~/wp || echo "$1")
+set -Eeuo pipefail
+
+FOLDER=$([ -z "${1-}" ] && echo ~/wp || echo "$1")
 
 wal -n --saturate 0.75 -i "$FOLDER"
 
@@ -13,4 +15,9 @@ dispatch_shell_colors &
 launch_spotify &
 launch_dunst &
 pywalfox update &
-pywal-discord -t wal &
+
+# run pywal-discord commands in sequence to avoid corrupting generated theme files
+{
+    pywal-discord -t wal
+    pywal-discord -t wal -d -p ~/.config/vesktop/themes
+} &
