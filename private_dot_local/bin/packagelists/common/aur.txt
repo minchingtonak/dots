@@ -1,0 +1,16 @@
+ansiweather
+betterdiscordctl
+ffcast
+i3lock-color
+lmstudio-appimage
+nvm
+pywal-discord-git
+python-pywalfox
+siji-ng
+spicetify-cli
+spotify
+syncthingtray
+ungoogled-chromium-xdg-bin
+vesktop-bin
+visual-studio-code-bin
+zsh-autopair-git

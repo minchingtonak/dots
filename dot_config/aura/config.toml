@@ -1,0 +1,31 @@
+# https://fosskers.github.io/aura/configuration.html
+
+[general]
+cpus = 16
+editor = "vim"
+doas = false
+language = "en-US"
+noconfirm = false
+
+[aur]
+build = "/home/akmin/.cache/aura/builds"
+cache = "/home/akmin/.cache/aura/cache"
+clones = "/home/akmin/.cache/aura/packages"
+hashes = "/home/akmin/.cache/aura/hashes"
+chroot = []
+ignores = []
+git = false
+hotedit = false
+shellcheck = true
+diff = true
+delmakedeps = true
+clean = true
+warn_unknowns = true
+nocheck = false
+skipdepcheck = false
+reverse = false
+
+[backups]
+snapshots = "/home/akmin/.cache/aura/snapshots"
+automatic = true
+
