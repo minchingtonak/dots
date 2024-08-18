@@ -13,6 +13,7 @@ exit 7 # just exit if somehow I manage to execute this
 pacman -Runs PACKAGE # remove a package, all it's unnecessary dependencies, any unneeded packages, and any configuration files
 pacman -Qm           # list all installed AUR packages
 pacman -Ql PACKAGE   # list all files owned by a package
+pacman -Qo FILE      # find the package that owns a file
 pacman -Sc           # remove uninstalled package tarballs from cache
 pacman -Scc          # remove all package tarballs from cache
 
