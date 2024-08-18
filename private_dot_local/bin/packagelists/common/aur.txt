@@ -4,6 +4,7 @@ ffcast
 i3lock-color
 lmstudio-appimage
 nvm
+pacdiff-pacman-hook-git
 pywal-discord-git
 python-pywalfox
 siji-ng
