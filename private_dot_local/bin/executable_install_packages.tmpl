@@ -37,7 +37,7 @@ function installpackagelist() {
     if [ "$PACKAGES" != "#" ]; then
         echo "Installing official packages for list '$1'"
         # shellcheck disable=SC2086
-        sudo pacman -S $PACKAGES
+        aura -S $PACKAGES
     else
         echo "No official packages to install for list '$1'"
     fi
@@ -48,14 +48,14 @@ function installpackagelist() {
     if [ "$AUR_PACKAGES" != "#" ]; then
         echo "Installing AUR packages for list '$1'"
         # shellcheck disable=SC2086
-        aura -Aka $AUR_PACKAGES
+        aura -Aa $AUR_PACKAGES
     else
         echo "No AUR packages to install for list '$1'"
     fi
 }
 
 # full system upgrade
-sudo pacman -Syu
+aura -Syu
 
 installpackagelist common
 
