@@ -1,12 +1,15 @@
+#!/hint/bash
+
 # load shell plugins
+# shellcheck disable=SC1090
 source ~/.config/zsh/plugins.zsh
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+export HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+export COMPLETION_WAITING_DOTS="true"
 
 # set window title to working directory + last command name
 function preexec() {
@@ -16,8 +19,8 @@ function preexec() {
 
 # set window title after command in case we changed directories (cd)
 function promptcmd() {
-    RET_CODE="$?"
-    print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD} ($RET_CODE)\a\a"
+  RET_CODE="$?"
+  print -Pn -- "\e]2;$(shrink_path -t -1) %# " && print -n -- "${SHELL_PREV_CMD} ($RET_CODE)\a\a"
 }
 precmd_functions+=(promptcmd)
 
@@ -32,26 +35,32 @@ PATH=~/.local/bin:$PATH
 # env var and PATH setup
 source ~/.profile
 
-source $HOME/.bash_aliases
+# shellcheck disable=SC1091
+source "$HOME"/.bash_aliases
 
 # invoke cat with no args and enter a key to get its keycode
 # bindkey -l will give you a list of existing keymap names
 # bindkey -M <keymap> will list all the bindings in a given keymap
-bindkey "^[[1;5C" forward-word # ctrl + right
-bindkey "^[[1;5D" backward-word # ctrl + left
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
+bindkey "^[[1;5C" forward-word    # ctrl + right
+bindkey "^[[1;5D" backward-word   # ctrl + left
 bindkey '^H' backward-delete-word # ctrl + backspace
-bindkey '^[[3~' delete-char # delete
-bindkey '^[[3;5~' kill-word # ctrl + delete
+bindkey '^[[3~' delete-char       # delete
+bindkey '^[[3;5~' kill-word       # ctrl + delete
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 
 # tab completion
 # bindkey '^I' autosuggest-accept
 bindkey '\t\t' autosuggest-accept
 
 # outer parens are to silence control messages
-((cat ~/.cache/wal/sequences && dispatch_shell_colors) &)
+( (cat ~/.cache/wal/sequences && dispatch_shell_colors) &)
 
 # nvm setup
+# shellcheck disable=SC2155
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# shellcheck disable=SC1091
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # pyenv setup
