@@ -12,7 +12,6 @@ keepassxc
 nemo
 noto-fonts-emoji
 pavucontrol
-picom
 playerctl
 polybar
 pyenv
