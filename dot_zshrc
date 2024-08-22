@@ -49,6 +49,7 @@ bindkey '^[[3~' delete-char       # delete
 bindkey '^[[3;5~' kill-word       # ctrl + delete
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
+bindkey '^K' clear-screen
 
 # tab completion
 # bindkey '^I' autosuggest-accept
