@@ -2,6 +2,7 @@ ansiweather
 betterdiscordctl
 check-broken-packages-pacman-hook-git
 ffcast
+gradience
 i3lock-color
 lmstudio-appimage
 nvm

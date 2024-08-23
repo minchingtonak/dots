@@ -6,6 +6,7 @@ dunst
 feh
 ffmpeg
 fzf
+git-delta
 highlight
 i3-wm
 keepassxc
@@ -24,5 +25,6 @@ steam
 tree
 vlc
 xsel
+yay
 zsh-autosuggestions
 zsh-syntax-highlighting
