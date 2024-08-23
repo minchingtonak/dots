@@ -12,7 +12,6 @@ i3-wm
 keepassxc
 nemo
 noto-fonts-emoji
-pavucontrol
 playerctl
 polybar
 pyenv

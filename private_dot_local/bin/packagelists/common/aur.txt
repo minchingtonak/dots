@@ -2,11 +2,11 @@ ansiweather
 betterdiscordctl
 check-broken-packages-pacman-hook-git
 ffcast
-gradience
 i3lock-color
 lmstudio-appimage
 nvm
 pacdiff-pacman-hook-git
+pavucontrol-gtk3
 picom-git
 pywal-discord-git
 python-pywalfox
