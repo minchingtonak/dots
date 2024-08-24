@@ -10,7 +10,6 @@ git-delta
 highlight
 i3-wm
 keepassxc
-nemo
 noto-fonts-emoji
 playerctl
 polybar
@@ -21,6 +20,7 @@ rlwrap
 rofi
 slop
 steam
+thunar
 tree
 vlc
 xsel
