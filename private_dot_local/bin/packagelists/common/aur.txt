@@ -6,6 +6,7 @@ i3lock-color
 lmstudio-appimage
 nvm
 pacdiff-pacman-hook-git
+pacman-log-orphans-hook
 pavucontrol-gtk3
 picom-git
 pywal-discord-git
