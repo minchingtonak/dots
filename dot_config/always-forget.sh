@@ -14,8 +14,14 @@ pacman -Runs PACKAGE # remove a package, all it's unnecessary dependencies, any 
 pacman -Qm           # list all installed AUR packages
 pacman -Ql PACKAGE   # list all files owned by a package
 pacman -Qo FILE      # find the package that owns a file
+pacman -Qi PACKAGE   # display info about a package, including dependents
 pacman -Sc           # remove uninstalled package tarballs from cache
 pacman -Scc          # remove all package tarballs from cache
+
+pacman -Qdtq                   # list all orphaned packages
+pacman -D --asexplicit PACKAGE # mark a package as explicitly installed
+
+pacman -U PACKAGEFILE # install a package from local source (.pacman)
 
 aura -L          # view the pacman log
 aura -Li PACKAGE # view log info for a package
@@ -44,3 +50,8 @@ aura -Ayuka                  # upgrade all AUR packages, show PKGBUILD diffs, an
 
 aura -O  # display orhpaned packages
 aura -Oj # uninstall all orphaned packages
+
+# patching
+
+diff -Naur ORIGINAL_FILE MODIFIED_FILE >PATCHFILE.patch # generate a patch file
+patch -u FILE_TO_PATCH PATCHFILE                        # patch a file using a patch file
