@@ -37,7 +37,7 @@ alias enablesynctime='sudo systemctl enable systemd-timesyncd.service'
 alias copy='xclip -selection clipboard'
 alias nuke-docker='docker image prune && docker volume prune && docker builder prune && docker network prune && docker images -q | xargs docker rmi -f'
 alias nuke-zellij='zellij delete-all-sessions --force --yes'
-alias forgot='igrep -E < ~/.config/always-forget.sh'
+alias forgot='igrep -E < ~/.config/always-forget'
 
 # create/attach to zellij session, with a separate tab for each folder
 # $1=session name, required
