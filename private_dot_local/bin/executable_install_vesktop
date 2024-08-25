@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+# install custom branch of vesktop that implements basic mute/deafen keybinds
+
+git clone https://github.com/PolisanTheEasyNick/Vesktop
+cd Vesktop
+git switch keybinds
+
+pnpm i
+
+pnpm package --linux pacman
+
+sudo pacman -U dist/vesktop-1.5.2.pacman

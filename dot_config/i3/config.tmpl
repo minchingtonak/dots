@@ -85,6 +85,7 @@ for_window [instance="keepassxc"] sticky enable
 exec_always --no-startup-id pgrep -x -f "keepassxc" > /dev/null || keepassxc
 
 # ===== Basic bindings ===== #
+# `xev` to find keycodes (look for 'keysym')
 
 bindsym $mod+Return exec --no-startup-id $term
 # bindsym $mod+Shift+Return
@@ -259,7 +260,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86AudioRewind
 # bindsym XF86AudioForward
 # bindsym XF86Phone
-# bindsym XF86Tools
+bindsym XF86Tools exec --no-startup-id echo "VCD_TOGGLE_SELF_MUTE" >> $XDG_RUNTIME_DIR/vesktop-ipc
 # bindsym XF86HomePage
 # bindsym XF86Reload
 # bindsym XF86ScrollUp
@@ -270,7 +271,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86Launch2
 # bindsym XF86Launch3
 # bindsym XF86Launch4
-# bindsym XF86Launch5
+bindsym XF86Launch5 exec --no-startup-id echo "VCD_TOGGLE_SELF_DEAF" >> $XDG_RUNTIME_DIR/vesktop-ipc
 # bindsym XF86Launch6
 # bindsym XF86Launch7
 # bindsym XF86Launch8
@@ -279,7 +280,6 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86TouchpadToggle
 # bindsym XF86TouchpadOn
 # bindsym XF86TouchpadOff
-# bindsym XF86Suspend
 # bindsym XF86Close
 # bindsym XF86WebCam
 # bindsym XF86Mail
@@ -396,6 +396,7 @@ assign [class="Code"] $ws3
 assign [class="steam"] $ws4
 assign [class="Lutris"] $ws4
 assign [class="discord"] $ws5
+assign [class="vesktop"] $ws5
 for_window [class="Spotify"] move to workspace $ws6 # normal assign directive doesn't work with spotify for some reason
 assign [class="Slack"] $ws7
 assign [class="Chromium"] $ws7
@@ -444,7 +445,7 @@ exec --no-startup-id redshift
 exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
 # spotify is launched via wallpaper script
 # exec --no-startup-id sleep 10 && launch_spotify
-exec --no-startup-id sleep 10 && discord
+exec --no-startup-id sleep 10 && vesktop
 exec --no-startup-id sleep 12 && syncthingtray
 exec --no-startup-id sleep 14 && teams
 
