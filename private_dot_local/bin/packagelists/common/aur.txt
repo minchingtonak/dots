@@ -3,6 +3,7 @@ betterdiscordctl
 check-broken-packages-pacman-hook-git
 ffcast
 i3lock-color
+lightdm-settings
 lmstudio-appimage
 nvm
 pacdiff-pacman-hook-git
