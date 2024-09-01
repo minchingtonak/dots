@@ -97,6 +97,7 @@ font-5 = "feather:fontformat=truetype:size=13;3"
 font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
 modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
+modules-center = right1 title left1
 
 {{- if eq .chezmoi.hostname "WITCH" }}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 sep2 powermenu sep2 tray left1
@@ -530,3 +531,20 @@ tray-background = ${xresources.background}
 format-background = ${xresources.background}
 ; spacing before and after each icon
 tray-padding = 4
+
+[module/title]
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+;   %instance% (first part of the WM_CLASS atom, new in version 3.7.0)
+;   %class%    (second part of the WM_CLASS atom, new in version 3.7.0)
+; Default: %title%
+label = |%title%|
+label-maxlen = 90
+
+; Used instead of label when there is no window title
+label-empty = ¯\_(ツ)_/¯
+
+format-background = ${xresources.background}
+format-padding = 0
