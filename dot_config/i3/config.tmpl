@@ -442,8 +442,8 @@ exec --no-startup-id xset s off && xset -dpms
 # blue light filter
 exec --no-startup-id redshift
 
+exec --no-startup-id sleep 2 && bluetoothctl connect $(bluetoothctl devices | grep 'gravytrain' | awk '{ print $2; }')
 exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
-exec --no-startup-id sleep 5 && bluetoothctl connect $(bluetoothctl devices | grep 'gravytrain' | awk '{ print $2; }')
 # spotify is launched via wallpaper script
 # exec --no-startup-id sleep 10 && launch_spotify
 exec --no-startup-id sleep 10 && vesktop
