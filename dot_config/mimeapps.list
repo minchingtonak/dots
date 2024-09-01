@@ -19,6 +19,7 @@ image/jpeg=org.gnome.gThumb.desktop
 video/x-matroska=vlc.desktop
 application/pdf=firefox.desktop
 application/xml=code.desktop
+text/plain=code.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -38,3 +39,4 @@ image/jpeg=org.gnome.gThumb.desktop;
 video/x-matroska=vlc.desktop;
 application/pdf=firefox.desktop;
 application/xml=code.desktop;
+text/plain=code.desktop;
