@@ -2,6 +2,6 @@
 
 WEATHER=$(ansiweather)
 
-OUTPUT=$(sed -nE 's/Weather in .+: (.+) (.+) - Feels like: (.+) /\3 \2 /p' <<< "$WEATHER")
+OUTPUT=$(sed -nE 's/Weather in .+: ([[:digit:]]+ °[CF])(.+) - Feels like: ([[:digit:]]+) (°[CF])/\3\4\2/p' <<< "$WEATHER")
 
 echo "$OUTPUT"
