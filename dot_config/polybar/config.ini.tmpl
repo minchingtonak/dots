@@ -100,9 +100,9 @@ modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep
 modules-center = right1 title left1
 
 {{- if eq .chezmoi.hostname "WITCH" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 sep2 powermenu sep2 tray left1
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
 {{- else if eq .chezmoi.hostname "ENIAC" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 sep2 powermenu sep2 tray left1
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
 {{- end }}
 
 cursor-click = pointer
@@ -548,3 +548,15 @@ label-empty = ¯\_(ツ)_/¯
 
 format-background = ${xresources.background}
 format-padding = 0
+
+[module/dunst]
+type = custom/text
+
+format = <label>
+label = ""
+format-background = ${xresources.background}
+format-padding = 1
+
+click-left = dunstctl history-pop
+click-right = dunstctl history-clear
+# click-middle =
