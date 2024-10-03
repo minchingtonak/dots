@@ -186,7 +186,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+v split toggle
 bindsym $mod+Shift+v gaps inner current set $inner-gaps; gaps outer current set $outer-gaps
 
-# bindsym $mod+b
+bindsym $mod+b exec --no-startup-id ~/.config/rofi/scripts/bluetooth-menu.sh
 bindsym $mod+Shift+b exec --no-startup-id blueberry
 
 bindsym $mod+n exec --no-startup-id wallpaper
