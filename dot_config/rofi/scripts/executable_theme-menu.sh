@@ -3,20 +3,17 @@
 
 WALLPAPERDIR=~/wp
 
-if [ -z $@ ]
-then
-function get_themes()
-{
-    ls $WALLPAPERDIR
-}
-echo current; get_themes
+if [ -z "$1" ]; then
+    get_themes() {
+        ls $WALLPAPERDIR
+    }
+    echo current
+    get_themes
 else
     THEMES=$@
-    if [ x"current" = x"${THEMES}" ]
-    then
+    if [ x"current" = x"${THEMES}" ]; then
         exit 0
-    elif [ -n "${THEMES}" ]
-    then
-        wallpaper "$WALLPAPERDIR/${THEMES}" > /dev/null
+    elif [ -n "${THEMES}" ]; then
+        wallpaper "$WALLPAPERDIR/${THEMES}" >/dev/null
     fi
 fi
