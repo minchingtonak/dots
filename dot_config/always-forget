@@ -55,3 +55,7 @@ aura -Oj # uninstall all orphaned packages
 
 diff -Naur ORIGINAL_FILE MODIFIED_FILE >PATCHFILE.patch # generate a patch file
 patch -u FILE_TO_PATCH PATCHFILE                        # patch a file using a patch file
+
+# checksum verification
+
+sha512sum -c KEY_FILE.sha512sum # check a file against its sha512 checksum
