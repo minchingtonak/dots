@@ -22,9 +22,6 @@ main() {
   if [ -n "$choice" ]; then
     connect_or_disconnect "$choice"
   fi
-
-  # done
-  set -e
 }
 
 main &

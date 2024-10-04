@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+source_name=$(cat /tmp/current-source-name 2>/dev/null || echo '')
+
+# display nothing if no microphone selected
+if [ -z "$source_name" ]; then
+    exit 0
+fi
+
+source_muted=$(pactl get-source-mute "$source_name" 2>/dev/null | cut -d' ' -f2)
+
+source_number=$(pactl list sources | grep 'Name: ' | grep -n "$source_name" | cut -d':' -f1)
+
+if [ "$source_muted" = "yes" ]; then
+    echo "$source_number"
+elif [ "$source_muted" = "no" ]; then
+    echo "$source_number"
+fi
