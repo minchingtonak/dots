@@ -12,8 +12,9 @@ set $outer-gaps 0
 # font pango:Victor Mono SemiBold Oblique, monospace 12
 font pango:Unifont 15
 
-default_border pixel 0
-for_window [class=".*^"] border pixel 0
+default_border none
+default_floating_border none
+for_window [class=".*^"] border none
 
 title_align center
 for_window [class=".*"] title_format "<small>%title</small>"
