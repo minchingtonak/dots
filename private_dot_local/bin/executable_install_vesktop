@@ -4,6 +4,16 @@ set -Eeuo pipefail
 
 # install custom branch of vesktop that implements basic mute/deafen keybinds
 
+mk () {
+	mkdir -p "$1" && cd "$1" || exit
+}
+
+mktmp () {
+	mk "/tmp/mktmp-$(date '+%y%m%d-%H%M')"
+}
+
+mktmp
+
 git clone https://github.com/PolisanTheEasyNick/Vesktop
 cd Vesktop
 git switch keybinds
@@ -21,8 +31,10 @@ patch -u src/main/mainWindow.ts <<EOF
  }
 EOF
 
-pnpm i
+npx pnpm i
 
-pnpm package --linux pacman
+npx pnpm package --linux pacman
 
-sudo pacman -U dist/vesktop-1.5.2.pacman
+sudo pacman -R vesktop || true
+
+echo "Run: sudo pacman -U $(pwd)/dist/vesktop-X.X.X.pacman"
