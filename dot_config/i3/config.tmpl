@@ -261,7 +261,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86AudioRewind
 # bindsym XF86AudioForward
 # bindsym XF86Phone
-bindsym XF86Tools exec --no-startup-id aplay ~/.config/polybar/sounds/mute.wav && pactl set-source-mute $(cat /tmp/current-source-name) on
+bindsym XF86Tools exec --no-startup-id echo "VCD_TOGGLE_SELF_MUTE" >> $XDG_RUNTIME_DIR/vesktop-ipc
 # bindsym XF86HomePage
 # bindsym XF86Reload
 # bindsym XF86ScrollUp
@@ -272,7 +272,7 @@ bindsym XF86Tools exec --no-startup-id aplay ~/.config/polybar/sounds/mute.wav &
 # bindsym XF86Launch2
 # bindsym XF86Launch3
 # bindsym XF86Launch4
-bindsym XF86Launch5 exec --no-startup-id aplay ~/.config/polybar/sounds/unmute.wav && pactl set-source-mute $(cat /tmp/current-source-name) off
+bindsym XF86Launch5 exec --no-startup-id echo "VCD_TOGGLE_SELF_DEAF" >> $XDG_RUNTIME_DIR/vesktop-ipc
 # bindsym XF86Launch6
 # bindsym XF86Launch7
 # bindsym XF86Launch8
