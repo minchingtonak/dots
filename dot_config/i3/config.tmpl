@@ -433,7 +433,7 @@ exec_always --no-startup-id setxkbmap -option caps:super
 exec --no-startup-id disable_middleclick_paste
 
 exec --no-startup-id i3-autodisplay > /tmp/i3-autodisplay.log 2>&1
-exec --no-startup-id picom --daemon > /tmp/picom.log 2>&1
+exec --no-startup-id picom --daemon --log-level INFO --log-file /tmp/picom.log
 exec --no-startup-id wallpaper > /tmp/wallpaper.log 2>&1
 exec_always --no-startup-id launch_polybar > /tmp/polybar.log 2>&1
 
@@ -448,8 +448,7 @@ exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
 # spotify is launched via wallpaper script
 # exec --no-startup-id sleep 10 && launch_spotify
 exec --no-startup-id sleep 10 && vesktop
-exec --no-startup-id sleep 12 && syncthingtray
-exec --no-startup-id sleep 14 && teams
+exec --no-startup-id sleep 12 && syncthingtray-qt6
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
 
