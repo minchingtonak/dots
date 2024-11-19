@@ -1,5 +1,5 @@
 #!/hint/bash
-# shellcheck disable=SC2317
+# shellcheck disable=all
 
 exit 7 # just exit if somehow I manage to execute this
 
@@ -59,3 +59,7 @@ patch -u FILE_TO_PATCH PATCHFILE                        # patch a file using a p
 # checksum verification
 
 sha512sum -c KEY_FILE.sha512sum # check a file against its sha512 checksum
+
+# users & groups
+
+sudo usermod -a -G GROUPNAME[,GROUPNAME2] USERNAME # add a user to a group
