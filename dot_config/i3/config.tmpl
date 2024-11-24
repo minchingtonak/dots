@@ -63,7 +63,9 @@ for_window [instance="lm studio"] resize set $scratchpadwidth $scratchpadheight
 
 {{- end }}
 for_window [instance="lm studio"] move scratchpad
+{{- if eq .chezmoi.hostname "WITCH" }}
 exec_always --no-startup-id pgrep -x -f "lm-studio" > /dev/null || lm-studio
+{{- end }}
 
 for_window [instance="obsidian"] floating enable
 for_window [instance="obsidian"] sticky enable

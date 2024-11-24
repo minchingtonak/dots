@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# https://spicetify.app/docs/advanced-usage/command-line-interface
+
+echo "!!! make sure you've launched spotify at least once before installing spicetify"
+
+spicetify >/dev/null
+
+spicetify backup apply enable-devtools
+
+spicetify update

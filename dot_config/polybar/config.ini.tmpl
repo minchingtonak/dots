@@ -73,6 +73,14 @@ offset-y = 0%
 radius-top = 0
 radius-bottom = 0
 
+; Set a DPI values used when rendering text
+; This only affects scalable fonts
+; Set this to 0 to let polybar calculate the dpi from the screen size.
+dpi = 0
+; dpi-x = 96
+; dpi-y = 96
+
+
 background = #002d333f
 foreground = ${color.foreground}
 dim-value = 1.0
@@ -97,12 +105,12 @@ font-5 = "feather:fontformat=truetype:size=13;3"
 font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
 modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
-modules-center = right1 title left1
 
 {{- if eq .chezmoi.hostname "WITCH" }}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
+modules-center = right1 title left1
 {{- else if eq .chezmoi.hostname "ENIAC" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep3 left1 sep right1 battery sep2 battery2 sep3 left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep2 battery sep3 left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
 {{- end }}
 
 cursor-click = pointer
@@ -422,28 +430,16 @@ click-middle = blueberry
 [module/battery]
 type = internal/battery
 poll-interval = 5
-battery = BAT0
+battery = BAT1
 adapter = AC
 full-at = 98
 time-format = %H:%M
 
 format-charging = <label-charging>
-format-charging-prefix = ""
+format-charging-prefix = " "
 format-charging-prefix-foreground = ${color.green}
 format-charging-background = ${xresources.background}
 format-charging-prefix-background = ${xresources.background}
-
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-background = ${xresources.background}
-format-discharging-prefix-background = ${xresources.background}
-
-format-full = <label-full>
-format-full-prefix = ""
-format-full-prefix-foreground = ${color.green}
-format-full-prefix-background = ${xresources.background}
-
-label-charging = "%percentage%%"
-label-charging-background = ${xresources.background}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -451,15 +447,24 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${xresources.background}
+format-discharging-prefix-background = ${xresources.background}
+
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-foreground = ${color.green}
+format-full-prefix-background = ${xresources.background}
+
+label-charging = "%percentage%%"
+label-charging-background = ${xresources.background}
+
+
 label-discharging = "%percentage%%"
 label-discharging-background = ${xresources.background}
 
 label-full = "%percentage%%"
 label-full-background = ${xresources.background}
-
-[module/battery2]
-inherit = module/battery
-battery = BAT1
 
 [module/powermenu]
 type = custom/menu

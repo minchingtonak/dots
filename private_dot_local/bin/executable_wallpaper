@@ -18,6 +18,6 @@ pywalfox update &
 
 # run pywal-discord commands in sequence to avoid corrupting generated theme files
 {
-    pywal-discord -t wal
+    pywal-discord -t wal -d
     pywal-discord -t wal -d -p ~/.config/vesktop/themes
 } &
