@@ -49,15 +49,6 @@ set expandtab
 " =============== Theming ===========================
 "echo grep -q Microsoft /proc/version
 
-colorscheme palenight
-" Lightline config for palenight
-let g:lightline = {
-      \ 'colorscheme': 'palenight',
-      \ 'palenight_terminal_italics': 1,
-      \ }
-" Italics for my favorite color scheme
-let g:palenight_terminal_italics=1
-
 set number
 set laststatus=2
 set noshowmode
