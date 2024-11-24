@@ -63,3 +63,13 @@ sha512sum -c KEY_FILE.sha512sum # check a file against its sha512 checksum
 # users & groups
 
 sudo usermod -a -G GROUPNAME[,GROUPNAME2] USERNAME # add a user to a group
+
+# disks
+
+sudo fdisk -l # list disks and metadata
+
+sudo mkfs.vfat /dev/sdaX # format a drive as FAT32
+
+sudo dd if=ABSOLUTE_ISO_PATH of=/dev/sdaX bs=8M status=progress # write an image to a usb drive
+
+sudo eject /dev/sdaX # eject a drive
