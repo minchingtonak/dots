@@ -11,6 +11,7 @@ highlight
 i3-wm
 keepassxc
 noto-fonts-emoji
+obsidian
 playerctl
 polybar
 pyenv
