@@ -55,27 +55,23 @@ exec_always --no-startup-id pgrep -x -f "$term --class=math -e python" > /dev/nu
 
 for_window [instance="lm studio"] floating enable
 for_window [instance="lm studio"] sticky enable
-{{- if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 for_window [instance="lm studio"] resize set $largescratchpadwidth $largescratchpadheight
-
-{{- else if eq .chezmoi.hostname "ENIAC" }}
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
 for_window [instance="lm studio"] resize set $scratchpadwidth $scratchpadheight
-
-{{- end }}
+# {{ end }}
 for_window [instance="lm studio"] move scratchpad
-{{- if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 exec_always --no-startup-id pgrep -x -f "lm-studio" > /dev/null || lm-studio
-{{- end }}
+# {{ end }}
 
 for_window [instance="obsidian"] floating enable
 for_window [instance="obsidian"] sticky enable
-{{- if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 for_window [instance="obsidian"] resize set $largescratchpadwidth $largescratchpadheight
-
-{{- else if eq .chezmoi.hostname "ENIAC" }}
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
 for_window [instance="obsidian"] resize set $scratchpadwidth $scratchpadheight
-
-{{- end }}
+# {{ end }}
 for_window [instance="obsidian"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "/usr/lib/electron28/electron /usr/lib/obsidian/app.asar" > /dev/null || obsidian
 
@@ -231,8 +227,8 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && light -s sysfs/leds/platform::mute | grep -q '100.0' && light -s sysfs/leds/platform::mute -U 100 || light -s sysfs/leds/platform::mute -A 100
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-input-volume "$(input_sink_num spotify)" -5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-input-volume "$(input_sink_num spotify)" +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id playerctl -p spotify volume 0.05-
+bindsym XF86AudioRaiseVolume exec --no-startup-id playerctl -p spotify volume 0.05+
 # bindsym XF86PowerOff
 # bindsym XF86Copy
 # bindsym XF86Open
@@ -367,15 +363,13 @@ bindsym $mod+Mod2+Shift+KP_2 move container to workspace $ws2
 bindsym $mod+Mod2+Shift+KP_3 move container to workspace $ws3
 bindsym $mod+Mod2+Shift+KP_0 move container to workspace $ws10
 
-{{- if eq .chezmoi.hostname "WITCH" }}
-
+# {{- if eq .chezmoi.hostname "WITCH" }}
 set $mon1 DP-0
 set $mon2 DP-2
-{{- else if eq .chezmoi.hostname "ENIAC" }}
-
+# {{- else if eq .chezmoi.hostname "ENIAC" }}
 set $mon1 eDP-1
-set $mon2 HDMI-1
-{{- end }}
+set $mon2 DP-1
+# {{- end }}
 
 workspace $ws1 output $mon1 $mon2
 workspace $ws2 output $mon1 $mon2
