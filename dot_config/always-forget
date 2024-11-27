@@ -73,3 +73,7 @@ sudo mkfs.vfat /dev/sdaX # format a drive as FAT32
 sudo dd if=ABSOLUTE_ISO_PATH of=/dev/sdaX bs=8M status=progress # write an image to a usb drive
 
 sudo eject /dev/sdaX # eject a drive
+
+# battery
+
+for BAT_PATH in $(upower -e | grep BAT); do upower -i "$BAT_PATH"; done # print info for all batteries
