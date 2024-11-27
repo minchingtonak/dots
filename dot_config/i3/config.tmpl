@@ -445,12 +445,13 @@ exec --no-startup-id xset s off && xset -dpms
 # blue light filter
 exec --no-startup-id redshift
 
-exec --no-startup-id sleep 2 && bluetoothctl connect $(bluetoothctl devices | grep 'gravytrain' | awk '{ print $2; }')
-exec --no-startup-id sleep 5 && firefox > /tmp/firefox.log 2>&1
-# spotify is launched via wallpaper script
-# exec --no-startup-id sleep 10 && launch_spotify
-exec --no-startup-id sleep 10 && vesktop
-exec --no-startup-id sleep 12 && syncthingtray-qt6
+exec --no-startup-id firefox
+exec --no-startup-id syncthingtray-qt6
+
+# {{- if eq .chezmoi.hostname "WITCH" }}
+exec --no-startup-id launch_spotify
+exec --no-startup-id vesktop
+# {{- end }}
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
 
