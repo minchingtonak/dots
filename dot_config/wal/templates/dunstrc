@@ -17,7 +17,7 @@
 [global]
     monitor = 0
     follow = mouse
-    width = (300, 400)
+    width = (500, 600)
     height = (100, 250)
     origin = top-right
     offset = (8, 47)
@@ -37,7 +37,7 @@
     line_height = 0
     markup = full
     # https://docs.gtk.org/Pango/pango_markup.html
-    format = "<span size="x-small" rise="2.2pt">%a</span> • <b>%s</b>  %p\n%b"
+    format = "<span size="x-small" rise="2pt">%a</span> • <b>%s</b>  %p\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
