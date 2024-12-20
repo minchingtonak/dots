@@ -3,13 +3,24 @@
 # Copyright (C) 2022 Keyitdev
 # Modified by minchingtonak
 
+# test commands
+
+# sends a progress value, which causes dunst to show a progress bar
+# notify-send -h int:value:25  test hellooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+# actions just cause dunst to log the name of the action, then you can use the
+# logged choice from the user to do different things
+# https://gitlab.gnome.org/GNOME/libnotify/-/merge_requests/18
+# in this example, 'test-name' is logged after selecting the action
+# notify-send --action 'test-name=description' 'This is a notification!
+
 [global]
     monitor = 0
     follow = mouse
-    width = (300,400)
-    height = 250
+    width = (300, 400)
+    height = (100, 250)
     origin = top-right
-    offset = 8x47
+    offset = (8, 47)
     indicate_hidden = yes
     shrink = no
     transparency = 0
@@ -25,7 +36,8 @@
     font = Roboto mono 12
     line_height = 0
     markup = full
-    format = "<b>%s</b>\n%b"
+    # https://docs.gtk.org/Pango/pango_markup.html
+    format = "<span size="x-small" rise="2.2pt">%a</span> • <b>%s</b>  %p\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
@@ -34,7 +46,7 @@
     ignore_newline = no
     stack_duplicates = true
     hide_duplicate_count = false
-    show_indicators = no
+    show_indicators = true
     icon_position = left
     min_icon_size = 50
     max_icon_size = 50
@@ -51,8 +63,12 @@
     corner_radius = 10
     ignore_dbusclose = false
     force_xinerama = false
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = context
+    notification_limit = 10
+    progress_bar = true
+    progress_bar_corners = 10
 [experimental]
     per_monitor_dpi = false
 [urgency_low]
