@@ -57,11 +57,11 @@ compositing-underline = over
 compositing-border = over
 
 [bar/wal]
-{{- if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 monitor = ${env:MONITOR:}
-{{- else if eq .chezmoi.hostname "ENIAC" }}
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
 monitor = ${env:MONITOR:eDP-1}
-{{- end }}
+# {{ end }}
 
 bottom = false
 fixed-center = true
@@ -106,12 +106,12 @@ font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
 modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
 
-{{- if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
-modules-center = right1 title left1
-{{- else if eq .chezmoi.hostname "ENIAC" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep2 battery sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
-{{- end }}
+; modules-center = right1 title left1
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep2 battery sep3 left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
+# {{ end }}
 
 cursor-click = pointer
 
@@ -257,12 +257,10 @@ label = " %percentage_used:02%%"
 type = internal/temperature
 interval = 0.5
 
-; {{ if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 ; AMD cpu source
 hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input
-; {{ else }}
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input
-; {{ end }}
+# {{ end }}
 
 thermal-zone = 0
 warn-temperature = 80
@@ -357,11 +355,11 @@ label-disconnected = "%{F#cb5760}%{A1:nm-applet &:}%{A}%{F}"
 [module/eth]
 type = internal/network
 
-{{- if eq .chezmoi.hostname "WITCH" }}
+# {{ if eq .chezmoi.hostname "WITCH" }}
 interface = enp6s0
-{{- else if eq .chezmoi.hostname "ENIAC" }}
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
 interface = enp0s31f6
-{{- end }}
+# {{ end }}
 
 interval = 1
 
