@@ -21,10 +21,10 @@ alias batthresh='sudo $EDITOR /etc/tlp.conf'
 mk() { mkdir -p "$1" && cd "$1" || exit; }
 mktmp() { mk "/tmp/mktmp-$(date '+%y%m%d-%H%M')"; }
 mknodeenv() {
-  python3 -m venv env &&
+  python3 -m venv .venv &&
     act &&
     pip install nodeenv &&
-    nodeenv --python-virtualenv env &&
+    nodeenv --python-virtualenv .venv &&
     deact && act
 }
 locate() { find . -name "$1" 2>/dev/null; }
