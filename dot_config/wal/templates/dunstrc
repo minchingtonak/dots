@@ -17,14 +17,13 @@
 [global]
     monitor = 0
     follow = mouse
-    width = (500, 600)
+    width = (400, 700) # also update progress bar width
     height = (100, 250)
     origin = top-right
     offset = (8, 47)
     indicate_hidden = yes
     shrink = no
     transparency = 0
-    notification_height = 0
     separator_height = 2
     padding = 12
     horizontal_padding = 12
@@ -37,7 +36,7 @@
     line_height = 0
     markup = full
     # https://docs.gtk.org/Pango/pango_markup.html
-    format = "• <span size="xx-small" rise="2pt" style="italic">%a</span>\n<span size="small" rise="2pt"><b>%s</b></span> %p\n%b"
+    format = "• <span size="xx-small" rise="2pt" style="italic">%a</span>\n<span size="small" rise="2pt"><b>%s</b>  %p</span>\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
@@ -50,8 +49,9 @@
     icon_position = left
     min_icon_size = 50
     max_icon_size = 50
-    ; enable_recursive_icon_lookup = true
-    ; icon_path = /usr/share/icons/
+    icon_corner_radius = 5
+    # enable_recursive_icon_lookup = true
+    # icon_path = /usr/share/icons/
     sticky_history = no
     history_length = 50
     dmenu = /usr/bin/rofi -dmenu -p dunst:
@@ -59,8 +59,6 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-    startup_notification = false
-    verbosity = mesg
     corner_radius = 10
     ignore_dbusclose = false
     force_xinerama = false
@@ -69,7 +67,11 @@
     mouse_right_click = close_current
     notification_limit = 10
     progress_bar = true
-    progress_bar_corners = 10
+    progress_bar_height = 10
+    progress_bar_corner_radius = 5
+    progress_bar_min_width = 400
+    progress_bar_max_width = 700
+    progress_bar_horizontal_alignment = left
 [experimental]
     per_monitor_dpi = false
 [urgency_low]
