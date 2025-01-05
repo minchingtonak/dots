@@ -36,7 +36,7 @@
     line_height = 0
     markup = full
     # https://docs.gtk.org/Pango/pango_markup.html
-    format = "• <span size="xx-small" rise="2pt" style="italic">%a</span>\n<span size="small" rise="2pt"><b>%s</b>  %p</span>\n%b"
+    format = "• <span size="small" rise="1pt" weight="bold" style="italic">%a</span>\n<span size="medium"><b>%s</b>  %p</span>\n<span size="medium">%b</span>"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
@@ -77,11 +77,11 @@
 [urgency_low]
     background = "{background}"
     foreground = "{foreground}"
-    timeout = 5
+    timeout = 8
 [urgency_normal]
     background = "{background}"
     foreground = "{foreground}"
-    timeout = 7
+    timeout = 8
 [urgency_critical]
     background = "{background}"
     foreground = "{foreground}"
