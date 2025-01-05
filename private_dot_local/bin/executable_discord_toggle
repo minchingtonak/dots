@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# do nothing if discord is not running
+if ! pgrep -x -f "/opt/Vesktop/vesktop" >/dev/null; then
+    exit 0
+fi
+
+mode="$1"
+
+vesktop_ipc_path="$XDG_RUNTIME_DIR"/vesktop-ipc
+mute_status_path="$XDG_RUNTIME_DIR"/discord-mute-status
+muted_with_deafen_path="$XDG_RUNTIME_DIR"/discord-muted-with-deafen
+
+if [ "$mode" = "mute" ]; then
+    echo "VCD_TOGGLE_SELF_MUTE" >>"$vesktop_ipc_path"
+
+    status="$(cat "$mute_status_path" 2>/dev/null)"
+    if [ "$status" = "yes" ]; then
+        echo "no" >"$mute_status_path"
+
+        # clear muted with deafen flag
+        if [ -f "$muted_with_deafen_path" ]; then
+            rm "$muted_with_deafen_path"
+        fi
+    elif [ "$status" = "no" ]; then
+        echo "yes" >"$mute_status_path"
+    else
+        # vesktop defaults to muted, so toggling mute will flip to unmuted
+        echo "no" >"$mute_status_path"
+    fi
+elif [ "$mode" = "deafen" ]; then
+    echo "VCD_TOGGLE_SELF_DEAF" >>"$vesktop_ipc_path"
+
+    status="$(cat "$mute_status_path" 2>/dev/null)"
+    if [ "$status" = "yes" ]; then
+        if [ -f "$muted_with_deafen_path" ]; then
+            echo "no" >"$mute_status_path"
+            rm "$muted_with_deafen_path"
+        fi
+    elif [ "$status" = "no" ]; then
+        echo "yes" >"$mute_status_path"
+        # need to track that the mic was muted via deafen
+        touch "$muted_with_deafen_path"
+    else
+        # vesktop defaults to muted, so toggling deafen will not unmute
+        echo "yes" >"$mute_status_path"
+    fi
+elif [ "$mode" = "reset" ]; then
+    echo "yes" >"$mute_status_path"
+    rm -f "$muted_with_deafen_path"
+else
+    echo "usage: $0 mute|deafen|reset"
+    exit 1
+fi

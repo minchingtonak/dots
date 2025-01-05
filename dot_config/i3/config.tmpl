@@ -259,7 +259,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 # bindsym XF86AudioRewind
 # bindsym XF86AudioForward
 # bindsym XF86Phone
-bindsym XF86Tools exec --no-startup-id echo "VCD_TOGGLE_SELF_MUTE" >> $XDG_RUNTIME_DIR/vesktop-ipc
+bindsym XF86Tools exec --no-startup-id discord_toggle mute
 # bindsym XF86HomePage
 # bindsym XF86Reload
 # bindsym XF86ScrollUp
@@ -270,7 +270,7 @@ bindsym XF86Tools exec --no-startup-id echo "VCD_TOGGLE_SELF_MUTE" >> $XDG_RUNTI
 # bindsym XF86Launch2
 # bindsym XF86Launch3
 # bindsym XF86Launch4
-bindsym XF86Launch5 exec --no-startup-id echo "VCD_TOGGLE_SELF_DEAF" >> $XDG_RUNTIME_DIR/vesktop-ipc
+bindsym XF86Launch5 exec --no-startup-id discord_toggle deafen
 # bindsym XF86Launch6
 # bindsym XF86Launch7
 # bindsym XF86Launch8
@@ -438,7 +438,7 @@ exec_always --no-startup-id launch_polybar > /tmp/polybar.log 2>&1
 exec --no-startup-id xset s off && xset -dpms
 
 # blue light filter
-exec --no-startup-id redshift
+exec --no-startup-id sleep 20 && redshift
 
 exec --no-startup-id firefox
 exec --no-startup-id syncthingtray --wait

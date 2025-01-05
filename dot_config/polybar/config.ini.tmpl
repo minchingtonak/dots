@@ -104,7 +104,7 @@ font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=10;2"
 font-5 = "feather:fontformat=truetype:size=13;3"
 font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
-modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
+modules-left = right1 i3 left1 sep right1 pulseaudio sep2 discord sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
 
 # {{ if eq .chezmoi.hostname "WITCH" }}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
@@ -574,3 +574,16 @@ exec = ~/.config/polybar/scripts/microphone
 format = <label>
 label = "%output%"
 format-background = ${xresources.background}
+
+[module/discord]
+type = custom/script
+interval = 0.2
+exec = ~/.config/polybar/scripts/discord-mic-status
+
+format = <label>
+label = "%output%"
+format-background = ${xresources.background}
+
+click-left = discord_toggle mute
+click-right = discord_toggle deafen
+click-middle = discord_toggle reset

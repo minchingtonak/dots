@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# display nothing if discord is not running
+if ! pgrep -x -f "/opt/Vesktop/vesktop" > /dev/null; then
+    echo ""
+    exit 0
+fi
+
+source_muted=$(cat "$XDG_RUNTIME_DIR"/discord-mute-status 2>/dev/null)
+
+if [ "$source_muted" = "yes" ]; then
+    # shellcheck disable=SC2016
+    echo ' %{F#cb5760}%{F-} '
+elif [ "$source_muted" = "no" ]; then
+    echo "  "
+fi
