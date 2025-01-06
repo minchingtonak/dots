@@ -48,8 +48,8 @@
     show_indicators = true
     icon_position = left
     min_icon_size = 50
-    max_icon_size = 50
-    icon_corner_radius = 5
+    max_icon_size = 75
+    icon_corner_radius = 10
     # enable_recursive_icon_lookup = true
     # icon_path = /usr/share/icons/
     sticky_history = no
