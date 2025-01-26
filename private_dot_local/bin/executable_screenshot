@@ -3,8 +3,8 @@
 
 # screenshot directory
 screenshot_directory="$HOME/Pictures/screenshots"
-videos_directory="$HOME/Videos"
-audio_directory="$HOME/Music"
+videos_directory="$HOME/Videos/screen-recordings"
+audio_directory="$HOME/Music/audio-recordings"
 
 mkdir -p "$screenshot_directory"
 mkdir -p "$videos_directory"
@@ -28,64 +28,75 @@ get_area(){
     wh="${w}x${h}"
 }
 screenshot_selected_area(){
-    ffcast -q -g "$(slop)" png "$screenshot_directory/$date.png"
-    xclip -selection clipboard -t image/png "$screenshot_directory/$date.png"
-    notify-send -i "$screenshot_directory/$date.png" "Screenshot" "Area screenshot taken"
+    FILE_PATH="$screenshot_directory/$date.png"
+    ffcast -q -g "$(slop)" png "$FILE_PATH"
+    xclip -selection clipboard -t image/png "$FILE_PATH"
+    notify-send -i "$FILE_PATH" "Screenshot" "Area screenshot taken (saved to $FILE_PATH)"
 }
-screenshot_full_screen(){
-    ffcast -q png "$screenshot_directory/$date.png"
-    xclip -selection clipboard -t image/png "$screenshot_directory/$date.png"
-    notify-send -i "$screenshot_directory/$date.png" "Screenshot" "Full screen screenshot taken"
-}
+# FIXME the previous screenshot is only saved to disk after taking another screenshot
+# screenshot_full_screen(){
+#     FILE_PATH="$screenshot_directory/$date.png"
+#     ffcast -q png "$FILE_PATH"
+#     xclip -selection clipboard -t image/png "$FILE_PATH"
+#     notify-send -i "$FILE_PATH" "Screenshot" "Full screen screenshot taken (saved to $FILE_PATH)"
+# }
 video_selected_area(){
     get_area
+    VIDEO_PATH="$videos_directory/$date.mp4"
     ffmpeg -hide_banner -loglevel error -show_region 1 \
-    -f x11grab -video_size "$wh" -framerate 30 -i :0.0+"$x","$y" -pix_fmt yuv420p "$videos_directory/$date.mp4"
-    ffmpeg -i "$videos_directory/$date.mp4" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
+    -f x11grab -video_size "$wh" -framerate 30 -i :0.0+"$x","$y" -pix_fmt yuv420p "$VIDEO_PATH"
+    ffmpeg -i "$VIDEO_PATH" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
     notify-send -i "/tmp/$date.png" "Video" "Area video taken"
 }
 video_full_screen(){
+    VIDEO_PATH="$videos_directory/$date.mp4"
     ffmpeg -hide_banner -loglevel error -show_region 1 \
-    -f x11grab -video_size "$screen_resolution" -framerate 30 -i :0.0 -pix_fmt yuv420p "$videos_directory/$date.mp4"
-    ffmpeg -i "$videos_directory/$date.mp4" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
+    -f x11grab -video_size "$screen_resolution" -framerate 30 -i :0.0 -pix_fmt yuv420p "$VIDEO_PATH"
+    ffmpeg -i "$VIDEO_PATH" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
     notify-send -i "/tmp/$date.png" "Video" "Full screen video taken"
 }
 video_full_screen_rgba(){
+    VIDEO_PATH="$videos_directory/$date.mp4"
     ffmpeg -hide_banner -loglevel error -show_region 1 \
-    -f x11grab -video_size "$screen_resolution" -framerate 30 -i :0.0 -pix_fmt rgba "$videos_directory/$date.mp4"
-    ffmpeg -i "$videos_directory/$date.mp4" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
+    -f x11grab -video_size "$screen_resolution" -framerate 30 -i :0.0 -pix_fmt rgba "$VIDEO_PATH"
+    ffmpeg -i "$VIDEO_PATH" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
     notify-send -i "/tmp/$date.png" "Video" "Full screen video taken (rgba)"
 }
-audio_microphone(){
-    ffmpeg -f pulse -i "$microphone" -metadata title="$date" "$audio_directory/$date.mp3"
-    notify-send "Audio" "Microphone audio recorded"
-}
-audio_desktop(){
-    ffmpeg -f pulse -i "$desktop" -metadata title="$date" "$audio_directory/$date.mp3"
-    notify-send "Audio" "Desktop audio recorded"
-}
+# FIXME fix logic to select microphone
+# audio_microphone(){
+#     ffmpeg -f pulse -i "$microphone" -metadata title="$date" "$audio_directory/$date.mp3"
+#     notify-send "Audio" "Microphone audio recorded"
+# }
+# FIXME fix logic to select desktop
+# audio_desktop(){
+#     ffmpeg -f pulse -i "$desktop" -metadata title="$date" "$audio_directory/$date.mp3"
+#     notify-send "Audio" "Desktop audio recorded"
+# }
 video_selected_area_audio_microphone(){
     get_area
+    VIDEO_PATH="$videos_directory/$date.mp4"
     ffmpeg -hide_banner -loglevel error -show_region 1 \
     -f x11grab -video_size "$wh" -framerate 30 -i :0.0+"$x","$y" \
-    -f alsa -i default -pix_fmt yuv420p "$videos_directory/$date.mp4"
-    ffmpeg -i "$videos_directory/$date.mp4" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
+    -f alsa -i default -pix_fmt yuv420p "$VIDEO_PATH"
+    ffmpeg -i "$VIDEO_PATH" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
     notify-send -i "/tmp/$date.png" "Video" "Area video with audio taken"
 }
-video_full_screen_audio_microphone(){
-    ffmpeg -hide_banner -loglevel error -show_region 1 \
-    -f x11grab -video_size "$screen_resolution" -framerate 30 -i :0.0 \
-    -f alsa -i default -pix_fmt yuv420p "$videos_directory/$date.mp4"
-    ffmpeg -i "$videos_directory/$date.mp4" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
-    notify-send -i "/tmp/$date.png" "Video" "Full screen video with audio taken"
-}
+# FIXME screen audio is not recorded, only mic audio
+# video_full_screen_audio_microphone(){
+#     VIDEO_PATH="$videos_directory/$date.mp4"
+#     ffmpeg -hide_banner -loglevel error -show_region 1 \
+#     -f x11grab -video_size "$screen_resolution" -framerate 30 -i :0.0 \
+#     -f alsa -i default -pix_fmt yuv420p "$VIDEO_PATH"
+#     ffmpeg -i "$VIDEO_PATH" -ss 00:00:01.000 -vframes 1 "/tmp/$date.png"
+#     notify-send -i "/tmp/$date.png" "Video" "Full screen video with audio taken"
+# }
 stop(){
     pkill -fxn '(/\S+)*ffmpeg\s.*\sx11grab\s.*'
     pkill -fxn '(/\S+)*ffmpeg\s.*\spulse\s.*'
     exit 1
 }
 help(){
-cat << EOF 
+cat << EOF
 -h | -help | --help
 -s | -stop
 -sa | -screenshot_selected_area
