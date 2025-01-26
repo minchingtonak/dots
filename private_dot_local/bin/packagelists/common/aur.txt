@@ -5,7 +5,7 @@ ffcast
 i3lock-color
 informant
 lightdm-settings
-lmstudio-appimage
+lmstudio
 nvm
 pacdiff-pacman-hook-git
 pacman-log-orphans-hook
