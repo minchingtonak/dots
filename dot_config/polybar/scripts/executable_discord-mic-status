@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # display nothing if discord is not running
-if ! pgrep -x -f "/opt/Vesktop/vesktop" > /dev/null; then
+if ! pgrep -f "/opt/Vesktop/vesktop" > /dev/null; then
     echo ""
     exit 0
 fi
