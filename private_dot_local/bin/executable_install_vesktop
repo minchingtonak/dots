@@ -9,7 +9,7 @@ mk () {
 }
 
 mktmp () {
-	mk "/tmp/mktmp-$(date '+%y%m%d-%H%M')"
+	mk "/tmp/mktmp-$(date '+%y%m%d-%H%M%S')"
 }
 
 mktmp
@@ -17,19 +17,6 @@ mktmp
 git clone https://github.com/PolisanTheEasyNick/Vesktop
 cd Vesktop
 git switch keybinds
-
-# patch the implementation to allow keybinds on non-wayland display protocols
-patch -u src/main/mainWindow.ts <<EOF
---- src/main/mainWindow.ts	2024-08-25 10:13:55.911533943 -0700
-+++ src/main/mainWindowPatched.ts	2024-08-25 20:24:34.852867390 -0700
-@@ -499,5 +499,5 @@
-     });
-
-     initArRPC();
--    if (isWayland) initKeybinds();
-+    initKeybinds();
- }
-EOF
 
 npx pnpm i
 
