@@ -53,7 +53,7 @@ bindkey '^K' clear-screen
 
 # tab completion
 # bindkey '^I' autosuggest-accept
-bindkey '\t\t' autosuggest-accept
+# bindkey '\t\t' autosuggest-accept
 
 # outer parens are to silence control messages
 ( (cat ~/.cache/wal/sequences && dispatch_shell_colors) &)
