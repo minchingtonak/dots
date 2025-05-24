@@ -20,6 +20,8 @@ video/x-matroska=vlc.desktop
 application/pdf=firefox.desktop
 application/xml=code.desktop
 text/plain=code.desktop
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/ror2mm=r2modman.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -40,3 +42,5 @@ video/x-matroska=vlc.desktop;
 application/pdf=firefox.desktop;
 application/xml=code.desktop;
 text/plain=code.desktop;
+video/mp4=vlc.desktop;
+application/x-shellscript=code.desktop;
