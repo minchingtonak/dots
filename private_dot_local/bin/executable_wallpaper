@@ -5,7 +5,7 @@ set -Eeuo pipefail
 FOLDER="${1:-/home/$USER/wp}"
 
 function refresh() {
-    wal -n --saturate 0.75 -i "$FOLDER"
+    wal -n --saturate 1.0 -i "$FOLDER"
 
     WALLPAPER_PATH="$(cat ~/.cache/wal/wal)"
 

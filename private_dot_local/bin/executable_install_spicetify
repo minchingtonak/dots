@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 # https://spicetify.app/docs/advanced-usage/command-line-interface
 
-echo "!!! make sure you've launched spotify at least once before installing spicetify"
+set -Eeuxo pipefail
+
+spotify
+
+sleep 5
+
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
 
 spicetify >/dev/null
 

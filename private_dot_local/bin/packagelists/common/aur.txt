@@ -1,5 +1,4 @@
 ansiweather
-betterdiscordctl
 check-broken-packages-pacman-hook-git
 ffcast
 i3lock-color
