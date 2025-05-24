@@ -110,7 +110,7 @@ modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 discord sep2 sep2
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
 ; modules-center = right1 title left1
 # {{ else if eq .chezmoi.hostname "ENIAC" }}
-modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep2 battery sep3 left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
+modules-right = right1 cpu temperature memory sep3 left1 sep right1 backlight-acpi sep2 battery sep2 battery2 sep3 left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
 # {{ end }}
 
 cursor-click = pointer
@@ -430,7 +430,7 @@ click-middle = blueberry
 [module/battery]
 type = internal/battery
 poll-interval = 5
-battery = BAT1
+battery = BAT0
 adapter = AC
 full-at = 98
 time-format = %H:%M
@@ -465,6 +465,10 @@ label-discharging-background = ${xresources.background}
 
 label-full = "%percentage%%"
 label-full-background = ${xresources.background}
+
+[module/battery2]
+inherit = module/battery
+battery = BAT1
 
 [module/powermenu]
 type = custom/menu
