@@ -35,7 +35,7 @@ bindsym $mod+Tab [con_mark=_last] focus
 set $scratchpadwidth 1280
 set $scratchpadheight 960
 
-set $largescratchpadwidth 1550
+set $largescratchpadwidth 2180
 set $largescratchpadheight 1230
 
 # list of scratchpad class names to disallow quitting via hotkey
@@ -43,13 +43,21 @@ set $scratchpads term|math|lm studio|obsidian|keepassxc
 
 for_window [instance="term"] floating enable
 for_window [instance="term"] sticky enable
+# {{ if eq .chezmoi.hostname "WITCH" }}
+for_window [instance="term"] resize set $largescratchpadwidth $largescratchpadheight
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
 for_window [instance="term"] resize set $scratchpadwidth $scratchpadheight
+# {{ end }}
 for_window [instance="term"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=term" > /dev/null || $term --class=term
 
 for_window [instance="math"] floating enable
 for_window [instance="math"] sticky enable
+# {{ if eq .chezmoi.hostname "WITCH" }}
+for_window [instance="math"] resize set $largescratchpadwidth $largescratchpadheight
+# {{ else if eq .chezmoi.hostname "ENIAC" }}
 for_window [instance="math"] resize set $scratchpadwidth $scratchpadheight
+# {{ end }}
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=math -e python" > /dev/null || $term --class=math -e python
 
