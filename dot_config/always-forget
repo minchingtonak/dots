@@ -77,3 +77,12 @@ sudo eject /dev/sdaX # eject a drive
 # battery
 
 for BAT_PATH in $(upower -e | grep BAT); do upower -i "$BAT_PATH"; done # print info for all batteries
+
+# nmap
+
+sudo nmap -vv --stats-every 10s -n -Pn -sT -sU -p- ADDRESS # scan all ports for TCP and UDP, takes forever
+
+# diffing
+
+fdupes -r DIRECTORY
+fdupes -rd DIRECTORY
