@@ -57,11 +57,11 @@ function installpackagelist() {
 # full system upgrade
 yay -Syu
 
-installpackagelist common
-
 # {{ if eq .chezmoi.hostname "ENIAC" }}
 
 # install laptop-specific packages
 installpackagelist eniac
 
 # {{ end }}
+
+installpackagelist common

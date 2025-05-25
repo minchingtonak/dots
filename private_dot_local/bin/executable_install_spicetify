@@ -5,7 +5,7 @@ set -Eeuxo pipefail
 
 spotify
 
-sleep 5
+sleep 10
 
 sudo chmod a+wr /opt/spotify
 sudo chmod a+wr /opt/spotify/Apps -R
