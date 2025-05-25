@@ -115,12 +115,12 @@ class Config:
 
         # Default configuration
         self.defaults = {
-            "whisper_model": "base",
+            "whisper_model": "small.en",
             "sample_rate": 16000,
             "max_recording_duration": 60.0,  # Increased to 60 seconds
             "device": None,  # None = default device
             "language": "en",
-            "n_threads": 4,  # CPU threads for whisper.cpp
+            "n_threads": 12,  # CPU threads for whisper.cpp
             "use_gpu": False,  # GPU acceleration
             "push_to_talk": True,  # Enable push-to-talk mode
             "min_recording_duration": 0.5,  # Minimum duration to consider valid
