@@ -97,8 +97,14 @@ exec_always --no-startup-id pgrep -x -f "keepassxc" > /dev/null || keepassxc
 bindsym $mod+Return exec --no-startup-id $term
 # bindsym $mod+Shift+Return
 
+# hold to record, release to transcribe and insert
+bindsym $mod+space exec --no-startup-id voice_transcriber_wrapper.sh --start
+bindsym --release $mod+space exec --no-startup-id voice_transcriber_wrapper.sh --stop
+# quick stop binding
+bindsym $mod+Escape exec --no-startup-id voice_transcriber_wrapper.sh --stop
+
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # bindsym $mod+Escape workspace prev
 # bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3 exit"
