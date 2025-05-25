@@ -736,6 +736,8 @@ def main():
                        help="Start recording (push-to-talk begin)")
     parser.add_argument("--stop", action="store_true",
                        help="Stop recording and transcribe (push-to-talk end)")
+    parser.add_argument("--toggle", action="store_true",
+                       help="Toggle current status")
     parser.add_argument("--status", action="store_true",
                        help="Check if currently recording")
     parser.add_argument("--check-deps", action="store_true",
@@ -772,6 +774,12 @@ def main():
         sys.exit(1)
 
     success = False
+
+    if args.toggle:
+        if service.is_recording():
+            args.stop = True
+        else:
+            args.start = True
 
     if args.start:
         success = service.start_recording_daemon()
