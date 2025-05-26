@@ -2,6 +2,7 @@
 """
 Voice Transcriber Service for i3wm
 A local voice-to-text system with push-to-talk functionality
+Using faster-whisper for improved performance
 """
 
 import argparse
@@ -19,7 +20,7 @@ import signal
 
 import numpy as np
 import sounddevice as sd
-from pywhispercpp.model import Model
+from faster_whisper import WhisperModel
 
 
 class NotificationService:
@@ -115,13 +116,34 @@ class Config:
 
         # Default configuration
         self.defaults = {
-            "whisper_model": "small.en",
+            "whisper_model": "small.en",  # Options: https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/utils.py#L12
             "sample_rate": 16000,
-            "max_recording_duration": 60.0,  # Increased to 60 seconds
             "device": None,  # None = default device
-            "language": "en",
-            "n_threads": 12,  # CPU threads for whisper.cpp
-            "use_gpu": False,  # GPU acceleration
+            "language": "en",  # Language code or None for auto-detection
+            "compute_type": "default",  # Options: default, float16, int8_float16, int8
+            "device_index": 0,  # GPU device index (if using CUDA)
+            "cpu_threads": 0,  # Number of CPU threads (0 = auto)
+            "num_workers": 3,  # Number of workers for parallel processing
+            "beam_size": 5,  # Beam size for decoding
+            "best_of": 5,  # Number of candidates to consider
+            "patience": 1.0,  # Patience for beam search
+            "length_penalty": 1.0,  # Length penalty for beam search
+            "temperature": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],  # Temperature for sampling
+            "compression_ratio_threshold": 2.4,  # Threshold for compression ratio
+            "log_prob_threshold": -1.0,  # Threshold for average log probability
+            "no_speech_threshold": 0.6,  # Threshold for no speech probability
+            "condition_on_previous_text": True,  # Use previous text as context
+            "initial_prompt": None,  # Initial prompt for conditioning
+            "prefix": None,  # Prefix for all segments
+            "suppress_blank": True,  # Suppress blank outputs
+            "suppress_tokens": [-1],  # Tokens to suppress
+            "without_timestamps": False,  # Disable timestamp generation
+            "max_initial_timestamp": 1.0,  # Maximum initial timestamp
+            "word_timestamps": False,  # Generate word-level timestamps
+            "prepend_punctuations": "\"'\"([{-",  # Punctuations to merge with next word
+            "append_punctuations": "\"'.。,，!！?？:：)]}、",  # Punctuations to merge with previous word
+            "vad_filter": True,  # Use voice activity detection
+            "vad_parameters": None,  # Custom VAD parameters
             "push_to_talk": True,  # Enable push-to-talk mode
             "min_recording_duration": 0.5,  # Minimum duration to consider valid
             "notifications_enabled": True  # Enable desktop notifications
@@ -152,111 +174,75 @@ class Config:
 
 
 class WhisperTranscriber:
-    """Handles pywhispercpp model loading and transcription"""
+    """Handles faster-whisper model loading and transcription"""
 
     def __init__(self, config: Config):
         self.config = config
         self.model = None
         self._model_lock = threading.Lock()
-        self.model_path = None
 
-    def _get_model_path(self, model_name: str) -> str:
-        """Get the path to the whisper.cpp model file"""
-        # Map model names to whisper.cpp model files
-        model_files = {
-            "tiny": "ggml-tiny.bin",
-            "tiny.en": "ggml-tiny.en.bin",
-            "base": "ggml-base.bin",
-            "base.en": "ggml-base.en.bin",
-            "small": "ggml-small.bin",
-            "small.en": "ggml-small.en.bin",
-            "medium": "ggml-medium.bin",
-            "medium.en": "ggml-medium.en.bin",
-            "large": "ggml-large.bin",
-            "large-v1": "ggml-large-v1.bin",
-            "large-v2": "ggml-large-v2.bin",
-            "large-v3": "ggml-large-v3.bin"
-        }
-
-        model_file = model_files.get(model_name, f"ggml-{model_name}.bin")
-        return str(self.config.models_dir / model_file)
-
-    def _download_model_if_needed(self, model_path: str, model_name: str):
-        """Download whisper.cpp model if it doesn't exist"""
-        if os.path.exists(model_path):
-            return
-
-        logging.info(f"Downloading whisper.cpp model: {model_name}")
-
-        # Base URL for whisper.cpp models
-        base_url = "https://huggingface.co/ggerganov/whisper.cpp/resolve/main"
-        model_filename = os.path.basename(model_path)
-        model_url = f"{base_url}/{model_filename}"
-
+    def _get_device(self) -> str:
+        """Determine the device to use (cuda or cpu)"""
         try:
-            import urllib.request
+            # Check if CUDA is available
+            import torch
+            if torch.cuda.is_available():
+                return "cuda"
+        except ImportError:
+            pass
 
-            def download_progress(block_num, block_size, total_size):
-                downloaded = block_num * block_size
-                if total_size > 0:
-                    percent = min(100, (downloaded * 100) // total_size)
-                    print(f"\rDownloading {model_name}: {percent}%", end="", flush=True)
+        return "cpu"
 
-            urllib.request.urlretrieve(model_url, model_path, download_progress)
-            print()  # New line after progress
-            logging.info(f"Model downloaded successfully: {model_path}")
+    def _get_compute_type(self, device: str) -> str:
+        """Get appropriate compute type based on device"""
+        compute_type = self.config.config.get('compute_type', 'default')
 
-        except Exception as e:
-            logging.error(f"Failed to download model {model_name}: {e}")
-            # Fallback: try to download with curl or wget
-            try:
-                result = subprocess.run([
-                    "curl", "-L", "-o", model_path, model_url
-                ], capture_output=True, timeout=300)
+        if compute_type == 'default':
+            if device == 'cuda':
+                # Use float16 for GPU by default
+                return "float16"
+            else:
+                # Use int8 for CPU by default for better performance
+                return "int8"
 
-                if result.returncode != 0:
-                    result = subprocess.run([
-                        "wget", "-O", model_path, model_url
-                    ], capture_output=True, timeout=300)
-
-                if result.returncode != 0:
-                    raise Exception("Failed to download with curl or wget")
-
-                logging.info(f"Model downloaded successfully with external tool: {model_path}")
-
-            except Exception as e2:
-                logging.error(f"All download methods failed: {e2}")
-                raise Exception(f"Could not download model {model_name}. Please download manually from: {model_url}")
+        return compute_type
 
     def load_model(self):
-        """Load pywhispercpp model (thread-safe)"""
+        """Load faster-whisper model (thread-safe)"""
         with self._model_lock:
             if self.model is None:
                 try:
                     model_name = self.config.config['whisper_model']
-                    self.model_path = self._get_model_path(model_name)
+                    device = self._get_device()
+                    compute_type = self._get_compute_type(device)
 
-                    # Download model if needed
-                    self._download_model_if_needed(self.model_path, model_name)
+                    logging.info(f"Loading faster-whisper model: {model_name}")
+                    logging.info(f"Device: {device}, Compute type: {compute_type}")
 
-                    logging.info(f"Loading pywhispercpp model: {model_name}")
+                    # Download model if needed (faster-whisper handles this automatically)
+                    # But we can specify a custom directory
+                    model_path = str(self.config.models_dir)
 
-                    # Initialize pywhispercpp model
-                    self.model = Model(
-                        self.model_path,
-                        n_threads=self.config.config.get('n_threads', 4),
-                        print_progress=False,
-                        print_realtime=False
+                    # Initialize faster-whisper model
+                    self.model = WhisperModel(
+                        model_name,
+                        device=device,
+                        device_index=self.config.config.get('device_index', 0),
+                        compute_type=compute_type,
+                        cpu_threads=self.config.config.get('cpu_threads', 0),
+                        num_workers=self.config.config.get('num_workers', 1),
+                        download_root=model_path,
+                        local_files_only=False
                     )
 
-                    logging.info("pywhispercpp model loaded successfully")
+                    logging.info("faster-whisper model loaded successfully")
 
                 except Exception as e:
-                    logging.error(f"Failed to load pywhispercpp model: {e}")
+                    logging.error(f"Failed to load faster-whisper model: {e}")
                     raise
 
     def transcribe(self, audio_data: np.ndarray) -> str:
-        """Transcribe audio data to text using pywhispercpp"""
+        """Transcribe audio data to text using faster-whisper"""
         if self.model is None:
             self.load_model()
 
@@ -273,12 +259,12 @@ class WhisperTranscriber:
             if np.max(np.abs(audio_data)) > 0:
                 audio_data = audio_data / np.max(np.abs(audio_data))
 
-            # pywhispercpp expects 16kHz audio
+            # faster-whisper expects 16kHz audio
             target_sample_rate = 16000
             current_sample_rate = self.config.config['sample_rate']
 
             if current_sample_rate != target_sample_rate:
-                # Simple resampling (you might want to use scipy.signal.resample for better quality)
+                # Resample audio if needed
                 try:
                     from scipy import signal
                     num_samples = int(len(audio_data) * target_sample_rate / current_sample_rate)
@@ -293,33 +279,45 @@ class WhisperTranscriber:
                         audio_data
                     ).astype(np.float32)
 
-            # Get language setting
-            language = self.config.config.get('language', 'en')
+            # Prepare transcription parameters
+            language = self.config.config.get('language', None)
+            if language == 'auto':
+                language = None  # Let faster-whisper auto-detect
 
-            # Transcribe using pywhispercpp with language parameter
-            # Pass language as a parameter to the transcribe method, not as an attribute
-            if language and language != 'auto':
-                try:
-                    # Try with language parameter
-                    segments = self.model.transcribe(audio_data, language=language)
-                except TypeError:
-                    # If language parameter not supported, try without it
-                    logging.info("Language parameter not supported, transcribing without language setting")
-                    segments = self.model.transcribe(audio_data)
-            else:
-                segments = self.model.transcribe(audio_data)
+            # Transcribe using faster-whisper
+            segments, info = self.model.transcribe(
+                audio_data,
+                language=language,
+                beam_size=self.config.config.get('beam_size', 5),
+                best_of=self.config.config.get('best_of', 5),
+                patience=self.config.config.get('patience', 1.0),
+                length_penalty=self.config.config.get('length_penalty', 1.0),
+                temperature=self.config.config.get('temperature', [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]),
+                compression_ratio_threshold=self.config.config.get('compression_ratio_threshold', 2.4),
+                log_prob_threshold=self.config.config.get('log_prob_threshold', -1.0),
+                no_speech_threshold=self.config.config.get('no_speech_threshold', 0.6),
+                condition_on_previous_text=self.config.config.get('condition_on_previous_text', True),
+                initial_prompt=self.config.config.get('initial_prompt', None),
+                prefix=self.config.config.get('prefix', None),
+                suppress_blank=self.config.config.get('suppress_blank', True),
+                suppress_tokens=self.config.config.get('suppress_tokens', [-1]),
+                without_timestamps=self.config.config.get('without_timestamps', False),
+                max_initial_timestamp=self.config.config.get('max_initial_timestamp', 1.0),
+                word_timestamps=self.config.config.get('word_timestamps', False),
+                prepend_punctuations=self.config.config.get('prepend_punctuations', "\"'([{-"),
+                append_punctuations=self.config.config.get('append_punctuations', "\"'.。,，!！?？:：)]}、"),
+                vad_filter=self.config.config.get('vad_filter', True),
+                vad_parameters=self.config.config.get('vad_parameters', None),
+            )
+
+            # Log detected language if auto-detected
+            if language is None and hasattr(info, 'language'):
+                logging.info(f"Detected language: {info.language} (probability: {info.language_probability:.2f})")
 
             # Extract text from segments
             text_parts = []
             for segment in segments:
-                # Each segment has 'text' attribute
-                if hasattr(segment, 'text'):
-                    text_parts.append(segment.text.strip())
-                elif isinstance(segment, dict) and 'text' in segment:
-                    text_parts.append(segment['text'].strip())
-                else:
-                    # Fallback: convert to string
-                    text_parts.append(str(segment).strip())
+                text_parts.append(segment.text.strip())
 
             text = ' '.join(text_parts).strip()
             logging.info(f"Transcribed: {text}")
@@ -327,24 +325,6 @@ class WhisperTranscriber:
 
         except Exception as e:
             logging.error(f"Transcription failed: {e}")
-            # Fallback: try simple transcription without any parameters
-            try:
-                logging.info("Retrying transcription with basic parameters...")
-                segments = self.model.transcribe(audio_data)
-                text_parts = []
-                for segment in segments:
-                    if hasattr(segment, 'text'):
-                        text_parts.append(segment.text.strip())
-                    elif isinstance(segment, dict) and 'text' in segment:
-                        text_parts.append(segment['text'].strip())
-                    else:
-                        text_parts.append(str(segment).strip())
-                text = ' '.join(text_parts).strip()
-                logging.info(f"Transcribed (fallback): {text}")
-                return text
-            except Exception as e2:
-                logging.error(f"Fallback transcription also failed: {e2}")
-
             return ""
 
 
@@ -727,6 +707,27 @@ class VoiceService:
             print("Install with: sudo apt install libnotify-bin")
             print("(Notifications will be disabled without libnotify-bin)")
 
+        # Check Python dependencies
+        python_deps = {
+            "faster-whisper": "faster-whisper",
+            "numpy": "numpy",
+            "sounddevice": "sounddevice",
+            "scipy": "scipy (optional, for better audio resampling)"
+        }
+
+        missing_python = []
+        for module, name in python_deps.items():
+            try:
+                __import__(module.replace("-", "_"))
+            except ImportError:
+                if "optional" not in name:
+                    missing_python.append(name)
+
+        if missing_python:
+            print(f"\nMissing Python dependencies: {', '.join(missing_python)}")
+            print("Install with: pip install " + " ".join(missing_python))
+            return False
+
         return True
 
 
@@ -744,6 +745,8 @@ def main():
                        help="Check system dependencies")
     parser.add_argument("--config", action="store_true",
                        help="Show configuration file location")
+    parser.add_argument("--list-models", action="store_true",
+                       help="List available Whisper models")
 
     args = parser.parse_args()
 
@@ -760,6 +763,21 @@ def main():
         print(f"Configuration file: {service.config.config_file}")
         print(f"Models directory: {service.config.models_dir}")
         print(f"Logs directory: {service.config.logs_dir}")
+        print("\nCurrent configuration:")
+        for key, value in sorted(service.config.config.items()):
+            print(f"  {key}: {value}")
+        return
+
+    if args.list_models:
+        print("Available Whisper models:")
+        print("  tiny    - 39M parameters, ~1GB RAM, fastest")
+        print("  base    - 74M parameters, ~1GB RAM")
+        print("  small   - 244M parameters, ~2GB RAM (recommended)")
+        print("  medium  - 769M parameters, ~5GB RAM")
+        print("  large-v1 - 1550M parameters, ~10GB RAM")
+        print("  large-v2 - 1550M parameters, ~10GB RAM")
+        print("  large-v3 - 1550M parameters, ~10GB RAM (best accuracy)")
+        print("\nModels will be downloaded automatically on first use.")
         return
 
     if args.status:
