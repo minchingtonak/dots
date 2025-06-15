@@ -116,7 +116,7 @@ class Config:
 
         # Default configuration
         self.defaults = {
-            "whisper_model": "small.en",  # Options: https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/utils.py#L12
+            "whisper_model": "medium.en",  # Options: https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/utils.py#L12
             "sample_rate": 16000,
             "device": None,  # None = default device
             "language": "en",  # Language code or None for auto-detection
