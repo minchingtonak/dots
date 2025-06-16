@@ -77,12 +77,13 @@
 [urgency_low]
     background = "{background}"
     foreground = "{foreground}"
-    timeout = 8
+    timeout = 3
 [urgency_normal]
     background = "{background}"
     foreground = "{foreground}"
-    timeout = 8
+    timeout = 5
 [urgency_critical]
     background = "{background}"
     foreground = "{foreground}"
     frame_color = "#f07178"
+    # (no timeout)
