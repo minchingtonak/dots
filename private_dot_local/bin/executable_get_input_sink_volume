@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-SINKID="$(input_sink_num "$1")"
-
-pactl list sink-inputs |
-    grep -E -15 "Sink Input #$SINKID$" |
-    grep 'Volume: ' |
-    awk '{ print $5; }'

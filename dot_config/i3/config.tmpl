@@ -243,8 +243,8 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && light -s sysfs/leds/platform::mute | grep -q '100.0' && light -s sysfs/leds/platform::mute -U 100 || light -s sysfs/leds/platform::mute -A 100
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
-bindsym XF86AudioLowerVolume exec --no-startup-id playerctl -p spotify volume 0.05-
-bindsym XF86AudioRaiseVolume exec --no-startup-id playerctl -p spotify volume 0.05+
+bindsym XF86AudioLowerVolume exec --no-startup-id playerctl -p spotify volume 0.05- || playerctl -p Feishin volume 0.05-
+bindsym XF86AudioRaiseVolume exec --no-startup-id playerctl -p spotify volume 0.05+ || playerctl -p Feishin volume 0.05+
 # bindsym XF86PowerOff
 # bindsym XF86Copy
 # bindsym XF86Open
@@ -267,9 +267,9 @@ bindsym XF86ScreenSaver exec --no-startup-id lockscreen
 # bindsym XF86Back
 # bindsym XF86Forward
 # bindsym XF86Eject
-bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
-bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause
-bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
+bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next || playerctl -p Feishin next
+bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause || playerctl -p Feishin play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous || playerctl -p Feishin previous
 # bindsym XF86AudioStop
 # bindsym XF86AudioRecord
 # bindsym XF86AudioRewind

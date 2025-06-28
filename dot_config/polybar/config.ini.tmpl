@@ -80,7 +80,6 @@ radius-bottom = 0
 ; dpi-x = 96
 ; dpi-y = 96
 
-
 background = #002d333f
 foreground = ${color.foreground}
 dim-value = 1.0
@@ -104,7 +103,7 @@ font-4 = "Font Awesome 6 Free Solid:fontformat=opentype:size=10;2"
 font-5 = "feather:fontformat=truetype:size=13;3"
 font-6 = "Powerline Extra Symbols:fontformat=opentype:size=17;4"
 
-modules-left = right1 i3 left1 sep right1 pulseaudio sep2 sep2 discord sep2 sep2 spotify left1 sep right1 wlan sep2 eth sep3 left1
+modules-left = right1 i3 left1 sep right1 pulseaudio sep2 discord sep2 spotify sep2 feishin left1 sep right1 wlan sep2 eth sep3 left1
 
 # {{ if eq .chezmoi.hostname "WITCH" }}
 modules-right = right1 cpu temperature memory sep3 left1 sep right1 gpu gputemperature gpumemory sep3 left1 sep right1 weather left1 sep right1 date sep2 dunst sep2 powermenu sep2 tray left1
@@ -500,11 +499,11 @@ menu-0-2-exec = i3-msg exit
 type = custom/script
 interval = 0.2
 exec-if = pgrep -x spotify
-exec = ~/.config/polybar/scripts/spotify-bar
+exec = ~/.config/polybar/scripts/music-bar spotify
 
 format = <label>
 format-prefix = " "
-label = "%{A4:pactl set-sink-input-volume $(input_sink_num spotify) +5% &:}%{A5:pactl set-sink-input-volume $(input_sink_num spotify) -5%:}%output%%{A}%{A}"
+label = "%{A4:playerctl -p spotify volume 0.05+ &:}%{A5:playerctl -p spotify volume 0.05-:}%output%%{A}%{A}"
 format-prefix-foreground = ${color.green}
 format-underline = ${color.green}
 format-background = ${xresources.background}
@@ -512,6 +511,23 @@ format-background = ${xresources.background}
 click-left = playerctl --player=spotify play-pause
 click-right = playerctl --player=spotify next
 click-middle = playerctl --player=spotify previous
+
+[module/feishin]
+type = custom/script
+interval = 0.2
+exec-if = pgrep -x feishin
+exec = ~/.config/polybar/scripts/music-bar Feishin
+
+format = <label>
+format-prefix = " "
+label = "%{A4:playerctl -p Feishin volume 0.05+ &:}%{A5:playerctl -p Feishin volume 0.05-:}%output%%{A}%{A}"
+format-prefix-foreground = ${color.purple}
+format-underline = ${color.purple}
+format-background = ${xresources.background}
+
+click-left = playerctl --player=Feishin play-pause
+click-right = playerctl --player=Feishin next
+click-middle = playerctl --player=Feishin previous
 
 [module/weather]
 type = custom/script

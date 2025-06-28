@@ -1,5 +1,6 @@
 ansiweather
 check-broken-packages-pacman-hook-git
+feishin-bin
 ffcast
 i3lock-color
 informant
