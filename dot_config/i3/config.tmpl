@@ -1,5 +1,7 @@
 # i3 config
 # Some bindings taken from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/i3/config, credit Luke Smith
+# Bindings reference: https://github.com/i3/i3/blob/cfa4cf16bea809c7c715a86c428757e577c85254/i3-input/keysym.map
+# Configurator tool: https://github.com/RasmusLindroth/i3keys
 
 set $mod Mod4
 set $term alacritty
@@ -276,6 +278,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous || play
 # bindsym XF86AudioForward
 # bindsym XF86Phone
 bindsym XF86Tools exec --no-startup-id discord_toggle mute
+bindsym KP_Subtract exec --no-startup-id discord_toggle mute
 # bindsym XF86HomePage
 # bindsym XF86Reload
 # bindsym XF86ScrollUp
@@ -287,6 +290,7 @@ bindsym XF86Tools exec --no-startup-id discord_toggle mute
 # bindsym XF86Launch3
 # bindsym XF86Launch4
 bindsym XF86Launch5 exec --no-startup-id discord_toggle deafen
+bindsym KP_Add exec --no-startup-id discord_toggle deafen
 # bindsym XF86Launch6
 # bindsym XF86Launch7
 # bindsym XF86Launch8
@@ -461,7 +465,7 @@ exec --no-startup-id firefox
 exec --no-startup-id syncthingtray --wait
 
 # {{- if eq .chezmoi.hostname "WITCH" }}
-exec --no-startup-id launch_spotify
+exec --no-startup-id sleep 10 && launch_spotify
 exec --no-startup-id vesktop
 # {{- end }}
 
