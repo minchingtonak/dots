@@ -58,3 +58,10 @@ sudo nmap -vv --stats-every 10s -n -Pn -sT -sU -p- ADDRESS # scan all ports for 
 
 fdupes -r DIRECTORY
 fdupes -rd DIRECTORY
+
+# ventoy/USB/LiveCD
+
+sudo ventoygui # install ventoy to a USB
+
+watch grep -e Dirty: -e Writeback: /proc/meminfo # print progress of file write to USB (useful with ventoy/ISOs)
+
