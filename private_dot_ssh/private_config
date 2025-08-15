@@ -18,6 +18,10 @@ Host github.com
   Preferredauthentications publickey
   IdentityFile ~/.ssh/github_ed25519
 
+Host homelab
+  HostName 192.168.0.89
+  User root
+  IdentityFile ~/.ssh/lxc_ed25519
 
 # SSH multiplexing
 # Host *
