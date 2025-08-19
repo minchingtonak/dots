@@ -3,6 +3,8 @@ blueberry
 chezmoi
 discord
 dunst
+fcitx5-im
+fcitx5-mozc
 feh
 ffmpeg
 fzf
