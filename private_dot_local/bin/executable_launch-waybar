@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# https://github.com/Alexays/Waybar/issues/961#issuecomment-753533975
+
+WAYBAR_DIR="$HOME/.config/waybar"
+
+# ensure waybar is killed when this script exits
+trap "killall waybar" EXIT
+
+while true; do
+    waybar &
+    inotifywait -r -e create,modify,delete,move "$WAYBAR_DIR"
+    # reload config without restarting
+    # https://github.com/Alexays/Waybar/wiki/FAQ#how-can-I-reload-the-configuration-without-restarting-waybar
+    killall -SIGUSR2 waybar
+done

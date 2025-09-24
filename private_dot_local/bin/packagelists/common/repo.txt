@@ -10,7 +10,6 @@ ffmpeg
 fzf
 git-delta
 highlight
-i3-wm
 keepassxc
 noto-fonts-emoji
 obsidian
@@ -19,8 +18,6 @@ polybar
 pyenv
 python-pywal
 redshift
-rlwrap
-rofi
 slop
 steam
 thunar
@@ -30,3 +27,12 @@ xsel
 yay
 zsh-autosuggestions
 zsh-syntax-highlighting
+
+hyprland
+waybar
+wofi
+inotify-tools
+nwg-look
+# https://github.com/keepassxreboot/keepassxc/issues/2973#issuecomment-1848358001
+# allows apps using qt (keepassxc) to render under wayland
+qt5-wayland
