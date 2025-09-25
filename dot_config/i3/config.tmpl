@@ -100,7 +100,7 @@ bindsym $mod+Shift+space floating toggle
 
 # bindsym $mod+Escape workspace prev
 # bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3 exit"
-bindsym $mod+Shift+Escape exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+Escape exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'safe_logout'"
 
 # bindsym $mod+BackSpace
 # bindsym $mod+Shift+BackSpace

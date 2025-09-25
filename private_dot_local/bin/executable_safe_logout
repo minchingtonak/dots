@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -Eeuo pipefail
+
+i3-msg '[class="."] kill'
+
+pkill -TERM -u "$USER"
+
+sleep 10
+
+# force kill processes if they don't exit after a period of time
+pkill -KILL -u "$USER"
+
+i3-msg exit

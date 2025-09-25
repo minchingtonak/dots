@@ -29,7 +29,7 @@ main() {
     lockscreen
     ;;
   ' Log out')
-    i3-msg exit
+    safe_logout
     ;;
   esac
 
