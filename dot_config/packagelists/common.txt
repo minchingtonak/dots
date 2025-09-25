@@ -1,3 +1,39 @@
+# repo packages
+alacritty
+blueberry
+chezmoi
+discord
+dunst
+fcitx5-im
+fcitx5-mozc
+feh
+ffmpeg
+fzf
+git-delta
+highlight
+i3-wm
+keepassxc
+noto-fonts-emoji
+obsidian
+playerctl
+polybar
+pyenv
+python-pywal
+redshift
+rlwrap
+rofi
+slop
+steam
+thunar
+tree
+vim
+vlc
+xsel
+yay
+zsh-autosuggestions
+zsh-syntax-highlighting
+
+# aur packages
 ansiweather
 check-broken-packages-pacman-hook-git
 feishin-bin
@@ -11,7 +47,6 @@ pacdiff-pacman-hook-git
 pacman-log-orphans-hook
 pavucontrol-gtk3
 picom-git
-pywal-discord-git
 python-pywalfox
 siji-ng
 spicetify-cli

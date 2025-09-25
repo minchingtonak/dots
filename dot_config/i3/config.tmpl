@@ -41,14 +41,14 @@ set $largescratchpadwidth 2180
 set $largescratchpadheight 1230
 
 # list of scratchpad class names to disallow quitting via hotkey
-set $scratchpads term|math|lm studio|obsidian|keepassxc
+set $scratchpads term|math|obsidian|keepassxc
 
 for_window [instance="term"] floating enable
 for_window [instance="term"] sticky enable
 # {{ if eq .chezmoi.hostname "WITCH" }}
 for_window [instance="term"] resize set $largescratchpadwidth $largescratchpadheight
-# {{ else if eq .chezmoi.hostname "ENIAC" }}
-for_window [instance="term"] resize set $scratchpadwidth $scratchpadheight
+# {{ else if eq .chezmoi.hostname "eniac" }}
+for_window [instance="term"] resize set $largescratchpadwidth $largescratchpadheight
 # {{ end }}
 for_window [instance="term"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=term" > /dev/null || $term --class=term
@@ -57,30 +57,18 @@ for_window [instance="math"] floating enable
 for_window [instance="math"] sticky enable
 # {{ if eq .chezmoi.hostname "WITCH" }}
 for_window [instance="math"] resize set $largescratchpadwidth $largescratchpadheight
-# {{ else if eq .chezmoi.hostname "ENIAC" }}
-for_window [instance="math"] resize set $scratchpadwidth $scratchpadheight
+# {{ else if eq .chezmoi.hostname "eniac" }}
+for_window [instance="math"] resize set $largescratchpadwidth $largescratchpadheight
 # {{ end }}
 for_window [instance="math"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "$term --class=math -e python" > /dev/null || $term --class=math -e python
-
-for_window [instance="lm studio"] floating enable
-for_window [instance="lm studio"] sticky enable
-# {{ if eq .chezmoi.hostname "WITCH" }}
-for_window [instance="lm studio"] resize set $largescratchpadwidth $largescratchpadheight
-# {{ else if eq .chezmoi.hostname "ENIAC" }}
-for_window [instance="lm studio"] resize set $scratchpadwidth $scratchpadheight
-# {{ end }}
-for_window [instance="lm studio"] move scratchpad
-# {{ if eq .chezmoi.hostname "WITCH" }}
-exec_always --no-startup-id pgrep -x -f "lm-studio" > /dev/null || lm-studio
-# {{ end }}
 
 for_window [instance="obsidian"] floating enable
 for_window [instance="obsidian"] sticky enable
 # {{ if eq .chezmoi.hostname "WITCH" }}
 for_window [instance="obsidian"] resize set $largescratchpadwidth $largescratchpadheight
-# {{ else if eq .chezmoi.hostname "ENIAC" }}
-for_window [instance="obsidian"] resize set $scratchpadwidth $scratchpadheight
+# {{ else if eq .chezmoi.hostname "eniac" }}
+for_window [instance="obsidian"] resize set $largescratchpadwidth $largescratchpadheight
 # {{ end }}
 for_window [instance="obsidian"] move scratchpad
 exec_always --no-startup-id pgrep -x -f "/usr/lib/electron28/electron /usr/lib/obsidian/app.asar" > /dev/null || obsidian
@@ -88,7 +76,7 @@ exec_always --no-startup-id pgrep -x -f "/usr/lib/electron28/electron /usr/lib/o
 # for keepassxc, move main window to scratchpad but not any popups (floating windows)
 # commands must be run in this order since `floating enable` changes status to floating
 for_window [instance="keepassxc" tiling] move scratchpad
-for_window [instance="keepassxc" tiling] resize set $scratchpadwidth $scratchpadheight
+for_window [instance="keepassxc" tiling] resize set $largescratchpadwidth $largescratchpadheight
 for_window [instance="keepassxc" tiling] floating enable
 for_window [instance="keepassxc"] sticky enable
 exec_always --no-startup-id pgrep -x -f "keepassxc" > /dev/null || keepassxc
@@ -386,9 +374,9 @@ bindsym $mod+Mod2+Shift+KP_0 move container to workspace $ws10
 # {{- if eq .chezmoi.hostname "WITCH" }}
 set $mon1 DP-0
 set $mon2 DP-2
-# {{- else if eq .chezmoi.hostname "ENIAC" }}
-set $mon1 eDP-1
-set $mon2 DP-1
+# {{- else if eq .chezmoi.hostname "eniac" }}
+set $mon1 eDP
+set $mon2 eDP
 # {{- end }}
 
 workspace $ws1 output $mon1 $mon2

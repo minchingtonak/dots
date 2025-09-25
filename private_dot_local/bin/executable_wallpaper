@@ -11,8 +11,6 @@ function refresh() {
 
     feh --bg-fill "$WALLPAPER_PATH" &
 
-    dispatch_shell_colors &
-
     # only restart spotify if it was already running
     if pgrep -f /opt/spotify/spotify >/dev/null; then
         launch_spotify &
@@ -20,12 +18,6 @@ function refresh() {
 
     launch_dunst &
     pywalfox update &
-
-    # run pywal-discord commands in sequence to avoid corrupting generated theme files
-    {
-        pywal-discord -t wal -d
-        pywal-discord -t wal -d -p ~/.config/vesktop/themes
-    } &
 }
 
 # run asynchronously so we don't block rofi from closing if using wallpaper menu
