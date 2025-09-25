@@ -1,1 +1,5 @@
+# repo packages
 brightnessctl
+
+# aur packages
+tlpui
