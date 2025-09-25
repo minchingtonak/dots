@@ -12,6 +12,7 @@ fzf
 git-delta
 highlight
 i3-wm
+imagemagick
 keepassxc
 noto-fonts-emoji
 obsidian

@@ -1,5 +1,9 @@
 # repo packages
 brightnessctl
+fwupd
+fprintd
+wireless-regdb
 
 # aur packages
 tlpui
+pam-fprint-grosshack-unlimited-timeout
