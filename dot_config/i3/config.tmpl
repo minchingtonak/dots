@@ -37,8 +37,8 @@ bindsym $mod+Tab [con_mark=_last] focus
 set $scratchpadwidth 1280
 set $scratchpadheight 960
 
-set $largescratchpadwidth 2180
-set $largescratchpadheight 1230
+set $largescratchpadwidth 1280
+set $largescratchpadheight 960
 
 # list of scratchpad class names to disallow quitting via hotkey
 set $scratchpads term|math|obsidian|keepassxc
@@ -372,11 +372,11 @@ bindsym $mod+Mod2+Shift+KP_3 move container to workspace $ws3
 bindsym $mod+Mod2+Shift+KP_0 move container to workspace $ws10
 
 # {{- if eq .chezmoi.hostname "WITCH" }}
-set $mon1 DP-0
-set $mon2 DP-2
-# {{- else if eq .chezmoi.hostname "eniac" }}
-set $mon1 eDP
-set $mon2 eDP
+set $mon1 HDMI-0
+set $mon2 DP-1
+# {{- else if eq .chezmoi.hostname "ENIAC" }}
+set $mon1 eDP-1
+set $mon2 DP-1
 # {{- end }}
 
 workspace $ws1 output $mon1 $mon2

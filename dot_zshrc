@@ -69,3 +69,6 @@ eval "$(pyenv init -)"
 
 # start in workspace unless this in an integrated vscode terminal
 [ -z "$VSC" ] && ws
+
+export MEMOS_URI=https://memos.homelab.akmin.dev
+export MEMOS_TOKEN='eyJhbGciOiJIUzI1NiIsImtpZCI6InYxIiwidHlwIjoiSldUIn0.eyJuYW1lIjoiYWttaW4iLCJpc3MiOiJtZW1vcyIsInN1YiI6IjEiLCJhdWQiOlsidXNlci5hY2Nlc3MtdG9rZW4iXSwiZXhwIjoxNzU5NzA4MjIwLCJpYXQiOjE3NTcxMTYyMjB9.uGO0P455axAkUbnney9vcJUHj5hM743qJmrGQxV72AM'
