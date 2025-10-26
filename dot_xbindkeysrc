@@ -1,0 +1,7 @@
+# bind button10 (third button) to F13
+"xdotool key F13"
+    b:10
+
+# bind button11 (thumbpad button) to F14
+"xdotool key F14"
+    b:11
