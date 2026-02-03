@@ -62,11 +62,6 @@ bindkey '^K' clear-screen
 # shellcheck disable=SC1091
 source /usr/share/nvm/init-nvm.sh
 
-# pyenv setup
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # start in workspace unless this in an integrated vscode terminal
 [ -z "$VSC" ] && ws
 
