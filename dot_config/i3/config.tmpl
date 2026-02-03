@@ -463,8 +463,9 @@ exec --no-startup-id firefox
 exec --no-startup-id syncthingtray --wait
 
 # {{- if eq .chezmoi.hostname "WITCH" }}
-exec --no-startup-id sleep 10 && launch_spotify
 exec --no-startup-id vesktop
+exec --no-startup-id sleep 5 && feishin
+exec --no-startup-id sleep 10 && launch_spotify
 # {{- end }}
 
 exec --no-startup-id timedatectl set-local-rtc 1 --adjust-system-clock
