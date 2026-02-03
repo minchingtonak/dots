@@ -14,7 +14,7 @@ mktmp () {
 
 mktmp
 
-git clone https://github.com/PolisanTheEasyNick/Vesktop
+git clone https://github.com/mgabor3141/Vesktop
 cd Vesktop
 git switch keybinds
 
