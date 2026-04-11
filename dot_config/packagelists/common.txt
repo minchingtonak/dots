@@ -51,7 +51,7 @@ python-pywalfox
 siji-ng
 spicetify-cli
 spotify
-syncthingtray
+syncthingtray-qt6
 ungoogled-chromium-xdg-bin
 vesktop-bin
 visual-studio-code-bin
