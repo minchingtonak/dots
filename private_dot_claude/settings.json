@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "deny": [
+      "WebSearch"
+    ]
+  },
+  "model": "opusplan",
+  "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/akmin/.claude/statusline.sh"
+  }
+}
