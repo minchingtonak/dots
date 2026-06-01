@@ -28,8 +28,9 @@ Host homelab
 #   ControlMaster auto
 #   ControlPath ~/.ssh/master-%r@%h:%p
 
-Host forgejo.backup.homelab.akmin.dev
-  HostName forgejo.backup.homelab.akmin.dev
+Host forgejo.item.fyi
+  HostName forgejo.item.fyi
   User git
+  Port 222
   Preferredauthentications publickey
-  IdentityFile ~/.ssh/github_ed25519
+  IdentityFile ~/.ssh/forgejo_ed25519
