@@ -22,6 +22,8 @@ application/xml=code.desktop
 text/plain=code.desktop
 x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/ror2mm=r2modman.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/freetube=freetube.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
