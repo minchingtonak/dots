@@ -265,8 +265,8 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous || play
 # bindsym XF86AudioRewind
 # bindsym XF86AudioForward
 # bindsym XF86Phone
-bindsym XF86Tools exec --no-startup-id discord_toggle mute
-bindsym KP_Subtract exec --no-startup-id discord_toggle mute
+bindsym XF86Tools exec --no-startup-id echo run-shortcut:toggleMute | socat - UNIX-CONNECT:$XDG_RUNTIME_DIR/vesktop.sock
+bindsym KP_Subtract exec --no-startup-id echo run-shortcut:toggleMute | socat - UNIX-CONNECT:$XDG_RUNTIME_DIR/vesktop.sock
 # bindsym XF86HomePage
 # bindsym XF86Reload
 # bindsym XF86ScrollUp
@@ -277,8 +277,8 @@ bindsym KP_Subtract exec --no-startup-id discord_toggle mute
 # bindsym XF86Launch2
 # bindsym XF86Launch3
 # bindsym XF86Launch4
-bindsym XF86Launch5 exec --no-startup-id discord_toggle deafen
-bindsym KP_Add exec --no-startup-id discord_toggle deafen
+bindsym XF86Launch5 exec --no-startup-id echo run-shortcut:toggleDeafen | socat - UNIX-CONNECT:$XDG_RUNTIME_DIR/vesktop.sock
+bindsym KP_Add exec --no-startup-id echo run-shortcut:toggleDeafen | socat - UNIX-CONNECT:$XDG_RUNTIME_DIR/vesktop.sock
 # bindsym XF86Launch6
 # bindsym XF86Launch7
 # bindsym XF86Launch8

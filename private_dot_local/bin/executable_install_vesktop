@@ -14,9 +14,9 @@ mktmp () {
 
 mktmp
 
-git clone https://github.com/mgabor3141/Vesktop
+git clone https://github.com/Vencord/Vesktop
 cd Vesktop
-git switch keybinds
+git switch global-shortcuts
 
 npx pnpm i
 
