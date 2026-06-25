@@ -38,6 +38,7 @@ ansiweather
 check-broken-packages-pacman-hook-git
 feishin-bin
 ffcast
+handy
 i3lock-color
 informant
 lightdm-settings
