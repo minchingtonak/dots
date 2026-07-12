@@ -40,6 +40,18 @@ alias nuke-zellij='zellij delete-all-sessions --force --yes'
 alias forgot='igrep -E < ~/.config/always-forget'
 alias k='kubectl'
 
+# https://emmer.dev/blog/what-is-a-docker-digest/#bash-function
+# Get the digest hash of a Docker image
+# @param {string} $1 name[:tag][@digest]
+ddigest() {
+  if [ -x "$(command -v skopeo)" ]; then
+    skopeo inspect --raw "docker://$1" | shasum --algorithm 256 | awk '{print "sha256:"$1}'
+  else
+    docker pull "$1" > /dev/null 2>&1 || true
+    docker inspect --format '{{index .RepoDigests 0}}' "$1" | awk -F "@" '{print $2}'
+  fi
+}
+
 # create/attach to zellij session, with a separate tab for each folder
 # $1=session name, required
 # $2=path to open as workspace, optional, default=.
