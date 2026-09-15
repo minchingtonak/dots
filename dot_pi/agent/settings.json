@@ -1,0 +1,21 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "theme": "dark",
+  "defaultProvider": "zai",
+  "defaultModel": "glm-5.3",
+  "defaultThinkingLevel": "xhigh",
+  "retry": {
+    "provider": {
+      "timeoutMs": 3000000
+    }
+  },
+  "skills": ["~/.claude/skills"],
+  "packages": [
+    "npm:pi-native-search",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-lens",
+    "npm:@openlines/openpi-memory",
+    "npm:@juicesharp/rpiv-ask-user-question"
+  ]
+}
