@@ -5,7 +5,6 @@ input=$(cat)
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 session_name=$(echo "$input" | jq -r '.session_name // ""')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0')
-cost_usd=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
 lines_added=$(echo "$input" | jq -r '.cost.total_lines_added // 0')
 lines_removed=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
@@ -42,8 +41,31 @@ else
 fi
 reset="\033[0m"
 
-# Format cost display
-cost_fmt=$(printf '$%.2f' "$cost_usd")
+# Z.ai GLM Coding Plan credit usage. cost.total_cost_usd is priced with
+# Anthropic list rates and is meaningless on the Z.ai endpoint, so query the
+# plan's quota instead. The statusline renders often, so cache the API
+# response for 60s and serve stale data rather than blocking on a refresh.
+quota_fmt=""
+token="${ANTHROPIC_AUTH_TOKEN:-$(jq -r '.env.ANTHROPIC_AUTH_TOKEN // empty' "$HOME/.claude/settings.json" 2>/dev/null)}"
+if [ -n "$token" ]; then
+    quota_cache="${TMPDIR:-/tmp}/claude-statusline-zai-quota.json"
+    now=$(date +%s)
+    mtime=$(stat -c %Y "$quota_cache" 2>/dev/null || echo 0)
+    if [ $((now - mtime)) -ge 60 ]; then
+        curl -sm 4 "https://api.z.ai/api/monitor/usage/quota/limit" \
+            -H "Authorization: $token" \
+            -H "Content-Type: application/json" \
+            > "${quota_cache}.$$" 2>/dev/null \
+            && mv "${quota_cache}.$$" "$quota_cache" || rm -f "${quota_cache}.$$"
+    fi
+    quota_fmt=$(jq -r '
+        .data.limits
+        | sort_by(.usage)
+        | map("\(.currentValue)/\(.usage)")
+        | join("·")
+        | if length > 0 then "⚡" + . else empty end
+    ' "$quota_cache" 2>/dev/null)
+fi
 
 # Format session duration
 duration_s=$((duration_ms / 1000))
@@ -86,4 +108,4 @@ else
     session_fmt=""
 fi
 
-echo -e "${session_fmt}$model | ${color}${bar} ${used_int}%/${ctx_fmt} ${cost_fmt}${reset} | ${duration_fmt}${extras} | $branch"
+echo -e "${session_fmt}$model | ${color}${bar} ${used_int}%/${ctx_fmt}${quota_fmt:+ ${quota_fmt}}${reset} | ${duration_fmt}${extras} | $branch"
