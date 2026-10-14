@@ -1,4 +1,8 @@
+/* ctrl+alt+shift+i to open browser toolbox devtools console */
+
 #TabsToolbar { visibility: collapse !important; }
+
+#sidebar-panel-header { visibility: collapse !important; }
 
 /******************** BEGIN PYWALFOX CUSTOM CSS ********************/
 #main-window {
