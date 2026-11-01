@@ -14,7 +14,7 @@ mktmp () {
 
 mktmp
 
-git clone https://github.com/Vencord/Vesktop
+git clone https://github.com/minchingtonak/Vesktop
 cd Vesktop
 git switch global-shortcuts
 
@@ -24,4 +24,4 @@ npx pnpm package --linux pacman
 
 sudo pacman -R vesktop || true
 
-echo "Run: sudo pacman -U $(pwd)/dist/vesktop-X.X.X.pacman"
+echo "Run: sudo pacman -U $(ls "$PWD"/dist/*.pacman)"
